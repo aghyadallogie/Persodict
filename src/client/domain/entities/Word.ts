@@ -1,9 +1,11 @@
 export interface Word {
     authorId:    string;
     id:          string;
-    translation: Translation;
+    translation: Translation[];
 }
 
 export interface Translation {
-    [key: string]: string;
+    // [key: string]: string;
+    lang: string;
+    lingo: string;
 }

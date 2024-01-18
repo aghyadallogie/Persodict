@@ -1,7 +1,7 @@
 import { MdOutlineTranslate } from "react-icons/md";
 import styled from "styled-components";
+import { TranslatedWord } from "../../components/TranslatedWord";
 import { useSubmitTranslate } from "./useSubmitTranslate";
-
 
 /**
  * The `AddDeveloper` Component.
@@ -19,12 +19,15 @@ const TranslateModule = () => {
   const { handleSubmit } = useSubmitTranslate();
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <Input placeholder="word to translate" />
-      <Button type="submit" style={{ padding: 0 }}>
-        <MdOutlineTranslate size={"1.5rem"} />
-      </Button>
-    </StyledForm>
+    <>
+      <StyledForm onSubmit={handleSubmit}>
+        <Input placeholder="word to translate" />
+        <Button type="submit" style={{ padding: 0 }}>
+          <MdOutlineTranslate size={"1.5rem"} />
+        </Button>
+      </StyledForm>
+      <TranslatedWord />
+    </>
   );
 };
 
