@@ -24,7 +24,6 @@ export const WordView = ({ data }: ComponentProps) => {
 };
 
 const Table = styled.div`
-  padding: 0.1rem;
   background: #111;
   margin-bottom: 1rem;
   width: 100%;
@@ -38,7 +37,6 @@ const Table = styled.div`
   border: 1px solid white;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fffb;
   border-radius: 10px;
-  padding: 20px;
   color: #777;
   text-align: center;
 

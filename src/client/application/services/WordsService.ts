@@ -16,8 +16,6 @@ class WordsService implements WordsAdapter {
   }
 
   async getUserTranslations(userId: string) {
-    console.log('debuq', userId);
-    
     const res = await fetch("/api/words");
     const data = await res.json();
     return data;

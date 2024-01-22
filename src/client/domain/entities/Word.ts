@@ -5,7 +5,6 @@ export interface Word {
 }
 
 export interface Translation {
-    // [key: string]: string;
     lang: string;
     lingo: string;
 }
