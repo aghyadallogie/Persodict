@@ -1,13 +1,11 @@
 export interface Word {
     authorId: string;
-    translation: Translation[];
+    translations: Translation[];
 }
 
-export interface Translation {
-    [key: string]: string;
-}
+export type Translation = Record<string, string>;
 
 export interface Lingo {
-    userId: string;
+    authorId: string;
     text: string;
 }

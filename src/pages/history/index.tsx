@@ -1,11 +1,11 @@
-import { Navigation } from "@/client/ui/modules/Head/Navigation";
-import TranslateModule from "@/client/ui/modules/Translate/TranslateModule";
-import Head from "next/head";
+import {Wrapper} from '../index';
 
-export default function Home() {
-  return (
-    <main style={{ maxWidth: "40rem", margin: "auto" }}>
-      <TranslateModule />
-    </main>
-  );
-}
+import TranslateModule from '@/client/ui/modules/Translate/TranslateModule';
+
+const History = () => (
+    <Wrapper>
+        <TranslateModule />
+    </Wrapper>
+);
+
+export default History;

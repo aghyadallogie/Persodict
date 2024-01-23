@@ -1,16 +1,24 @@
-import { useTranslation } from "@/client/application/useCases/useTranslation";
-import { FormEvent } from "react";
+import type {FormEvent} from 'react';
+
+import {useTranslation} from '@/client/application/useCases/useTranslation';
 
 export const useSubmitTranslate = () => {
-  const { makeTranslation } = useTranslation();
+    const {makeTranslation} = useTranslation();
 
-  const handleSubmit = async (event: FormEvent) => {
-    event?.preventDefault();
-    await makeTranslation({
-      authorId: 'aghy',
-      text: event.target[0].value
-    });
-  };
+    const handleSubmit = async (event: FormEvent) => {
+        let textInput = event.target[0].value;
 
-  return { handleSubmit };
+        event.preventDefault();
+
+        if (!textInput) return;
+
+        await makeTranslation({
+            authorId: 'aghy',
+            text: textInput
+        });
+
+        event.target[0].value = '';
+    };
+
+    return {handleSubmit};
 };

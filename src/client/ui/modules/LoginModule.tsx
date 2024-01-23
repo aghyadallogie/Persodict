@@ -1,53 +1,59 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
 
-function LoginModule() {
-  return (
+import styled from 'styled-components';
+
+const LoginModule = () => (
     <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        minHeight: "60dvh",
-        marginTop: "40px",
-        textAlign: "center",
-      }}
+        style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            marginTop: '40px',
+            minHeight: '60dvh',
+            textAlign: 'center'
+        }}
     >
-      <h3>Personalized Dictionary</h3>
-      <div style={{ width: "80%", height: "100%", margin: "0 auto 6rem" }}>
-        <StyledForm
-          style={{
-            flexDirection: "column",
-            gap: "2rem",
-            paddingBottom: "5rem",
-          }}
-          onSubmit={() => {}}
+        <h3>Personalized Dictionary</h3>
+        <div style={{
+            height: '100%',
+            margin: '0 auto 6rem',
+            width: '80%'
+        }}
         >
-          <Input type="email" onChange={() => {}} placeholder="Enter Email" />
-          <Input
-            type="password"
-            onChange={() => {}}
-            placeholder="Enter Password"
-          />
-          <Button style={{ margin: "0", alignSelf: "center", width: "auto" }}>
-            Login
-          </Button>
-        </StyledForm>
-      </div>
-      <div>
-          <span style={{ fontSize: ".8rem" }}>
-            If you do not have an account already ?{" "}
-            <span
-              style={{ cursor: "pointer", borderBottom: "1px solid gray" }}
-              onClick={() => {}}
+            <StyledForm
+                style={{
+                    flexDirection: 'column',
+                    gap: '2rem',
+                    paddingBottom: '5rem'
+                }}
+                onSubmit={() => {}}
             >
-              Register
+                <Input placeholder="Enter Email" type="email" onChange={() => {}} />
+                <Input
+                    placeholder="Enter Password"
+                    type="password"
+                    onChange={() => {}}
+                />
+                <Button style={{
+                    alignSelf: 'center',
+                    margin: '0',
+                    width: 'auto'
+                }}
+                >
+                    Login
+                </Button>
+            </StyledForm>
+        </div>
+        <div>
+            <span style={{fontSize: '.8rem'}}>
+                If you do not have an account already ?{' '}
+                <span style={{borderBottom: '1px solid gray', cursor: 'pointer'}} onClick={() => {}}>
+                    Register
+                </span>
             </span>
-          </span>
-      </div>
+        </div>
     </div>
-  );
-}
+);
 
 export default LoginModule;
 
@@ -57,21 +63,21 @@ const StyledForm = styled.form`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
+  font-size: 1em;
+  outline: none;
   padding: 15px 20px;
   padding-left: 40px;
-  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
-  border: none;
-  outline: none;
-  background: transparent;
-  border-radius: 10px;
-  font-size: 1em;
+  width: 100%;
 
   ::placeholder {
-    font-size: 0.8em;
-    letter-spacing: 1px;
-    font-weight: 400;
     color: #ccc;
+    font-size: 0.8em;
+    font-weight: 400;
+    letter-spacing: 1px;
   }
 
   :active {
@@ -82,17 +88,17 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
-  width: 5rem;
-  padding: 15px 20px;
-  cursor: pointer;
-  font-weight: 600;
-
-  border: none;
-  outline: none;
   background: transparent;
+  border: none;
   border-radius: 10px;
+  box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
+  cursor: pointer;
+
   font-size: 1em;
+  font-weight: 600;
+  outline: none;
+  padding: 15px 20px;
+  width: 5rem;
 
   :active {
     box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;

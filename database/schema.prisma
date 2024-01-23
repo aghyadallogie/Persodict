@@ -16,5 +16,5 @@ model User {
 model Word {
     authorId    String
     id          String      @id @default(auto()) @map("_id") @db.ObjectId
-    translation Json
+    translations Json
 }

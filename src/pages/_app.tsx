@@ -1,10 +1,12 @@
-import Layout from "@/client/ui/layouts/Layout";
-import type { AppProps } from "next/app";
+/* eslint-disable react/jsx-props-no-spreading */
+import type {AppProps} from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
+import Layout from '@/client/ui/layouts/Layout';
+
+const App = ({Component, pageProps}: AppProps) => (
     <Layout>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
     </Layout>
-  );
-}
+);
+
+export default App;

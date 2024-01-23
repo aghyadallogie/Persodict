@@ -1,44 +1,42 @@
-import { Translation } from "@/client/domain/entities/Word";
-import { MdDelete } from "react-icons/md";
-import styled from "styled-components";
-import { renderCorrectFlag } from "../utils/helpers";
+import {MdDelete} from 'react-icons/md';
+import styled from 'styled-components';
+
+import {renderCorrectFlag} from '../utils/helpers';
+
+import type {Translation} from '@/client/domain/entities/Word';
 
 interface ComponentProps {
-  data: Translation[];
+    data: Translation[];
 }
 
-export const WordView = ({ data }: ComponentProps) => {
-  return (
+export const WordView = ({data}: ComponentProps) => (
     <Table>
-      <DeleteTranslation onClick={() => {}}>
-        <MdDelete />
-      </DeleteTranslation>
-      {data.map((trans: Translation) => (
-        <Row key={trans.lang}>
-          <span className={`fi fi-${renderCorrectFlag(trans.lang)}`}></span>
-          <span>{trans.lingo}</span>
-        </Row>
-      ))}
+        <DeleteTranslation onClick={() => {}}>
+            <MdDelete />
+        </DeleteTranslation>
+        {data.map((trans: Translation) => (
+            <Row key={trans.lang}>
+                <span className={`fi fi-${renderCorrectFlag(trans.lang)}`} />
+                <span>{trans.lingo}</span>
+            </Row>
+        ))}
     </Table>
-  );
-};
+);
 
 const Table = styled.div`
-  background: #111;
-  margin-bottom: 1rem;
-  width: 100%;
-
+  backdrop-filter: blur(8px);
   background: linear-gradient(
       rgba(255, 255, 255, 0.25),
       rgba(255, 255, 255, 0.1)
     ),
     url("background-image.jpg");
-  backdrop-filter: blur(8px);
   border: 1px solid white;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fffb;
   border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fffb;
   color: #777;
+  margin-bottom: 1rem;
   text-align: center;
+  width: 100%;
 
   &:hover {
     outline: 1px solid #fff;
@@ -51,21 +49,21 @@ const Table = styled.div`
 
 const Row = styled.div`
   border-bottom: 1px solid #fffb;
-  margin: 1rem;
   display: flex;
-  justify-content: start;
   gap: 2rem;
+  justify-content: start;
+  margin: 1rem;
 `;
 
 const DeleteTranslation = styled.div`
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+  margin: 0 10px;
+  padding-top: 3px;
   position: absolute;
   right: -10px;
   top: 0px;
-  margin: 0 10px;
   visibility: hidden;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  padding-top: 3px;
-  cursor: pointer;
-  background-color: white;
 `;
