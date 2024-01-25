@@ -30,8 +30,8 @@ export const Navigation = () => (
 
 const Nav = styled.nav`
   align-items: center;
-  background-color: var(--main-bg);
-  border-bottom: 1px solid silver;
+  background-color: white;
+  border-bottom: 2px solid #f0f0f0;
   display: flex;
   justify-content: center;
   min-height: 70px;
@@ -39,6 +39,7 @@ const Nav = styled.nav`
   text-align: center;
   top: 0;
   width: 100%;
+  z-index: 9;
 
   a,
   span {

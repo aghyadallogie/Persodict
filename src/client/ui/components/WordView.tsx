@@ -48,11 +48,11 @@ const Table = styled.div`
 `;
 
 const Row = styled.div`
-  border-bottom: 1px solid #fffb;
+  border-bottom: 1px dotted #D8D8D83B;
   display: flex;
   gap: 2rem;
-  justify-content: start;
-  margin: 1rem;
+  justify-content: space-between;
+  margin: 1rem 2rem;
 `;
 
 const DeleteTranslation = styled.div`
