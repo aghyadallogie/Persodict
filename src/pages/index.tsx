@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-
 import TranslateModule from '@/client/ui/modules/Translate/TranslateModule';
 
 const Home = () => (

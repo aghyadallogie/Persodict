@@ -90,6 +90,7 @@ const NavLink = styled(Link)`
     height: 2.2rem;
     padding: 5px 0;
     width: 4rem;
+    transition: 0.5s;
 
     &:hover {
       color: #333;

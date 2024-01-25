@@ -21,7 +21,7 @@ const TranslateModule = () => {
 
     return (
         <>
-            <StyledForm onSubmit={handleSubmit}>
+            <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
                 <Input placeholder="word to translate" />
                 <Button style={{padding: 0}} type="submit">
                     <MdOutlineTranslate size="1.5rem" />

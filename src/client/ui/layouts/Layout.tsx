@@ -1,17 +1,19 @@
 import type {ReactNode} from 'react';
 import React from 'react';
-
 import {Navigation} from '../modules/Head/Navigation';
+import {Rubik} from 'next/font/google';
 
-interface ComponetnProps {
+const rubik = Rubik({subsets: ['latin']});
+
+interface ComponentProps {
     children: ReactNode;
 }
 
-const Layout = ({children}: ComponetnProps) => (
-    <>
+const Layout = ({children}: ComponentProps) => (
+    <div className={rubik.className}>
         <Navigation />
         {children}
-    </>
+    </div>
 );
 
 export default Layout;

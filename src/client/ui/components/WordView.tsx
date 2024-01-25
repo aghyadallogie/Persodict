@@ -42,7 +42,7 @@ const Table = styled.div`
     outline: 1px solid #fff;
 
     div {
-      visibility: visible;
+      opacity: 1;
     }
   }
 `;
@@ -65,5 +65,6 @@ const DeleteTranslation = styled.div`
   position: absolute;
   right: -10px;
   top: 0px;
-  visibility: hidden;
+  transition: 0.3s;
+  opacity: 0;
 `;
