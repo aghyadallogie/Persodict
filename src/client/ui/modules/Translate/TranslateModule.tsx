@@ -22,8 +22,8 @@ const TranslateModule = () => {
     return (
         <>
             <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
-                <Input placeholder="word to translate" />
-                <Button style={{padding: 0}} type="submit">
+                <Input type="text" placeholder="word to translate" />
+                <Button type="submit">
                     <MdOutlineTranslate size="1.5rem" />
                 </Button>
             </StyledForm>
@@ -71,14 +71,12 @@ const Button = styled.button`
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
   cursor: pointer;
-
   font-size: 1em;
   font-weight: 600;
   outline: none;
-  padding: 15px 20px;
   width: 5rem;
 
-  :active {
-    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
+  &:active {
+    box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
   }
 `;

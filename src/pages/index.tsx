@@ -8,10 +8,6 @@ const Home = () => (
             <title>Persodict</title>
             <meta content="width=device-width, initial-scale=1" name="viewport" />
             <link href="/favicon.ico" rel="icon" />
-            <link
-                href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
-                rel="stylesheet"
-            />
         </Head>
         <Wrapper>
             <TranslateModule />

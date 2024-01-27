@@ -1,8 +1,6 @@
 import TranslateModule from "@/client/ui/modules/Translate/TranslateModule";
 
 describe('Form', () => {
-    // cy.intercept("GET", "http://localhost")
-
     it('renders the componenn', () => {
         cy.mount(<TranslateModule />);
         cy.getCy('translate-form').should('exist');
@@ -12,4 +10,14 @@ describe('Form', () => {
         cy.mount(<TranslateModule />);
         cy.getCy('translate-form').should('be.htmlElement', 'form');
     });
+
+    it('calls onSubmit when translate button is clicked', () => {
+        const onSubmit = cy.stub();
+
+        cy.mount(<TranslateModule />);
+
+        cy.getCy('translate-form').get('input[type="text"]').type('example');
+        cy.getCy('translate-form').get('button[type="submit"]').click();
+        cy.wrap(onSubmit).should('be.calledOnce');
+    })
 });
