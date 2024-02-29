@@ -1,3 +1,5 @@
+import {mutate} from 'swr';
+
 import type {UserTranslations, Word} from '@/client/domain/entities/Word';
 import type {WordsAdapter} from '@/client/domain/WordsAdapter';
 import type {Lingo} from '@/server/domain/entities/Word';
@@ -22,6 +24,19 @@ class WordsService implements WordsAdapter {
         const data = await res.json();
 
         return data as UserTranslations;
+    }
+
+    async deleteWord(
+        url: string,
+        {arg}: {arg: string}
+    ): Promise<string | undefined> {
+        console.log('service1', arg);
+        const res = await fetch(`/api/words/${arg}`, {method: 'DELETE'});
+        const data = await res.json();
+
+        await mutate('/api/words');
+        console.log('service2', data);
+        return arg;
     }
 }
 

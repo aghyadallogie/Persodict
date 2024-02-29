@@ -71,14 +71,14 @@ const Button = styled.button`
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
   cursor: pointer;
-
   font-size: 1em;
   font-weight: 600;
   outline: none;
   padding: 15px 20px;
   width: 5rem;
 
-  :active {
+  &:active {
+    background-color: red;
     box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
   }
 `;

@@ -3,25 +3,33 @@ import styled from 'styled-components';
 
 import {renderCorrectFlag} from '../utils/helpers';
 
+import {useDeleteWord} from './useDeleteWord';
+
 import type {Translation} from '@/client/domain/entities/Word';
 
 interface ComponentProps {
     data: Translation[];
+    wordId: string | undefined;
 }
 
-export const WordView = ({data}: ComponentProps) => (
-    <Table>
-        <DeleteTranslation onClick={() => {}}>
-            <MdDelete />
-        </DeleteTranslation>
-        {data.map((trans: Translation) => (
-            <Row key={trans.lang}>
-                <span className={`fi fi-${renderCorrectFlag(trans.lang)}`} />
-                <span>{trans.lingo}</span>
-            </Row>
-        ))}
-    </Table>
-);
+export const WordView = ({data, wordId}: ComponentProps) => {
+    // const {removeWord} = useDeleteWord(wordId);
+    const {handleDeleteWord} = useDeleteWord(wordId!);
+
+    return (
+        <Table>
+            <DeleteTranslation onClick={handleDeleteWord}>
+                <MdDelete />
+            </DeleteTranslation>
+            {data.map((trans: Translation) => (
+                <Row key={trans.lang}>
+                    <span className={`fi fi-${renderCorrectFlag(trans.lang)}`} />
+                    <span>{trans.lingo}</span>
+                </Row>
+            ))}
+        </Table>
+    );
+};
 
 const Table = styled.div`
   backdrop-filter: blur(8px);

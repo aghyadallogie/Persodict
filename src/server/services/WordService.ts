@@ -62,4 +62,16 @@ export class WordService {
 
         return translations;
     }
+
+    static async deleteWord(wordId: string) {
+        console.log('wordId ', wordId);
+        try {
+            const deleted = await prisma.word.delete({where: {id: wordId}});
+
+            return deleted;
+        } catch (error) {
+            console.log('errr', error);
+        }
+        return undefined;
+    }
 }
