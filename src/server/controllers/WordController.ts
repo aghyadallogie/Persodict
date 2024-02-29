@@ -11,14 +11,11 @@ export class WordController {
         try {
             const words = await WordService.getWords();
 
-            // await res.revalidate('/api/words');
             return res.send({
                 data: words,
                 status: HTTP_STATUS.OK
             });
         } catch (error) {
-            console.log('er', error);
-
             return {
                 message: 'Something went wrong!',
                 status: HTTP_STATUS.INTERNAL_SERVER_ERROR
@@ -28,7 +25,7 @@ export class WordController {
 
     static async translateWord(req: NextApiRequest, res: NextApiResponse) {
         try {
-            const body = JSON.parse(req.body) as Lingo;
+            const body = JSON.parse(req.body as string) as Lingo;
 
             const translation = await WordService.translateWord(body);
             const translated = await WordService.addWord({
