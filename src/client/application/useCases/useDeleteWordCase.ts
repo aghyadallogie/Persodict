@@ -5,10 +5,9 @@ import WordsService from '../services/WordsService';
 export const useDeleteWordCase = () => {
     const {trigger} = useSWRMutation(
         '/api/words',
-        WordsService.deleteWord
+        WordsService.deleteWord,
+        {revalidate: true}
     );
-
-    // await mutate('/api/words');
 
     return {deleteWord: trigger};
 };

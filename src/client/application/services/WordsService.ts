@@ -30,12 +30,11 @@ class WordsService implements WordsAdapter {
         url: string,
         {arg}: {arg: string}
     ): Promise<string | undefined> {
-        console.log('service1', arg);
         const res = await fetch(`/api/words/${arg}`, {method: 'DELETE'});
-        const data = await res.json();
+
+        await res.json();
 
         await mutate('/api/words');
-        console.log('service2', data);
         return arg;
     }
 }

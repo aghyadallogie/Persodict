@@ -1,37 +1,57 @@
-import {MdDelete} from 'react-icons/md';
-import styled from 'styled-components';
+import { MdDelete } from "react-icons/md";
+import styled from "styled-components";
 
-import {renderCorrectFlag} from '../utils/helpers';
+import { renderCorrectFlag } from "../utils/helpers";
 
-import {useDeleteWord} from './useDeleteWord';
+import { useDeleteWord } from "./useDeleteWord";
 
-import type {Translation} from '@/client/domain/entities/Word';
+import type { Translation } from "@/client/domain/entities/Word";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface ComponentProps {
-    data: Translation[];
-    wordId: string | undefined;
+  data: Translation[];
+  wordId: string | undefined;
 }
 
-export const WordView = ({data, wordId}: ComponentProps) => {
-    // const {removeWord} = useDeleteWord(wordId);
-    const {handleDeleteWord} = useDeleteWord(wordId!);
+export const WordView = ({ data, wordId }: ComponentProps) => {
+  const { handleDeleteWord } = useDeleteWord(wordId!);
 
-    return (
-        <Table>
-            <DeleteTranslation onClick={handleDeleteWord}>
-                <MdDelete />
-            </DeleteTranslation>
-            {data.map((trans: Translation) => (
-                <Row key={trans.lang}>
-                    <span className={`fi fi-${renderCorrectFlag(trans.lang)}`} />
-                    <span>{trans.lingo}</span>
-                </Row>
-            ))}
-        </Table>
-    );
+  return (
+    <AnimatePresence mode="wait">
+      <Table
+        animate="enter"
+        initial="initial"
+        layout
+        variants={{
+          enter: {
+            opacity: 1,
+            y: 0,
+          },
+          exit: {
+            opacity: 0,
+            y: -20,
+          },
+          initial: {
+            opacity: 0,
+            y: -20,
+          },
+        }}
+      >
+        <DeleteTranslation onClick={handleDeleteWord}>
+          <MdDelete />
+        </DeleteTranslation>
+        {data.map((trans: Translation) => (
+          <Row key={trans.lang}>
+            <span className={`fi fi-${renderCorrectFlag(trans.lang)}`} />
+            <span>{trans.lingo}</span>
+          </Row>
+        ))}
+      </Table>
+    </AnimatePresence>
+  );
 };
 
-const Table = styled.div`
+const Table = styled(motion.div)`
   backdrop-filter: blur(8px);
   background: linear-gradient(
       rgba(255, 255, 255, 0.25),
@@ -56,7 +76,7 @@ const Table = styled.div`
 `;
 
 const Row = styled.div`
-  border-bottom: 1px dotted #D8D8D83B;
+  border-bottom: 1px dotted #d8d8d83b;
   display: flex;
   gap: 2rem;
   justify-content: space-between;

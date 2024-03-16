@@ -1,9 +1,10 @@
-import {MdOutlineTranslate} from 'react-icons/md';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { MdOutlineTranslate } from 'react-icons/md';
+
+import { useSubmitTranslate } from './useSubmitTranslate';
+import { TranslatedWord } from '../../components/TranslatedWord';
 import styled from 'styled-components';
-
-import {TranslatedWord} from '../../components/TranslatedWord';
-
-import {useSubmitTranslate} from './useSubmitTranslate';
 
 /**
  * The `AddDeveloper` Component.
@@ -17,20 +18,27 @@ import {useSubmitTranslate} from './useSubmitTranslate';
  * ```
  */
 const TranslateModule = () => {
-    const {handleSubmit} = useSubmitTranslate();
+  const { handleSubmit } = useSubmitTranslate();
 
-    return (
-        <>
-            <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
-                <Input type="text" placeholder="word to translate" />
-                <Button type="submit">
-                    <MdOutlineTranslate size="1.5rem" />
-                </Button>
-            </StyledForm>
-            <TranslatedWord />
-        </>
-    );
+  return (
+    <>
+      <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
+        <Input type="text" placeholder="word to translate" />
+        <Button type="submit">
+          <MdOutlineTranslate size="1.5rem" />
+        </Button>
+      </StyledForm>
+      <motion.div
+        initial={{ opacity: 0}}
+        animate={{ opacity: 1}}
+        transition={{ duration: 0.5 }}
+      >
+        <TranslatedWord />
+      </motion.div>
+    </>
+  );
 };
+
 
 export default TranslateModule;
 
