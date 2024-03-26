@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import Head from 'next/head';
 import styled from 'styled-components';
 

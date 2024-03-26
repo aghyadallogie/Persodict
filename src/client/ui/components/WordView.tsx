@@ -1,54 +1,82 @@
-import { MdDelete } from "react-icons/md";
-import styled from "styled-components";
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, import/no-unresolved */
+import {motion} from 'framer-motion';
+import {MdDelete} from 'react-icons/md';
+import styled from 'styled-components';
 
-import { renderCorrectFlag } from "../utils/helpers";
+import {renderCorrectFlag} from '../utils/helpers';
 
-import { useDeleteWord } from "./useDeleteWord";
+import {useDeleteWord} from './useDeleteWord';
 
-import type { Translation } from "@/client/domain/entities/Word";
-import { AnimatePresence, motion } from "framer-motion";
+import type {Translation} from '@/client/domain/entities/Word';
+import type {Variants} from 'framer-motion';
 
 interface ComponentProps {
-  data: Translation[];
-  wordId: string | undefined;
+    data: Translation[];
+    wordId: string | undefined;
 }
 
-export const WordView = ({ data, wordId }: ComponentProps) => {
-  const { handleDeleteWord } = useDeleteWord(wordId!);
+const deleteAnimation: Variants = {
+    bla: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.05,
+            staggerDirection: 1,
+            when: 'beforeChildren'
+        },
+        y: 0
+    },
+    exit: {
+        opacity: 0,
+        transition: {
+            staggerChildren: 0.05,
+            staggerDirection: -1,
+            when: 'afterChildren'
+        },
+        x: -20
+    },
+    initial: {
+        opacity: 0,
+        y: -20
+    }
+};
 
-  return (
-    <AnimatePresence mode="wait">
-      <Table
-        animate="enter"
-        initial="initial"
-        layout
-        variants={{
-          enter: {
-            opacity: 1,
-            y: 0,
-          },
-          exit: {
-            opacity: 0,
-            y: -20,
-          },
-          initial: {
-            opacity: 0,
-            y: -20,
-          },
-        }}
-      >
-        <DeleteTranslation onClick={handleDeleteWord}>
-          <MdDelete />
-        </DeleteTranslation>
-        {data.map((trans: Translation) => (
-          <Row key={trans.lang}>
-            <span className={`fi fi-${renderCorrectFlag(trans.lang)}`} />
-            <span>{trans.lingo}</span>
-          </Row>
-        ))}
-      </Table>
-    </AnimatePresence>
-  );
+const childrenAnimation: Variants = {
+    bla: {
+        opacity: 1,
+        y: 0
+    },
+    exit: {
+        opacity: 0,
+        x: -20
+    },
+    initial: {
+        opacity: 0,
+        y: -20
+    }
+};
+
+export const WordView = ({data, wordId}: ComponentProps) => {
+    const {handleDeleteWord} = useDeleteWord(wordId!);
+
+    return (
+        <Table
+            animate="bla"
+            exit="exit"
+            initial="initial"
+            variants={deleteAnimation}
+            layout
+        >
+            <DeleteTranslation onClick={handleDeleteWord}>
+                <MdDelete />
+            </DeleteTranslation>
+            {data.map((trans: Translation) => (
+                <Row key={trans.lang} variants={childrenAnimation}>
+                    <span className={`fi fi-${renderCorrectFlag(trans.lang)}`} />
+                    <span>{trans.lingo}</span>
+                </Row>
+            ))}
+        </Table>
+    );
 };
 
 const Table = styled(motion.div)`
@@ -75,7 +103,7 @@ const Table = styled(motion.div)`
   }
 `;
 
-const Row = styled.div`
+const Row = styled(motion.div)`
   border-bottom: 1px dotted #d8d8d83b;
   display: flex;
   gap: 2rem;
