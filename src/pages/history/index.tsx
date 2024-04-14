@@ -12,7 +12,7 @@ import {useGetUserTranslations} from '@/client/application/useCases/useGetUserTr
 import {WordService} from '@/server/services/WordService';
 
 interface PageProps {
-    words: Word[] | [];
+    words: Word[];
 }
 
 const History = ({words}: PageProps) => {

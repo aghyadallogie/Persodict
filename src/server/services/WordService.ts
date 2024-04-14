@@ -1,7 +1,7 @@
-import {Langs} from '../controllers/WordController';
 import {prisma} from '../utils/prisma';
 
 import type {Lingo, Word} from '../domain/entities/Word';
+import { SettingsService } from './SettingsService';
 
 export class WordService {
     static async getWords() {
@@ -31,7 +31,8 @@ export class WordService {
 
     static async translateWord({text}: Lingo) {
         try {
-            const result = await this.translateWordToLangs(text, Langs);
+            const settings = await SettingsService.getSettings() as { userLangs: string[] };
+            const result = await this.translateWordToLangs(text, settings.userLangs);
 
             return result;
         } catch (error) {

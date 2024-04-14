@@ -4,8 +4,6 @@ import {HTTP_STATUS} from '../utils/httpstatus';
 import type {Lingo} from '../domain/entities/Word';
 import type {NextApiRequest, NextApiResponse} from 'next';
 
-export const Langs = ['it', 'fr', 'de', 'ru'];
-
 export class WordController {
     static async getWords(req: NextApiRequest, res: NextApiResponse) {
         try {
@@ -45,10 +43,7 @@ export class WordController {
         }
     }
 
-    static async deleteWord(
-        req: NextApiRequest,
-        res: NextApiResponse
-    ) {
+    static async deleteWord(req: NextApiRequest,res: NextApiResponse) {
         try {
             const deleted = await WordService.deleteWord(req.query.wordId as string);
 
@@ -57,8 +52,10 @@ export class WordController {
                 status: HTTP_STATUS.OK
             });
         } catch (error) {
-            console.log(error);
+            return {
+                error,
+                status: HTTP_STATUS.BAD_REQUEST
+            };
         }
-        return undefined;
     }
 }

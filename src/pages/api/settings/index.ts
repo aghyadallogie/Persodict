@@ -1,8 +1,8 @@
-import {WordController} from '../../../server/controllers/WordController';
 import {errorHandler} from '../../../server/utils/errorHandler';
 import nextConnect from '../../../server/utils/nextConnect';
+import {SettingsController} from '../../../server/controllers/SettingsController'; 
 
 export default nextConnect()
-    .get(WordController.getWords)
-    .post(WordController.translateWord)
+    .get(SettingsController.getSettings)
+    .post(SettingsController.updateSettings)
     .handler({onError: errorHandler});

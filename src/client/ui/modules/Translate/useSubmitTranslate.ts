@@ -5,8 +5,8 @@ import {useTranslation} from '@/client/application/useCases/useTranslation';
 export const useSubmitTranslate = () => {
     const {makeTranslation} = useTranslation();
 
-    const handleSubmit = async (event: FormEvent) => {
-        let textInput = event.target[0].value;
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        let textInput = (event.target as HTMLFormElement)[0].value;
 
         event.preventDefault();
 
@@ -17,7 +17,7 @@ export const useSubmitTranslate = () => {
             text: textInput
         });
 
-        event.target[0].value = '';
+        (event.target as HTMLFormElement).value = '';
     };
 
     return {handleSubmit};

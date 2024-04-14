@@ -1,5 +1,5 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
     previewFeatures = ["mongodb"]
 }
 
@@ -14,7 +14,13 @@ model User {
 }
 
 model Word {
-    authorId    String
-    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    authorId     String
+    id           String @id @default(auto()) @map("_id") @db.ObjectId
     translations Json
+}
+
+model Settings {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    userId    String   @unique
+    userLangs String[]
 }
