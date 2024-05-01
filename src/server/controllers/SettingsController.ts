@@ -22,10 +22,12 @@ export class SettingsController {
 
   static async updateSettings(req: NextApiRequest, res: NextApiResponse) {
     try {
+      const body = JSON.parse(req.body);
+
       const updatedSettings = await SettingsService.updateSettings({
-        userId: req.body.userId,
-        userLangs: req.body.userLangs,
-      });
+        userId: body.userId,
+        userLangs: body.userLangs,
+      } as Settings);
 
       return res.send({
         data: updatedSettings,

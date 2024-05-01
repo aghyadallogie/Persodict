@@ -1,8 +1,8 @@
 import {mutate} from 'swr';
 
 import type {UserTranslations, Word} from '@/client/domain/entities/Word';
-import type {WordsAdapter} from '@/client/domain/WordsAdapter';
 import type {Lingo} from '@/server/domain/entities/Word';
+import { WordsAdapter } from '@/client/domain/adapters/WordsAdapter';
 
 class WordsService implements WordsAdapter {
     async makeTranslation(

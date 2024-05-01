@@ -1,8 +1,8 @@
 import { Settings } from "../domain/entities/Settings";
-import {prisma} from '../utils/prisma';
+import { prisma } from "../utils/prisma";
 
 export class SettingsService {
-  static async getSettings() {   
+  static async getSettings() {
     try {
       const settings = await prisma.settings.findUnique({
         where: {
@@ -12,22 +12,23 @@ export class SettingsService {
 
       return settings;
     } catch (error) {
-        return error;
+      return error;
     }
   }
 
-  static async updateSettings({userId, userLangs}: Settings) {    
+  static async updateSettings({ userId, userLangs }: Settings) {
     try {
-        const updated = await prisma.settings.create({
-            data: {
-                userId: userId,
-                userLangs: userLangs
-            }
-        })
+      const updated = await prisma.settings.update({
+        where: { userId },
+        data: {
+          userId: userId,
+          userLangs: userLangs,
+        },
+      });
 
-        return updated;
+      return updated;
     } catch (error) {
-        return error;
+      return error;
     }
   }
 }
