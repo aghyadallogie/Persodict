@@ -10,11 +10,9 @@ export const useUpdateSettings = (langCode: string, userLangs: string[]) => {
         return langItem !== langCode;
       });
       payload = { userId: "aghy", userLangs };
-      console.log({payload});
     } else {
       userLangs.push(langCode);
       payload = { userId: "aghy", userLangs };
-      console.log({payload});
     }
 
     await updateSettings(payload);

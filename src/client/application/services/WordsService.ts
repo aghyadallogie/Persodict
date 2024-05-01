@@ -1,42 +1,42 @@
-import {mutate} from 'swr';
+import { mutate } from "swr";
 
-import type {UserTranslations, Word} from '@/client/domain/entities/Word';
-import type {Lingo} from '@/server/domain/entities/Word';
-import { WordsAdapter } from '@/client/domain/adapters/WordsAdapter';
+import type { UserTranslations, Word } from "@/client/domain/entities/Word";
+import type { Lingo } from "@/server/domain/entities/Word";
+import { WordsAdapter } from "@/client/domain/adapters/WordsAdapter";
 
 class WordsService implements WordsAdapter {
-    async makeTranslation(
-        url: string,
-        {arg}: {arg: Lingo}
-    ): Promise<Word | undefined> {
-        const res = await fetch('/api/words', {
-            body: JSON.stringify(arg),
-            method: 'POST'
-        });
+  async makeTranslation(
+    url: string,
+    { arg }: { arg: Lingo }
+  ): Promise<Word | undefined> {
+    const res = await fetch("/api/words", {
+      body: JSON.stringify(arg),
+      method: "POST",
+    });
 
-        const data = await res.json() as Word;
+    const data = (await res.json()) as Word;
 
-        return data;
-    }
+    return data;
+  }
 
-    async getUserTranslations() {
-        const res = await fetch('/api/words');
-        const data = await res.json();
+  async getUserTranslations() {
+    const res = await fetch("/api/words");
+    const data = await res.json();
 
-        return data as UserTranslations;
-    }
+    return data as UserTranslations;
+  }
 
-    async deleteWord(
-        url: string,
-        {arg}: {arg: string}
-    ): Promise<string | undefined> {
-        const res = await fetch(`/api/words/${arg}`, {method: 'DELETE'});
+  async deleteWord(
+    url: string,
+    { arg }: { arg: string }
+  ): Promise<string | undefined> {
+    const res = await fetch(`/api/words/${arg}`, { method: "DELETE" });
 
-        await res.json();
+    await res.json();
 
-        await mutate('/api/words');
-        return arg;
-    }
+    await mutate("/api/words");
+    return arg;
+  }
 }
 
 export default new WordsService();

@@ -8,7 +8,7 @@ export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => (
     {langs.map((lang) => (
       <Flag
         key={lang.code}
-        picked={userLangs.includes(lang.code)}
+        picked={userLangs?.includes(lang.code)}
         langFlag={lang.flag}
         langCode={lang.code}
         userLangs={userLangs}
