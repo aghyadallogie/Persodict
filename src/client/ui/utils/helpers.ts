@@ -4,5 +4,6 @@ export const renderCorrectFlag = (lang: string) => {
     if (lang === 'el') return 'gr';
     if (lang === 'ja') return 'jp';
     if (lang === 'uk') return 'ua';
+    if (lang === 'ar') return 'sy';
     return lang;
 };

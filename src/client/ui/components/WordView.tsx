@@ -2,11 +2,8 @@
 import { motion } from "framer-motion";
 import { MdDelete } from "react-icons/md";
 import styled from "styled-components";
-
 import { renderCorrectFlag } from "../utils/helpers";
-
 import { useDeleteWord } from "./useDeleteWord";
-
 import type { Translation } from "@/client/domain/entities/Word";
 import { childrenAnimation, deleteAnimation } from "../animations/actions";
 

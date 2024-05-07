@@ -1,15 +1,12 @@
 /* eslint-disable import/no-unresolved */
-import { AnimatePresence } from "framer-motion";
-import styled from "styled-components";
-
-import { Wrapper } from "../index";
+import { useGetUserTranslations } from "@/client/application/useCases/useGetUserTranslations";
+import type { Word } from "@/client/domain/entities/Word";
 import { NoWords } from "@/client/ui/components/NoWords";
 import { WordView } from "@/client/ui/components/WordView";
-
-import type { Word } from "@/client/domain/entities/Word";
-
-import { useGetUserTranslations } from "@/client/application/useCases/useGetUserTranslations";
 import { WordService } from "@/server/services/WordService";
+import { AnimatePresence } from "framer-motion";
+import styled from "styled-components";
+import { Wrapper } from "../index";
 
 interface PageProps {
   words: Word[];
@@ -17,7 +14,10 @@ interface PageProps {
 
 const History = ({ words }: PageProps) => {
   const { userTranslations } = useGetUserTranslations(words);
-  const orderedTranslations = userTranslations.data.toReversed();
+  const translations = userTranslations.data;
+  let orderedTranslations: Word[] = translations;
+  if (typeof translations.toReversed === "function")
+    orderedTranslations = translations.toReversed();
 
   return (
     <Wrapper>

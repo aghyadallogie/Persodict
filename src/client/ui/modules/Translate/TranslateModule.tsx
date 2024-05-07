@@ -1,11 +1,9 @@
 /* eslint-disable import/no-unresolved */
+import { MdOutlineTranslate } from "react-icons/md";
+import styled from "styled-components";
 
-import {MdOutlineTranslate} from 'react-icons/md';
-import styled from 'styled-components';
-
-import {TranslatedWord} from '../../components/TranslatedWord';
-
-import {useSubmitTranslate} from './useSubmitTranslate';
+import { TranslatedWord } from "../../components/TranslatedWord";
+import { useSubmitTranslate } from "./useSubmitTranslate";
 
 /**
  * The `AddDeveloper` Component.
@@ -19,21 +17,20 @@ import {useSubmitTranslate} from './useSubmitTranslate';
  * ```
  */
 const TranslateModule = () => {
-    const {handleSubmit} = useSubmitTranslate();
+  const { handleSubmit } = useSubmitTranslate();
 
-    return (
-        <>
-            <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
-                <Input placeholder="word to translate" type="text" />
-                <Button type="submit">
-                    <MdOutlineTranslate size="1.5rem" />
-                </Button>
-            </StyledForm>
-            <TranslatedWord />
-        </>
-    );
+  return (
+    <>
+      <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
+        <Input placeholder="word to translate" type="text" />
+        <Button type="submit">
+          <MdOutlineTranslate size="1.5rem" />
+        </Button>
+      </StyledForm>
+      <TranslatedWord />
+    </>
+  );
 };
-
 
 export default TranslateModule;
 
@@ -54,14 +51,14 @@ const Input = styled.input`
   padding-left: 40px;
   width: 100%;
 
-  ::placeholder {
-    color: #ccc;
+  &::placeholder {
+    color: ${({theme}) => theme.colors.textPlaceholder};
     font-size: 0.8em;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
   }
 
-  :active {
+  &:focus {
     ::placeholder {
       visibility: hidden;
     }

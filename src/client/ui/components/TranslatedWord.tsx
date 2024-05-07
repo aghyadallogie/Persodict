@@ -3,7 +3,6 @@ import {AnimatePresence} from 'framer-motion';
 
 import {NoWords} from './NoWords';
 import {WordView} from './WordView';
-
 import {useGetUserTranslations} from '@/client/application/useCases/useGetUserTranslations';
 
 export const TranslatedWord = () => {
