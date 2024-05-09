@@ -9,6 +9,8 @@ const App = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider theme={theme}>
     <Layout>
       <Head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link href="/favicon.ico" rel="icon" />
         <link
           href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
           rel="stylesheet"
