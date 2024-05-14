@@ -1,30 +1,26 @@
-// const Layout = ({children}: ComponentProps) => (
-//     <div className={rubik.className} style={{margin: '0 2rem'}}>
-//         <Navigation />
-//         {children}
-//     </div>
-// );
+import type { ReactNode } from "react";
+import React from "react";
+import { motion } from "framer-motion"; // Import motion from Framer Motion
+import { Rubik } from "next/font/google";
+import { Navigation } from "../modules/Head/Navigation";
+import Head from "next/head";
 
-import type { ReactNode } from 'react';
-import React from 'react';
-import { motion } from 'framer-motion'; // Import motion from Framer Motion
-
-import { Rubik } from 'next/font/google';
-
-import { Navigation } from '../modules/Head/Navigation';
-
-const rubik = Rubik({ subsets: ['latin'] });
+const rubik = Rubik({ subsets: ["latin"] });
 
 interface ComponentProps {
   children: ReactNode;
+  title?: string;
 }
 
-const Layout = ({ children }: ComponentProps) => (
-  <div className={rubik.className} style={{ margin: '0 2rem' }}>
+const SessionLayout = ({ children, title }: ComponentProps) => (
+  <div className={rubik.className} style={{ margin: "0 2rem" }}>
+    <Head>
+      <title>{title}</title>
+    </Head>
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+      transition={{ type: "spring", stiffness: 120, damping: 20 }}
     >
       <Navigation />
     </motion.nav>
@@ -32,4 +28,4 @@ const Layout = ({ children }: ComponentProps) => (
   </div>
 );
 
-export default Layout;
+export default SessionLayout;

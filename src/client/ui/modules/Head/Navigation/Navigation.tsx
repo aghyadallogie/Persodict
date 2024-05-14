@@ -1,31 +1,34 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
-    RiFolderHistoryFill,
-    RiHome4Fill,
-    RiLogoutBoxRFill,
-    RiQuestionnaireFill,
-    RiSettings2Fill
-} from 'react-icons/ri';
-import styled from 'styled-components';
+  RiFolderHistoryFill,
+  RiHome4Fill,
+  RiLogoutBoxRFill,
+  RiQuestionnaireFill,
+  RiSettings2Fill,
+} from "react-icons/ri";
+import styled from "styled-components";
+import { signOut } from "next-auth/react";
 
 export const Navigation = () => (
-    <Nav>
-        <NavLink href="/">
-            <RiHome4Fill />
-        </NavLink>
-        <NavLink href="/history">
-            <RiFolderHistoryFill />
-        </NavLink>
-        <NavLink href="/quiz">
-            <RiQuestionnaireFill />
-        </NavLink>
-        <NavLink href="/settings">
-            <RiSettings2Fill />
-        </NavLink>
-        <span style={{cursor: 'pointer'}}>
-            <RiLogoutBoxRFill />
-        </span>
-    </Nav>
+  <Nav>
+    <NavLink href="/">
+      <RiHome4Fill />
+    </NavLink>
+    <NavLink href="/history">
+      <RiFolderHistoryFill />
+    </NavLink>
+    <NavLink href="/quiz">
+      <RiQuestionnaireFill />
+    </NavLink>
+    <NavLink href="/settings">
+      <RiSettings2Fill />
+    </NavLink>
+    <span style={{ cursor: "pointer" }}>
+      <RiLogoutBoxRFill
+        onClick={async () => signOut({ callbackUrl: "/login" })}
+      />
+    </span>
+  </Nav>
 );
 
 const Nav = styled.nav`

@@ -13,6 +13,7 @@
     "@prisma/client": "^5.8.0",
     "framer-motion": "^11.0.8",
     "next": "14.0.4",
+    "next-auth": "^4.24.7",
     "next-connect": "^1.0.0",
     "prisma": "^5.8.0",
     "react": "^18",
