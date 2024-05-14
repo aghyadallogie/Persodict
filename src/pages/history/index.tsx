@@ -7,12 +7,14 @@ import { WordService } from "@/server/services/WordService";
 import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { Wrapper } from "../index";
+import { NextPageWithLayout } from "@/types/global";
+import SessionLayout from "@/client/ui/layouts/Layout";
 
 interface PageProps {
   words: Word[];
 }
 
-const History = ({ words }: PageProps) => {
+const History: NextPageWithLayout = ({ words }: PageProps) => {
   const { userTranslations } = useGetUserTranslations(words);
   const translations = userTranslations.data;
   let orderedTranslations: Word[] = translations;
@@ -45,6 +47,12 @@ export default History;
 const WordsWrapper = styled.div`
   margin-top: 1rem;
 `;
+
+History.getLayout = (router, pageProps, PageComponent) => (
+  <SessionLayout title="Persodict">
+    <PageComponent router={router} {...pageProps} />
+  </SessionLayout>
+);
 
 export const getServerSideProps = async () => {
   const userWords = await WordService.getWords();
