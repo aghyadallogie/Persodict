@@ -4,7 +4,8 @@ import { motion } from "framer-motion"; // Import motion from Framer Motion
 import { Rubik } from "next/font/google";
 import { Navigation } from "../modules/Head/Navigation";
 import Head from "next/head";
-import { SessionProvider } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -13,8 +14,17 @@ interface ComponentProps {
   title?: string;
 }
 
-const SessionLayout = ({ children, title }: ComponentProps) => (
-  <SessionProvider>
+const SessionLayout = ({ children, title }: ComponentProps) => {
+  const router = useRouter();
+
+  useSession({
+    required: true,
+    onUnauthenticated() {
+      void router.replace("/login");
+    },
+  });
+
+  return (
     <div className={rubik.className} style={{ margin: "0 2rem" }}>
       <Head>
         <title>{title}</title>
@@ -28,7 +38,7 @@ const SessionLayout = ({ children, title }: ComponentProps) => (
       </motion.nav>
       {children}
     </div>
-  </SessionProvider>
-);
+  );
+};
 
 export default SessionLayout;

@@ -4,6 +4,7 @@ import { theme } from "@/client/ui/utils/globalStyles";
 import { AppProps } from "@/types/global";
 import type { Session } from "next-auth";
 import { Component, ReactNode } from "react";
+import { SessionProvider } from "next-auth/react";
 
 class App extends Component<AppProps<{ session: Session }>> {
   chooseLayout(): ReactNode {
@@ -23,13 +24,15 @@ class App extends Component<AppProps<{ session: Session }>> {
 
     return (
       <ThemeProvider theme={theme}>
-        <Head>
-          <link
-            href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
-            rel="stylesheet"
-          />
-        </Head>
-        {this.chooseLayout()}
+        <SessionProvider session={session}>
+          <Head>
+            <link
+              href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+              rel="stylesheet"
+            />
+          </Head>
+          {this.chooseLayout()}
+        </SessionProvider>
       </ThemeProvider>
     );
   }
