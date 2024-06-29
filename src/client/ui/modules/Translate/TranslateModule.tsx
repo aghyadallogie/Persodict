@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import { TranslatedWord } from "../../components/TranslatedWord";
 import { useSubmitTranslate } from "./useSubmitTranslate";
+import { Button } from "../../components/action/buttons/Button";
+import { Google } from "../../assets/images/icons";
 
 /**
  * The `AddDeveloper` Component.
@@ -23,9 +25,7 @@ const TranslateModule = () => {
     <>
       <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
         <Input placeholder="word to translate" type="text" />
-        <Button type="submit">
-          <MdOutlineTranslate size="1.5rem" />
-        </Button>
+        <Button icon={'Translate'} type="submit" label="" position={"left"} isDisabled={false} size={"large"} style={"dark"} variant={"primary"}></Button>
       </StyledForm>
       <TranslatedWord />
     </>
@@ -52,7 +52,7 @@ const Input = styled.input`
   width: 100%;
 
   &::placeholder {
-    color: ${({theme}) => theme.colors.textPlaceholder};
+    color: ${({ theme }) => theme.colors.textPlaceholder};
     font-size: 0.8em;
     font-weight: 400;
     letter-spacing: 2px;
@@ -65,7 +65,7 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
+const Buttonn = styled.button`
   background: transparent;
   border: none;
   border-radius: 10px;

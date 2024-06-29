@@ -3,7 +3,7 @@ import Head from "next/head";
 import styled from "styled-components";
 import TranslateModule from "@/client/ui/modules/Translate/TranslateModule";
 import SessionLayout from "@/client/ui/layouts/Layout";
-import { NextPageWithLayout } from "@/types/global";
+import { NextPageWithLayout } from "../../types/global";
 
 const Home: NextPageWithLayout = () => (
   <>

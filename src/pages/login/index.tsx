@@ -1,8 +1,10 @@
-import React from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { NextPageWithLayout } from "../../../types/global";
+import { Wrapper } from "../index";
+import { Button } from "@/client/ui/components/action/buttons/Button";
 
-const Login = () => {
+const Login: NextPageWithLayout = () => {
   const { status } = useSession();
   const router = useRouter();
 
@@ -12,16 +14,20 @@ const Login = () => {
 
   if (status === "unauthenticated") {
     return (
-      <div>
+      <Wrapper>
         <h1>Login</h1>
-        <button
-          onClick={() =>
-            signIn("google", { callbackUrl: "http://localhost:3000/" })
-          }
-        >
-          login
-        </button>
-      </div>
+        <Button
+          onClick={() => signIn("google", { callbackUrl: "http://localhost:3000/" })}
+          label={"Login with Google"}
+          icon={"Google"}
+          position={"left"}
+          isDisabled={false}
+          size={"small"}
+          style={"dark"}
+          type={"button"}
+          variant={"primary"}>
+        </Button>
+      </Wrapper>
     );
   }
 
@@ -29,3 +35,7 @@ const Login = () => {
 };
 
 export default Login;
+
+Login.getLayout = (router, pageProps, PageComponent) => (
+  <PageComponent router={router} {...pageProps} />
+);

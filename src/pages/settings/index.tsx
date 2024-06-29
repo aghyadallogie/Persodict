@@ -3,7 +3,7 @@ import type { Settings } from "@/server/domain/entities/Settings";
 import { SettingsService } from "@/server/services/SettingsService";
 import { Wrapper } from "..";
 import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
-import { NextPageWithLayout } from "@/types/global";
+import { NextPageWithLayout } from "../../../types/global";
 import SessionLayout from "@/client/ui/layouts/Layout";
 
 interface PageProps {
@@ -26,7 +26,7 @@ const Settings: NextPageWithLayout = ({ userLangs }: PageProps) => {
 export default Settings;
 
 Settings.getLayout = (router, pageProps, PageComponent) => (
-  <SessionLayout title="Persodict">
+  <SessionLayout title="Settings">
     <PageComponent router={router} {...pageProps} />
   </SessionLayout>
 );

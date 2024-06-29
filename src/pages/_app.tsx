@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/client/ui/utils/globalStyles";
-import { AppProps } from "@/types/global";
+import { AppProps } from "../../types/global";
 import type { Session } from "next-auth";
 import { Component, ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
