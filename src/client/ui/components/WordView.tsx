@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access, import/no-unresolved */
 import { motion } from "framer-motion";
 import { MdDelete } from "react-icons/md";
 import styled from "styled-components";
@@ -12,6 +11,19 @@ interface ComponentProps {
   wordId: string | undefined;
 }
 
+/**
+ * The `WordView` Component.
+ * This component displays a table of translations with delete functionality.
+ *
+ * @param {Translation[]} data - An array of translations to display.
+ * @param {string | undefined} wordId - The ID of the word being viewed.
+ * @returns A React element representing the `WordView` component.
+ *
+ * @example
+ * ```tsx
+ * const MyComponent = <WordView data={translationsArray} wordId="123" />;
+ * ```
+ */
 export const WordView = ({ data, wordId }: ComponentProps) => {
   const { handleDeleteWord } = useDeleteWord(wordId!);
 

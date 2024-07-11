@@ -4,7 +4,7 @@ import { getButtonTextSize, getIcon, getIconSize, useForgroundColor } from "../.
 export const useButton= (
     style: 'dark' | 'light',
     size: 'large' | 'small' | undefined,
-    icon?: ButtonIcons
+    icon?: ButtonIcons | undefined
 ) => {
     const foregroundColor = useForgroundColor(style);
     const Icon = getIcon(icon);

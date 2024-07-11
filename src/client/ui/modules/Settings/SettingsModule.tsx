@@ -4,6 +4,18 @@ import styled from "styled-components";
 import { Flag } from "../../components/Flag";
 import { useSession } from "next-auth/react";
 
+/**
+ * The `SettingsModule` Component.
+ * This component displays language flags for language selection.
+ *
+ * @param {string[]} userLangs - Array of user chosen languages.
+ * @returns A React element representing the `SettingsModule` component.
+ *
+ * @example
+ * ```tsx
+ * const MySettingsModule = <SettingsModule userLangs={['en', 'fr']} />;
+ * ```
+ */
 export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => {
   const { data: session } = useSession();
 

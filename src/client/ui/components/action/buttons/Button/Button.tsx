@@ -16,6 +16,27 @@ interface ComponentProps {
   width?: number;
 }
 
+/**
+ * The `Button` Component.
+ * This component represents a customizable button element.
+ *
+ * @param {any} icon - The icon to display on the button.
+ * @param {string} label - The text label of the button.
+ * @param {function} onClick - The function to call on button click.
+ * @param {"left" | "right"} position - The position of the icon relative to the label.
+ * @param {boolean} isDisabled - Indicates if the button is disabled.
+ * @param {"large" | "small"} size - The size of the button.
+ * @param {"dark" | "light"} style - The style of the button.
+ * @param {"button" | "reset" | "submit"} type - The type of the button.
+ * @param {"primary" | "secondary"} variant - The variant of the button.
+ * @param {number} width - The width of the button.
+ * @returns A React element representing the `Button` component.
+ *
+ * @example
+ * ```tsx
+ * const MyButton = <Button label="Click Me" onClick={handleClick} />;
+ * ```
+ */
 export const Button = ({
   icon,
   label,

@@ -16,6 +16,27 @@ interface ComponentProps {
   width?: number;
 }
 
+/**
+ * The `ButtonBase` Component.
+ * This component serves as the base button element with customizable styles.
+ *
+ * @param {string} as - The HTML tag to render as.
+ * @param {boolean} hasSlimBorder - Indicates if the button has a slim border.
+ * @param {boolean} isActive - Indicates if the button is active.
+ * @param {boolean} isDisabled - Indicates if the button is disabled.
+ * @param {boolean} isRounded - Indicates if the button is rounded.
+ * @param {function} onClick - The function to call on button click.
+ * @param {"dark" | "light"} style - The style of the button.
+ * @param {"button" | "reset" | "submit"} type - The type of the button.
+ * @param {"primary" | "secondary"} variant - The variant of the button.
+ * @param {number} width - The width of the button.
+ * @returns A React element representing the `ButtonBase` component.
+ *
+ * @example
+ * ```tsx
+ * const MyButton = <ButtonBase onClick={handleClick} />;
+ * ```
+ */
 export const ButtonBase = ({
   as = "button",
   children,

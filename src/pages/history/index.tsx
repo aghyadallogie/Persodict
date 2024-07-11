@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { useGetUserTranslations } from "@/client/application/useCases/useGetUserTranslations";
 import type { Word } from "@/client/domain/entities/Word";
 import { NoWords } from "@/client/ui/components/layout/NoWords";
@@ -9,7 +8,8 @@ import styled from "styled-components";
 import { Wrapper } from "../index";
 import { NextPageWithLayout } from "../../../types/global";
 import SessionLayout from "@/client/ui/layouts/Layout";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
+import { GetServerSidePropsContext } from "next";
 
 interface PageProps {
   words: Word[];
@@ -17,10 +17,11 @@ interface PageProps {
 
 const History: NextPageWithLayout = ({ words }: PageProps) => {
   const { data: session } = useSession();
+  const { userTranslations } = useGetUserTranslations(session?.user?.email as string);
 
-  const { userTranslations } = useGetUserTranslations(session?.user?.email);
   const translations = userTranslations?.data || [];
   let orderedTranslations: Word[] = translations || [];
+
   if (typeof translations.toReversed === "function")
     orderedTranslations = translations.toReversed();
 
@@ -57,8 +58,11 @@ History.getLayout = (router, pageProps, PageComponent) => (
   </SessionLayout>
 );
 
-export const getServerSideProps = async () => {
-  const userWords = await WordService.getWords();
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const session = await getSession();
+  const userEmail = session?.user?.email;
+
+  const userWords = await WordService.getWords(userEmail || "zenlogie@gmail.com");
 
   return {
     props: {

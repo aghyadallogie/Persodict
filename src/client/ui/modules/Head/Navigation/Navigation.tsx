@@ -23,11 +23,11 @@ export const Navigation = () => (
     <NavLink href="/settings">
       <RiSettings2Fill />
     </NavLink>
-    <span style={{ cursor: "pointer" }}>
+    <LogoutButton>
       <RiLogoutBoxRFill
         onClick={async () => signOut({ callbackUrl: "/login" })}
       />
-    </span>
+    </LogoutButton>
   </Nav>
 );
 
@@ -45,7 +45,7 @@ const Nav = styled.nav`
   z-index: 9;
 
   a,
-  span {
+  div {
     color: #333;
     display: flex;
     flex-direction: column;
@@ -94,6 +94,21 @@ const NavLink = styled(Link)`
     padding: 5px 0;
     width: 4rem;
     transition: 0.5s;
+
+    &:hover {
+      color: #333;
+    }
+  }
+`;
+
+const LogoutButton = styled.div`
+  cursor: pointer;
+  svg {
+    color: #3338;
+    height: 2.2rem;
+    padding: 5px 0;
+    transition: 0.5s;
+    width: 4rem;
 
     &:hover {
       color: #333;

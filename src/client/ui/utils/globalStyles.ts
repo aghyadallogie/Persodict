@@ -9,6 +9,7 @@ export enum Colors {
     primaryActionColor = "whitesmoke",
     secondaryActionColor = "#aa0000",
     tertiaryActionColor = "#aa0000",
+    primaryAccentColor = "#aaa3"
 }
 
 export const theme: DefaultTheme = {

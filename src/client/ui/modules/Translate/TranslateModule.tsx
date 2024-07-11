@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import styled from "styled-components";
 
 import { TranslatedWord } from "../../components/TranslatedWord";
@@ -6,14 +5,13 @@ import { Button } from "../../components/action/buttons/Button";
 import { useSubmitTranslate } from "./useSubmitTranslate";
 
 /**
- * The `AddDeveloper` Component.
+ * The `TranslateModule` Component.
  *
- * @param props.testId A unique identifier, usually in the form of a string, assigned to the component for testing purposes.
- * @returns A React element representing the `AddDeveloper` component.
+ * @returns A React element representing the `TranslateModule` component.
  *
  * @example
  * ```tsx
- * const MyComponent = <AddDeveloper testId="myTestId">MyComponent</AddDeveloper>;
+ * const MyComponent = <TranslateModule />;
  * ```
  */
 const TranslateModule = () => {
@@ -64,21 +62,5 @@ const Input = styled.input`
     ::placeholder {
       visibility: hidden;
     }
-  }
-`;
-
-const Buttonn = styled.button`
-  background: transparent;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: 600;
-  outline: none;
-  width: 5rem;
-
-  &:active {
-    box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
   }
 `;
