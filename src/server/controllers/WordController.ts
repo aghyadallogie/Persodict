@@ -7,7 +7,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export class WordController {
   static async getWords(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const words = await WordService.getWords();
+      const words = await WordService.getWords(req.query.authorId as string);
 
       return res.send({
         data: words,

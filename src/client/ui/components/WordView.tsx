@@ -46,7 +46,7 @@ const Table = styled(motion.div)`
   border: 1px solid white;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fffb;
-  color: #777;
+  color: ${({ theme }) => theme.colors.primaryFontColor};
   margin-bottom: 1rem;
   text-align: center;
   width: 100%;

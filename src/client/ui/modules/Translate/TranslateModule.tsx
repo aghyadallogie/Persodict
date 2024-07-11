@@ -1,11 +1,9 @@
 /* eslint-disable import/no-unresolved */
-import { MdOutlineTranslate } from "react-icons/md";
 import styled from "styled-components";
 
 import { TranslatedWord } from "../../components/TranslatedWord";
-import { useSubmitTranslate } from "./useSubmitTranslate";
 import { Button } from "../../components/action/buttons/Button";
-import { Google } from "../../assets/images/icons";
+import { useSubmitTranslate } from "./useSubmitTranslate";
 
 /**
  * The `AddDeveloper` Component.
@@ -25,7 +23,11 @@ const TranslateModule = () => {
     <>
       <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
         <Input placeholder="word to translate" type="text" />
-        <Button icon={'Translate'} type="submit" label="" position={"left"} isDisabled={false} size={"large"} style={"dark"} variant={"primary"}></Button>
+        <Button
+          icon={'Translate'}
+          type="submit"
+          width={6}
+        />
       </StyledForm>
       <TranslatedWord />
     </>

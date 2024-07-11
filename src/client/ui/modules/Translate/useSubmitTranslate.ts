@@ -1,8 +1,10 @@
 import type {FormEvent} from 'react';
 
 import {useTranslation} from '@/client/application/useCases/useTranslation';
+import { useSession } from 'next-auth/react';
 
 export const useSubmitTranslate = () => {
+    const {data: session} = useSession();
     const {makeTranslation} = useTranslation();
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -13,7 +15,7 @@ export const useSubmitTranslate = () => {
         if (!textInput) return;
 
         await makeTranslation({
-            authorId: 'aghy',
+            authorId: session?.user?.email as string,
             text: textInput
         });
 

@@ -2,8 +2,12 @@ import { langs } from "@/client/shared/langs";
 import React from "react";
 import styled from "styled-components";
 import { Flag } from "../../components/Flag";
+import { useSession } from "next-auth/react";
 
-export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => (
+export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => {
+  const { data: session } = useSession();
+
+  return (
   <LanguagePicker>
     {langs.map((lang) => (
       <Flag
@@ -12,10 +16,11 @@ export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => (
         langFlag={lang.flag}
         langCode={lang.code}
         userLangs={userLangs}
+        userId={session?.user?.email as string}
       />
     ))}
   </LanguagePicker>
-);
+)};
 
 const LanguagePicker = styled.div`
   display: grid;

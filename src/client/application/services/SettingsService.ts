@@ -2,9 +2,10 @@ import { SettingsAdapter } from "@/client/domain/adapters/SettingtsAdapter";
 import { UserSettings } from "@/client/domain/entities/Settings";
 
 class SettingsService implements SettingsAdapter {
-  async getUserSettings(userId: string = "aghy") {
-    const res = await fetch("/api/settings");
+  async getUserSettings(userId: string) {
+    const res = await fetch(`/api/settings?userId=${userId}`);
     const data = await res.json();
+
     return data;
   }
 

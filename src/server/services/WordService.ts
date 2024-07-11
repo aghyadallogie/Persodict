@@ -4,9 +4,13 @@ import type { Lingo, Word } from "../domain/entities/Word";
 import { SettingsService } from "./SettingsService";
 
 export class WordService {
-  static async getWords() {
+  static async getWords(authorId: string) {
     try {
-      const words = await prisma.word.findMany();
+      const words = await prisma.word.findMany({
+        where: {
+          authorId
+        },
+      });
 
       return words;
     } catch (error) {
@@ -29,9 +33,9 @@ export class WordService {
     }
   }
 
-  static async translateWord({ text }: Lingo) {
+  static async translateWord({ text, authorId }: Lingo) {
     try {
-      const settings = (await SettingsService.getSettings()) as {
+      const settings = (await SettingsService.getSettings(authorId)) as {
         userLangs: string[];
       };
       const result = await this.translateWordToLangs(text, settings.userLangs);

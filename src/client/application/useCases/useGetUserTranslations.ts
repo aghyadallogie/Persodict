@@ -1,14 +1,15 @@
 import useSWR from "swr";
 import WordsService from "../services/WordsService";
-import type { Word } from "@/client/domain/entities/Word";
 
-export const useGetUserTranslations = (wordData: Word[] = []) => {
-  const { data } = useSWR("/api/words", WordsService.getUserTranslations, {
+export const useGetUserTranslations = (authorId: string) => {
+  const fetcher = (url: string) => WordsService.getUserTranslations(authorId);
+
+  const { data, error } = useSWR("/api/words", fetcher, {
     fallbackData: {
-      data: wordData,
+      data: [],
       status: "test",
     },
   });
 
-  return { userTranslations: data };
+  return { userTranslations: data, error };
 };

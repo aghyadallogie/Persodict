@@ -7,6 +7,7 @@ interface ComponentProps {
   langCode: string;
   langFlag: string;
   userLangs: string[];
+  userId: string;
 }
 
 export const Flag = ({
@@ -14,8 +15,9 @@ export const Flag = ({
   langCode,
   langFlag,
   userLangs,
+  userId
 }: ComponentProps) => {
-  const { handleUpdateSettings } = useUpdateSettings(langCode, userLangs);
+  const { handleUpdateSettings } = useUpdateSettings(langCode, userLangs, userId);
 
   return (
     <FlagWrapper

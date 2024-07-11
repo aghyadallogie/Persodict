@@ -7,12 +7,13 @@ interface ComponentProps {
   as: "button" | "div";
   hasSlimBorder: boolean;
   isActive: boolean;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   isRounded: boolean;
   onClick(event: MouseEvent<HTMLButtonElement>): void;
-  style: "dark" | "light";
+  style?: "dark" | "light";
   type: "button" | "reset" | "submit";
-  variant: "primary" | "secondary";
+  variant?: "primary" | "secondary";
+  width?: number;
 }
 
 export const ButtonBase = ({
@@ -26,6 +27,7 @@ export const ButtonBase = ({
   style = "light",
   type = "button",
   variant = "primary",
+  width = 16,
 }: WithChildren<ComponentProps>) => {
   const {
     activeBorderColor,
@@ -46,6 +48,7 @@ export const ButtonBase = ({
       disabled={isDisabled}
       type={type}
       onClick={onClick}
+      width={width}
     >
       {children}
     </Wrapper>
@@ -59,6 +62,7 @@ interface WrapperProps {
   $buttonPressedColor: string;
   $hasSlimBorder: boolean;
   $isRounded: boolean;
+  width: number;
 }
 
 const Wrapper = styled.button<WrapperProps>`
@@ -66,14 +70,18 @@ const Wrapper = styled.button<WrapperProps>`
   border: none;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
+  color: ${({ theme }) => theme.colors.primaryAccentFontColor};
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-size: 1em;
+  justify-content: center;
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
   font-weight: 600;
+  font-family: "Lexend", sans-serif;
   gap: 1rem;
   outline: none;
-  min-width: 5rem;
+  width: ${({ width }) => width}rem;
   padding: 0 1rem;
 
   &:active {

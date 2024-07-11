@@ -1,25 +1,24 @@
 import { ButtonIcons } from "@/client/ui/assets/images/icons";
 import { Google } from "@/client/ui/assets/images/icons/Google";
 import { Translate } from "@/client/ui/assets/images/icons/Translate";
+import { Facebook } from "@/client/ui/assets/images/icons/Facebook";
 import { useThemeColors } from "@/client/ui/hooks/useThemeColors";
 import { Colors } from "@/client/ui/utils/globalStyles";
-import { shade } from "@/lib";
+import { shade } from "@/client/ui/utils";
 
 const Icons = {
   Google,
-  Translate
+  Translate,
+  Facebook
 };
 
 export const getIcon = (icon?: ButtonIcons) =>
   icon === undefined ? null : Icons[icon];
 
-export const getIconSize = (size: 'large' | 'small', single: boolean = false) =>
-  size === 'large' || single ? 24 : 16;
+export const getIconSize = (size: 'large' | 'small' | undefined, single: boolean = false) =>
+  size === 'large' || single ? 48 : 24;
 
-export const getIconPosition = (position: 'left' | 'right') =>
-  position === 'left' ? 'row-reverse' as const : 'row' as const;
-
-export const getButtonTextSize = (size: 'large' | 'medium' | 'small') =>
+export const getButtonTextSize = (size: 'large' | undefined | 'small') =>
   size === 'large' ? 'large' as const : 'small' as const;
 
 export const useForgroundColor = (style: 'light' | 'dark', overWriteColor?: Colors) => {

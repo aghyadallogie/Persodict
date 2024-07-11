@@ -17,9 +17,9 @@ export const Navigation = () => (
     <NavLink href="/history">
       <RiFolderHistoryFill />
     </NavLink>
-    <NavLink href="/quiz">
+    {/* <NavLink href="/quiz">
       <RiQuestionnaireFill />
-    </NavLink>
+    </NavLink> */}
     <NavLink href="/settings">
       <RiSettings2Fill />
     </NavLink>

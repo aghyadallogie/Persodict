@@ -1,5 +1,5 @@
 import { useThemeColors } from "@/client/ui/hooks/useThemeColors";
-import { shade } from "@/lib";
+import { shade } from "@/client/ui/utils";
 
 export const useButtonColors = (
   variant: "primary" | "secondary",
@@ -12,9 +12,9 @@ export const useButtonColors = (
   let buttonHoverColor: string;
   let buttonPressedColor: string;
 
-  if (style === "dark") {
+  if (style === "light") {
     buttonBaseColor = colors.primaryActionColor;
-    buttonHoverColor = shade(colors.primaryActionColor, 75, 'light');
+    buttonHoverColor = shade(colors.primaryActionColor, 44, 'light');
     buttonPressedColor = shade(colors.primaryActionColor, 10, 'light');
     activeBorderColor = buttonPressedColor;
   } else {

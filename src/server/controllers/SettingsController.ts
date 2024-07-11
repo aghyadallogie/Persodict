@@ -6,7 +6,7 @@ import { Settings } from "../domain/entities/Settings";
 export class SettingsController {
   static async getSettings(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const settings = await SettingsService.getSettings();
+      const settings = await SettingsService.getSettings(req.query.userId as string);
 
       return res.send({
         data: settings,

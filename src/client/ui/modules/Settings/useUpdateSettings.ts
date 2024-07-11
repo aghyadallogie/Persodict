@@ -1,7 +1,7 @@
 import { useUpdateSettingsCase } from "@/client/application/useCases/useUpdateSettings";
 
-export const useUpdateSettings = (langCode: string, userLangs: string[]) => {
-  const { updateSettings } = useUpdateSettingsCase();
+export const useUpdateSettings = (langCode: string, userLangs: string[] = [], userId: string) => {
+  const { updateSettings } = useUpdateSettingsCase({userId, userLangs});
 
   const handleUpdateSettings = async () => {
     let payload;
@@ -9,10 +9,10 @@ export const useUpdateSettings = (langCode: string, userLangs: string[]) => {
       userLangs = userLangs.filter((langItem: string) => {
         return langItem !== langCode;
       });
-      payload = { userId: "aghy", userLangs };
+      payload = { userId, userLangs };
     } else {
       userLangs.push(langCode);
-      payload = { userId: "aghy", userLangs };
+      payload = { userId, userLangs };
     }
 
     await updateSettings(payload);

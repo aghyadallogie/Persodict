@@ -19,8 +19,8 @@ class WordsService implements WordsAdapter {
     return data;
   }
 
-  async getUserTranslations() {
-    const res = await fetch("/api/words");
+  async getUserTranslations(authorId: string) {
+    const res = await fetch(`/api/words?authorId=${authorId}`);
     const data = await res.json();
 
     return data as UserTranslations;

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import { useGetUserTranslations } from "@/client/application/useCases/useGetUserTranslations";
 import type { Word } from "@/client/domain/entities/Word";
-import { NoWords } from "@/client/ui/components/NoWords";
+import { NoWords } from "@/client/ui/components/layout/NoWords";
 import { WordView } from "@/client/ui/components/WordView";
 import { WordService } from "@/server/services/WordService";
 import { AnimatePresence } from "framer-motion";
@@ -9,15 +9,18 @@ import styled from "styled-components";
 import { Wrapper } from "../index";
 import { NextPageWithLayout } from "../../../types/global";
 import SessionLayout from "@/client/ui/layouts/Layout";
+import { useSession } from "next-auth/react";
 
 interface PageProps {
   words: Word[];
 }
 
 const History: NextPageWithLayout = ({ words }: PageProps) => {
-  const { userTranslations } = useGetUserTranslations(words);
-  const translations = userTranslations.data;
-  let orderedTranslations: Word[] = translations;
+  const { data: session } = useSession();
+
+  const { userTranslations } = useGetUserTranslations(session?.user?.email);
+  const translations = userTranslations?.data || [];
+  let orderedTranslations: Word[] = translations || [];
   if (typeof translations.toReversed === "function")
     orderedTranslations = translations.toReversed();
 
