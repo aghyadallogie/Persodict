@@ -40,7 +40,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const session = await getSession(context);
   const userEmail = session?.user?.email;
 
-  const settings = await SettingsService.getSettings(userEmail || "zenlogie@gmail.com");
+  const settings = await SettingsService.getSettings(userEmail!);
 
   return {
     props: {

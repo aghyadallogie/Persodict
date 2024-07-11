@@ -8,9 +8,9 @@ export const useSubmitTranslate = () => {
     const {makeTranslation} = useTranslation();
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        let textInput = (event.target as HTMLFormElement)[0].value;
-
         event.preventDefault();
+        // @ts-ignore
+        let textInput = (event.target as HTMLFormElement)[0].value;
 
         if (!textInput) return;
 

@@ -10,6 +10,8 @@ import { NextPageWithLayout } from "../../../types/global";
 import SessionLayout from "@/client/ui/layouts/Layout";
 import { getSession, useSession } from "next-auth/react";
 import { GetServerSidePropsContext } from "next";
+import { SettingsService } from "@/server/services/SettingsService";
+import { Settings } from "@/server/domain/entities/Settings";
 
 interface PageProps {
   words: Word[];
@@ -20,7 +22,7 @@ const History: NextPageWithLayout = ({ words }: PageProps) => {
   const { userTranslations } = useGetUserTranslations(session?.user?.email as string);
 
   const translations = userTranslations?.data || [];
-  let orderedTranslations: Word[] = translations || [];
+  let orderedTranslations: Word[] = translations || words || [];
 
   if (typeof translations.toReversed === "function")
     orderedTranslations = translations.toReversed();
@@ -30,10 +32,10 @@ const History: NextPageWithLayout = ({ words }: PageProps) => {
       {orderedTranslations.length ? (
         <WordsWrapper>
           <AnimatePresence mode="sync">
-            {orderedTranslations.map((word: Word) => (
+            {orderedTranslations?.map((word: Word) => (
               <WordView
                 key={word.id}
-                data={word.translations}
+                data={word?.translations || words}
                 wordId={word.id}
               />
             ))}
@@ -59,15 +61,27 @@ History.getLayout = (router, pageProps, PageComponent) => (
 );
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const session = await getSession();
+  const session = await getSession(context);
   const userEmail = session?.user?.email;
 
-  const userWords = await WordService.getWords(userEmail || "zenlogie@gmail.com");
+  const settings = await SettingsService.getSettings(userEmail!);
+  const userLangs = (settings as Settings)?.userLangs;
+  const userWords = await WordService.getWords(userEmail!) as Word[];
+  console.log('ww', userWords);
+  
+  if (!userWords[0]?.translations[0]?.lang) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
       revalidate: 18000,
-      words: userWords,
+      words: userWords || [],
     },
   };
 };
