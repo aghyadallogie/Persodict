@@ -1,5 +1,4 @@
 {
-    "extends": "@nfq",
     "rules": {
         "jsdoc/require-jsdoc": "off"
     }
