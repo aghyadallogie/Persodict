@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useUpdateSettings } from "../modules/Settings/useUpdateSettings";
+import { useUpdateSettings } from "@/client/ui/modules/Settings/useUpdateSettings";
 
 interface ComponentProps {
   picked: boolean;
@@ -27,7 +27,7 @@ interface ComponentProps {
  * ```
  */
 export const Flag = ({
-  picked,
+  picked = false,
   langCode,
   langFlag,
   userLangs,
@@ -45,8 +45,8 @@ export const Flag = ({
 };
 
 const FlagWrapper = styled.div<{ picked: boolean }>`
-  outline: ${({ picked }) => (picked ? "5px solid silver" : "none")};
-  background-color: ${({ picked }) => (picked ? "silver" : "none")};
+  outline: ${({ picked, theme }) => (picked ? `5px solid ${theme.colors.textPlaceholder}` : "none")};
+  background-color: ${({ picked, theme }) => (picked ? theme.colors.textPlaceholder : "none")};
   line-height: 2rem;
   width: 3rem;
   border-radius: 2pt;

@@ -3,6 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import { Flag } from "../../components/Flag";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
+import { childrenAnimation } from "../../animations/actions";
 
 /**
  * The `SettingsModule` Component.
@@ -20,21 +22,27 @@ export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => {
   const { data: session } = useSession();
 
   return (
-  <LanguagePicker>
-    {langs.map((lang) => (
-      <Flag
-        key={lang.code}
-        picked={userLangs?.includes(lang.code)}
-        langFlag={lang.flag}
-        langCode={lang.code}
-        userLangs={userLangs}
-        userId={session?.user?.email as string}
-      />
-    ))}
-  </LanguagePicker>
-)};
+    <LanguagePicker
+      animate="enter"
+      exit="exit"
+      initial="initial"
+      variants={childrenAnimation}
+    >
+      {langs.map((lang) => (
+        <Flag
+          key={lang.code}
+          picked={!!userLangs?.includes(lang.code) as boolean}
+          langFlag={lang.flag}
+          langCode={lang.code}
+          userLangs={userLangs}
+          userId={session?.user?.email as string}
+        />
+      ))}
+    </LanguagePicker>
+  );
+};
 
-const LanguagePicker = styled.div`
+const LanguagePicker = styled(motion.div)`
   display: grid;
   justify-items: center;
   cursor: pointer;

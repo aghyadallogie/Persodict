@@ -67,7 +67,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const settings = await SettingsService.getSettings(userEmail!);
   const userLangs = (settings as Settings)?.userLangs;
   const userWords = await WordService.getWords(userEmail!) as Word[];
-  console.log('ww', userWords);
   
   if (!userWords[0]?.translations[0]?.lang) {
     return {
