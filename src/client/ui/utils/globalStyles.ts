@@ -1,5 +1,5 @@
 import { DefaultTheme, createGlobalStyle } from "styled-components";
-import LexendLight from '../assets/fonts/LexendDeca-Light.ttf';
+import LexendLight from '@/client/ui/assets/fonts/LexendDeca-Light.ttf';
 
 export enum Colors {
     pageBackground = "#aa0000",

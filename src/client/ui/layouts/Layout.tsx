@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import React from "react";
 import { motion } from "framer-motion"; // Import motion from Framer Motion
 import { Rubik } from "next/font/google";
-import { Navigation } from "../modules/Head/Navigation";
+import { Navigation } from "@/client/ui/modules/Head/Navigation";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";

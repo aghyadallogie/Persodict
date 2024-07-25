@@ -1,4 +1,4 @@
-import type {UserTranslations, Word} from '../entities/Word';
+import type {UserTranslations, Word} from '@/client/domain/entities/Word';
 
 export interface WordsAdapter {
     getUserTranslations(userId: string): Promise<UserTranslations | undefined>;

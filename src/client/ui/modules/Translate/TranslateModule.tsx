@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { TranslatedWord } from "../../components/TranslatedWord";
-import { Button } from "../../components/action/buttons/Button";
+import { TranslatedWord } from "@/client/ui/components/TranslatedWord";
+import { Button } from "@/client/ui/components/action/buttons/Button";
 import { useSubmitTranslate } from "./useSubmitTranslate";
 
 /**

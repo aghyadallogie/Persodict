@@ -1,6 +1,6 @@
-import { prisma } from "../utils/prisma";
+import { prisma } from "@/server/utils/prisma";
 
-import type { Lingo, Word } from "../domain/entities/Word";
+import type { Lingo, Word } from "@/server/domain/entities/Word";
 import { SettingsService } from "./SettingsService";
 
 export class WordService {

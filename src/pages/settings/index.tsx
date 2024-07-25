@@ -3,7 +3,7 @@ import type { Settings } from "@/server/domain/entities/Settings";
 import { SettingsService } from "@/server/services/SettingsService";
 import { Wrapper } from "..";
 import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
-import { NextPageWithLayout } from "../../../types/global";
+import { NextPageWithLayout } from "@/types/global";
 import SessionLayout from "@/client/ui/layouts/Layout";
 import { getSession, useSession } from "next-auth/react";
 import { GetServerSidePropsContext } from "next";

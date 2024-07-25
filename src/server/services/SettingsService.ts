@@ -1,5 +1,5 @@
-import { Settings } from "../domain/entities/Settings";
-import { prisma } from "../utils/prisma";
+import { Settings } from "@/server/domain/entities/Settings";
+import { prisma } from "@/server/utils/prisma";
 
 export class SettingsService {
   static async getSettings(userId: string) {

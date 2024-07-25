@@ -1,5 +1,5 @@
 import { ButtonIcons } from "@/client/ui/assets/images/icons";
-import { getButtonTextSize, getIcon, getIconSize, useForgroundColor } from "../../utils";
+import { getButtonTextSize, getIcon, getIconSize, useForgroundColor } from "@/client/ui/components/action/utils";
 
 export const useButton= (
     style: 'dark' | 'light',

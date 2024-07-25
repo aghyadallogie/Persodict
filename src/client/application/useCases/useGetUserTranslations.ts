@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import WordsService from "../services/WordsService";
+import WordsService from "@/client/application/services/WordsService";
 
 export const useGetUserTranslations = (authorId: string) => {
   const fetcher = (url: string) => WordsService.getUserTranslations(authorId);

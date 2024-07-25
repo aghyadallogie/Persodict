@@ -1,6 +1,6 @@
 import React, { MouseEvent } from "react";
 import styled from "styled-components";
-import { ButtonBase } from "../ButtonBase";
+import { ButtonBase } from "@/client/ui/components/action/buttons/ButtonBase";
 import { useButton } from "./useButton";
 
 interface ComponentProps {

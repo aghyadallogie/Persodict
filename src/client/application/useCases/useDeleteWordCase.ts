@@ -1,5 +1,5 @@
 import useSWRMutation from 'swr/mutation';
-import WordsService from '../services/WordsService';
+import WordsService from '@/client/application/services/WordsService';
 
 export const useDeleteWordCase = () => {
     const {trigger} = useSWRMutation(

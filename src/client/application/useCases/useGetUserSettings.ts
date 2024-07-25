@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import SettingsService from "../services/SettingsService";
+import SettingsService from "@/client/application/services/SettingsService";
 import { UserSettings } from "@/client/domain/entities/Settings";
 
 export const useGetUserSettings = (settings: UserSettings) => {

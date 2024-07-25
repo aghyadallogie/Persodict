@@ -1,6 +1,6 @@
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { NextPageWithLayout } from "../../../types/global";
+import { NextPageWithLayout } from "@/types/global";
 import { Button } from "@/client/ui/components/action/buttons/Button";
 import styled from "styled-components";
 import { H1 } from "@/client/ui/components/layout/Caligraphy";

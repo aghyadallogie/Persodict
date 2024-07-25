@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { HTTP_STATUS } from "../utils/httpstatus";
-import { SettingsService } from "../services/SettingsService";
-import { Settings } from "../domain/entities/Settings";
+import { HTTP_STATUS } from "@/server/utils/httpstatus";
+import { SettingsService } from "@/server/services/SettingsService";
+import { Settings } from "@/server/domain/entities/Settings";
 
 export class SettingsController {
   static async getSettings(req: NextApiRequest, res: NextApiResponse) {
