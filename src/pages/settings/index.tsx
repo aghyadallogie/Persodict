@@ -1,12 +1,11 @@
-import { SettingsModule } from "@/client/ui/modules/Settings/SettingsModule";
-import type { Settings } from "@/server/domain/entities/Settings";
-import { SettingsService } from "@/server/services/SettingsService";
-import { Wrapper } from "..";
-import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
-import { NextPageWithLayout } from "@/types/global";
 import SessionLayout from "@/client/ui/layouts/Layout";
-import { getSession, useSession } from "next-auth/react";
-import { GetServerSidePropsContext } from "next";
+import {SettingsModule} from "@/client/ui/modules/Settings/SettingsModule";
+import type {Settings} from "@/server/domain/entities/Settings";
+import {SettingsService} from "@/server/services/SettingsService";
+import {NextPageWithLayout} from "@/types/global";
+import {GetServerSidePropsContext} from "next";
+import {getSession, useSession} from "next-auth/react";
+import {Wrapper} from "..";
 
 interface PageProps {
   userLangs: string[];
@@ -16,14 +15,9 @@ interface PageProps {
 const Settings: NextPageWithLayout = ({ userLangs }: PageProps) => {
   const { data: session } = useSession();
 
-  const { userSettings } = useGetUserSettings({
-    userId: session?.user?.email as string,
-    userLangs,
-  });
-
   return (
     <Wrapper>
-      <SettingsModule userLangs={userSettings?.userLangs} />
+      <SettingsModule userLangs={userLangs} />
     </Wrapper>
   );
 };

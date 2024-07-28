@@ -39,14 +39,14 @@ export const Flag = ({
     <FlagWrapper
       onClick={handleUpdateSettings}
       className={langFlag}
-      picked={picked}
+      $picked={picked}
     />
   );
 };
 
-const FlagWrapper = styled.div<{ picked: boolean }>`
-  outline: ${({ picked, theme }) => (picked ? `5px solid ${theme.colors.textPlaceholder}` : "none")};
-  background-color: ${({ picked, theme }) => (picked ? theme.colors.textPlaceholder : "none")};
+const FlagWrapper = styled.div<{ $picked: boolean }>`
+  outline: ${({ $picked, theme }) => ($picked ? `5px solid ${theme.colors.textPlaceholder}` : "none")};
+  background-color: ${({ $picked, theme }) => ($picked ? theme.colors.textPlaceholder : "none")};
   line-height: 2rem;
   width: 3rem;
   border-radius: 2pt;

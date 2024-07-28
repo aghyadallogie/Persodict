@@ -1,15 +1,13 @@
-import Link from "next/link";
+import {NavLink} from "@/client/ui/components/action/NavLink";
+import {signOut} from "next-auth/react";
+import {useRouter} from "next/router";
 import {
-  RiFolderHistoryFill,
-  RiHome4Fill,
-  RiLogoutBoxRFill,
-  RiQuestionnaireFill,
-  RiSettings2Fill,
+    RiFolderHistoryFill,
+    RiHome4Fill,
+    RiLogoutBoxRFill,
+    RiSettings2Fill
 } from "react-icons/ri";
 import styled from "styled-components";
-import { signOut } from "next-auth/react";
-import { NavLink } from "@/client/ui/components/action/NavLink";
-import { useRouter } from "next/router";
 
 export const Navigation = () => {
   const { asPath } = useRouter();
@@ -39,7 +37,7 @@ export const Navigation = () => {
 const Nav = styled.nav`
   align-items: center;
   background-color: white;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
   display: flex;
   justify-content: center;
   min-height: 70px;

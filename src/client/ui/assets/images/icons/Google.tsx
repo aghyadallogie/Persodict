@@ -19,7 +19,7 @@ export const Google = React.forwardRef<SVGSVGElement, IconProps>(
     return (
       <svg
         className={className}
-        enable-background="new 0 0 48 48"
+        enableBackground="new 0 0 48 48"
         fill={color}
         ref={ref}
         width={width}
