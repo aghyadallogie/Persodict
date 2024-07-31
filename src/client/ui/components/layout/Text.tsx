@@ -14,6 +14,7 @@ export const H1 = styled.h1<HProps>`
   font-weight: normal;
   line-height: 3.4rem;
   text-align: ${({$isCentered}) => $isCentered  ? 'center' : 'left'};
+  margin: 0;
 `;
 
 export const H2 = styled(H1)`

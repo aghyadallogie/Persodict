@@ -15,6 +15,7 @@ import styled from 'styled-components';
  */
 export const NoWords = () => (
   <>
+    <GrayedMessage>Loading your translations..</GrayedMessage>
     <LargeTranslateIcon size="20rem" />
     <GrayedMessage>
       You can choose the languages you want to translate into in the <SettingsLink href='/settings'>settings</SettingsLink> tab!

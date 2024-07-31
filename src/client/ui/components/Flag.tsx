@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useUpdateSettings } from "@/client/ui/modules/Settings/useUpdateSettings";
 
@@ -33,13 +33,19 @@ export const Flag = ({
   userLangs,
   userId
 }: ComponentProps) => {
+  const [isPicked, setIsPicked] = useState(picked); // Manage picked state
   const { handleUpdateSettings } = useUpdateSettings(langCode, userLangs, userId);
+
+  const handleClick = () => {
+    setIsPicked(prev => !prev); // Toggle picked state
+    handleUpdateSettings(); // Call the update settings function
+  };
 
   return (
     <FlagWrapper
-      onClick={handleUpdateSettings}
+      onClick={handleClick}
       className={langFlag}
-      $picked={picked}
+      $picked={isPicked}
     />
   );
 };

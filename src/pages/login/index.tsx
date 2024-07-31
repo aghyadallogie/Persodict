@@ -27,7 +27,7 @@ const Login: NextPageWithLayout = () => {
                     type={"button"}
                     variant={"primary"}>
                 </Button>
-                <Button
+                {/* <Button
                     onClick={() => signIn("facebook", {callbackUrl: "http://localhost:3000/"})}
                     label={"Login with Facebook"}
                     icon={"Facebook"}
@@ -35,7 +35,7 @@ const Login: NextPageWithLayout = () => {
                     style={"light"}
                     type={"button"}
                     variant={"primary"}>
-                </Button>
+                </Button> */}
             </Container>
         );
     }
@@ -58,7 +58,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10rem auto;
-  padding: 0 2rem 6rem;
+  padding: 4rem 3rem;
   max-width: 40rem;
   border: 1px solid white;
   border-radius: 10px;

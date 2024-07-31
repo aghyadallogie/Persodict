@@ -1,10 +1,10 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 
-export const authOptions = {
-  pages: {signIn: '/login'},
-  // session: {strategy: 'jwt'},
+export const authOptions: NextAuthOptions = {
+  pages: { signIn: '/login' },
+  session: { strategy: 'jwt' },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -20,7 +20,15 @@ export const authOptions = {
       },
     }),
   ],
-  secret: "somesecret",
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.email = token.sub!;
+      }
+      return session;
+    },
+  },
 };
 
 export default NextAuth(authOptions);
