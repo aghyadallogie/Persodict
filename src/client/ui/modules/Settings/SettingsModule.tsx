@@ -34,10 +34,8 @@ export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => {
         {langs.map((lang) => (
           <Flag
             key={lang.code}
-            picked={!!userLangs?.includes(lang.code) as boolean}
             langFlag={lang.flag}
             langCode={lang.code}
-            userLangs={userLangs}
             userId={session?.user?.email as string}
           />
         ))}

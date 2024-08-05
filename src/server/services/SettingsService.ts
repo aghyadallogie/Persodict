@@ -1,5 +1,5 @@
-import { Settings } from "@/server/domain/entities/Settings";
 import { prisma } from "@/server/utils/prisma";
+import { ToggleLanguage } from "@/server/domain/entities/Settings";
 
 export class SettingsService {
   static async getSettings(userId: string) {
@@ -16,7 +16,7 @@ export class SettingsService {
     }
   }
 
-  static async updateSettings({ userId, userLangs }: Settings) {
+  static async updateSettings({ userId, langCode }: ToggleLanguage) {
     try {
       // Check if the record exists
       const existingSettings = await prisma.settings.findUnique({
@@ -24,24 +24,34 @@ export class SettingsService {
       });
 
       if (!existingSettings) {
-        // Handle the case where the record does not exist
         const created = await prisma.settings.create({
           data: {
-            userLangs,
+            userLangs: [langCode],
             userId,
           },
         });
         return created;
       }
 
-      // Update the existing record
+      const { userLangs } = existingSettings;
+
+      let payload;
+
+      if (userLangs.includes(langCode)) {
+        payload = userLangs.filter(lang => lang !== langCode);
+      } else {
+        payload = [...userLangs, langCode]
+      }
+
       const updated = await prisma.settings.update({
+
         where: { userId },
         data: {
           userId,
-          userLangs,
+          userLangs: payload,
         },
       });
+
       return updated;
     } catch (error) {
       console.log('error', error);

@@ -53,8 +53,7 @@ const Table = styled(motion.div)`
   background: linear-gradient(
       rgba(255, 255, 255, 0.25),
       rgba(255, 255, 255, 0.1)
-    ),
-    url("background-image.jpg");
+    );
   border: 1px solid white;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fffb;

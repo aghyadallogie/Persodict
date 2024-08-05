@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { HTTP_STATUS } from "@/server/utils/httpstatus";
 import { SettingsService } from "@/server/services/SettingsService";
-import { Settings } from "@/server/domain/entities/Settings";
 
 export class SettingsController {
   static async getSettings(req: NextApiRequest, res: NextApiResponse) {
@@ -23,11 +22,11 @@ export class SettingsController {
   static async updateSettings(req: NextApiRequest, res: NextApiResponse) {
     try {
       const body = JSON.parse(req.body);
-
+      
       const updatedSettings = await SettingsService.updateSettings({
         userId: body.userId,
-        userLangs: body.userLangs,
-      } as Settings);
+        langCode: body.langCode,
+      });
 
       return res.send({
         data: updatedSettings,

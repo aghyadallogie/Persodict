@@ -1,16 +1,16 @@
-import useSWR from "swr";
 import SettingsService from "@/client/application/services/SettingsService";
-import { UserSettings } from "@/client/domain/entities/Settings";
+import useSWR from "swr";
 
-export const useGetUserSettings = (settings: UserSettings) => {
-  const fetcher = (url: string) => SettingsService.getUserSettings(settings.userId);
+export const useGetUserSettings = (userId: string) => {
+  const { data, error, mutate } = useSWR(
+    `/api/settings?userId=${userId}`,
+    () => SettingsService.getUserSettings(userId)
+  );
 
-  const { data, error } = useSWR("/api/settings", fetcher, {
-    fallbackData: {
-      data: settings,
-      status: "test",
-    },
-  });
-
-  return { userSettings: data?.data, error };
+  return {
+    userSettings: data,
+    isLoading: !error && !data,
+    isError: error,
+    mutate
+  };
 };

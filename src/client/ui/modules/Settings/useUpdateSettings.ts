@@ -1,22 +1,11 @@
-import { useUpdateSettingsCase } from "@/client/application/useCases/useUpdateSettings";
+import { useToggleLangCase } from "@/client/application/useCases/useToggleLangCase";
 
-export const useUpdateSettings = (langCode: string, userLangs: string[] = [], userId: string) => {
-  const { updateSettings } = useUpdateSettingsCase({userId, userLangs});
+export const useUpdateSettings = (langCode: string, userId: string) => {
+  const { toggleLang } = useToggleLangCase({ userId, langCode });
 
-  const handleUpdateSettings = async () => {
-    let payload;
-    if (userLangs.includes(langCode)) {
-      userLangs = userLangs.filter((langItem: string) => {
-        return langItem !== langCode;
-      });
-      payload = { userId, userLangs };
-    } else {
-      userLangs.push(langCode);
-      payload = { userId, userLangs };
-    }
+  const handleToggleLang = async () => {    
+    await toggleLang({ userId, langCode });
+  }
 
-    await updateSettings(payload);
-  };
-
-  return { handleUpdateSettings };
+  return { handleUpdateSettings: handleToggleLang };
 };

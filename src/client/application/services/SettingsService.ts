@@ -1,5 +1,5 @@
 import { SettingsAdapter } from "@/client/domain/adapters/SettingtsAdapter";
-import { UserSettings } from "@/client/domain/entities/Settings";
+import { ToggleLanguage } from "@/server/domain/entities/Settings";
 
 class SettingsService implements SettingsAdapter {
   async getUserSettings(userId: string) {
@@ -9,17 +9,17 @@ class SettingsService implements SettingsAdapter {
     return data;
   }
 
-  async updateUserSettings(
-    url: string,
-    { arg }: { arg: UserSettings }
-  ): Promise<UserSettings | undefined> {
+  async toggleLang(
+    key: string,
+    { arg }: { arg: ToggleLanguage }
+  ): Promise<ToggleLanguage | undefined> {
     const res = await fetch("/api/settings", {
       body: JSON.stringify(arg),
-      method: "PATCH",
+      method: "PATCH"
     });
 
-    const data = (await res.json()) as UserSettings;
-
+    const data = (await res.json());  
+  
     return data;
   }
 }

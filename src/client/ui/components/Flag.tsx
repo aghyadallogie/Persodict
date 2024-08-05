@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useUpdateSettings } from "@/client/ui/modules/Settings/useUpdateSettings";
+import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
 
 interface ComponentProps {
-  picked: boolean;
   langCode: string;
   langFlag: string;
-  userLangs: string[];
   userId: string;
 }
 
@@ -27,25 +26,24 @@ interface ComponentProps {
  * ```
  */
 export const Flag = ({
-  picked = false,
   langCode,
   langFlag,
-  userLangs,
   userId
 }: ComponentProps) => {
-  const [isPicked, setIsPicked] = useState(picked); // Manage picked state
-  const { handleUpdateSettings } = useUpdateSettings(langCode, userLangs, userId);
+  const { userSettings, isLoading } = useGetUserSettings(userId);
+  const { handleUpdateSettings } = useUpdateSettings(langCode, userId);
 
-  const handleClick = () => {
-    setIsPicked(prev => !prev); // Toggle picked state
-    handleUpdateSettings(); // Call the update settings function
+  const picked = userSettings?.data?.userLangs.includes(langCode) || false;
+
+  const handleClick = () => {    
+    handleUpdateSettings();
   };
 
   return (
     <FlagWrapper
       onClick={handleClick}
       className={langFlag}
-      $picked={isPicked}
+      $picked={picked}
     />
   );
 };
