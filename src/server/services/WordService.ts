@@ -1,5 +1,4 @@
 import { prisma } from "@/server/utils/prisma";
-
 import type { Lingo, Word } from "@/server/domain/entities/Word";
 import { SettingsService } from "./SettingsService";
 

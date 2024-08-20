@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styled from 'styled-components';
 
 //unused code
@@ -50,12 +49,12 @@ const LoginModule = () => (
 export default LoginModule;
 
 const Wrapper = styled.div`
-    display: flex,
-    flex-direction: column,
-    justifyContent: space-around,
-    marginTop: 4rem,
-    minHeight: 60dvh,
-    textAlign: center'
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 4rem;
+    min-height: 60dvh;
+    text-align: center;
 `;
 
 const StyledForm = styled.form`

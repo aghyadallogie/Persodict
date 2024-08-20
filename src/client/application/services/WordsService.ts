@@ -1,12 +1,11 @@
 import { mutate } from "swr";
-
 import type { UserTranslations, Word } from "@/client/domain/entities/Word";
 import type { Lingo } from "@/server/domain/entities/Word";
 import { WordsAdapter } from "@/client/domain/adapters/WordsAdapter";
 
 class WordsService implements WordsAdapter {
   async makeTranslation(
-    url: string,
+    key: string,
     { arg }: { arg: Lingo }
   ): Promise<Word | undefined> {
     const res = await fetch("/api/words", {
@@ -27,7 +26,7 @@ class WordsService implements WordsAdapter {
   }
 
   async deleteWord(
-    url: string,
+    key: string,
     { arg }: { arg: string }
   ): Promise<string | undefined> {
     const res = await fetch(`/api/words/${arg}`, { method: "DELETE" });

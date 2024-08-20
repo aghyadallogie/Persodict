@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading ,max-len, node/no-unsupported-features/es-syntax */
 import type {ReactElement} from 'react';
-
 import Document, {
     Head,
     Html,
@@ -8,7 +6,6 @@ import Document, {
     NextScript
 } from 'next/document';
 import {ServerStyleSheet} from 'styled-components';
-
 import type {
     DocumentContext,
     DocumentInitialProps

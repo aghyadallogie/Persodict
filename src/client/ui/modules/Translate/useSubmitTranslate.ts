@@ -1,5 +1,4 @@
 import type {FormEvent} from 'react';
-
 import {useTranslation} from '@/client/application/useCases/useTranslation';
 import { useSession } from 'next-auth/react';
 

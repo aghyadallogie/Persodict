@@ -1,6 +1,5 @@
 import { WordService } from "@/server/services/WordService";
 import { HTTP_STATUS } from "@/server/utils/httpstatus";
-
 import type { Lingo } from "@/server/domain/entities/Word";
 import type { NextApiRequest, NextApiResponse } from "next";
 
