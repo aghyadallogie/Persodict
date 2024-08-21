@@ -27,7 +27,6 @@ export class WordController {
       const translation = await WordService.translateWord(body);
       const translated = await WordService.addWord({
         authorId: body.authorId,
-        // @ts-ignore
         translations: translation!,
       });
 

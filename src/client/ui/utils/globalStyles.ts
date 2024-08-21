@@ -2,12 +2,12 @@ import { DefaultTheme, createGlobalStyle } from "styled-components";
 import LexendLight from '@/client/ui/assets/fonts/LexendDeca-Light.ttf';
 
 export enum Colors {
-    pageBackground = "#aa0000",
+    pageBackground = "#aa0001",
     textPlaceholder = "#989898bf",
     primaryFontColor = "#000000ae",
     primaryAccentFontColor = "#00000088",
     primaryActionColor = "whitesmoke",
-    secondaryActionColor = "#aa0000",
+    secondaryActionColor = "#aa0002",
     tertiaryActionColor = "#aa0000",
     primaryAccentColor = "#aaa3",
     darkSelected = "#333"

@@ -30,7 +30,7 @@ export const Flag = ({
   langFlag,
   userId
 }: ComponentProps) => {
-  const { userSettings, isLoading } = useGetUserSettings(userId);
+  const { userSettings } = useGetUserSettings(userId);
   const { handleUpdateSettings } = useUpdateSettings(langCode, userId);
 
   const picked = userSettings?.data?.userLangs.includes(langCode) || false;

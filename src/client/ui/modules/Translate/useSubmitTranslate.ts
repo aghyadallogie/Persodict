@@ -8,8 +8,8 @@ export const useSubmitTranslate = () => {
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // @ts-ignore
-        let textInput = (event.target as HTMLFormElement)[0].value;
+        // @ts-expect-error: TypeScript cannot infer the type of event.target as HTMLFormElement
+        const textInput = (event.target as HTMLFormElement)[0]?.value;
 
         if (!textInput) return;
 

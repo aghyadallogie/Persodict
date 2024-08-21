@@ -11,7 +11,6 @@ import { P } from "@/client/ui/components/layout/Text";
  * The `SettingsModule` Component.
  * This component displays language flags for language selection.
  *
- * @param {string[]} userLangs - Array of user chosen languages.
  * @returns A React element representing the `SettingsModule` component.
  *
  * @example
@@ -19,7 +18,7 @@ import { P } from "@/client/ui/components/layout/Text";
  * const MySettingsModule = <SettingsModule userLangs={['en', 'fr']} />;
  * ```
  */
-export const SettingsModule = ({ userLangs }: { userLangs: string[] }) => {
+export const SettingsModule = () => {
   const { data: session } = useSession();
 
   return (

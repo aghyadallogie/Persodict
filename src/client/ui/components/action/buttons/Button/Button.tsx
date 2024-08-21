@@ -2,9 +2,10 @@ import React, { MouseEvent } from "react";
 import styled from "styled-components";
 import { ButtonBase } from "@/client/ui/components/action/buttons/ButtonBase";
 import { useButton } from "./useButton";
+import { ButtonIcons } from "@/client/ui/assets/images/icons";
 
 interface ComponentProps {
-  icon?: any;
+  icon?: ButtonIcons;
   label?: string;
   onClick?(event: MouseEvent<HTMLButtonElement>): void;
   position?: "left" | "right";
@@ -20,7 +21,7 @@ interface ComponentProps {
  * The `Button` Component.
  * This component represents a customizable button element.
  *
- * @param {any} icon - The icon to display on the button.
+ * @param {ButtonIcons} icon - The icon to display on the button.
  * @param {string} label - The text label of the button.
  * @param {function} onClick - The function to call on button click.
  * @param {"left" | "right"} position - The position of the icon relative to the label.

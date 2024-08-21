@@ -31,3 +31,5 @@ export const Google = React.forwardRef<SVGSVGElement, IconProps>(
     );
   }
 );
+
+Google.displayName = "GoogleIcon";

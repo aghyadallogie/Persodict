@@ -30,3 +30,5 @@ export const Facebook = React.forwardRef<SVGSVGElement, IconProps>(
     );
   }
 );
+
+Facebook.displayName = "FacebookIcon";

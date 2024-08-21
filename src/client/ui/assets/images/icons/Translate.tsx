@@ -31,3 +31,5 @@ export const Translate = React.forwardRef<SVGSVGElement, IconProps>(
     );
   }
 );
+
+Translate.displayName = "TranslateIcon";

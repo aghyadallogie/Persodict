@@ -7,14 +7,10 @@ import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { Wrapper } from "..";
 
-interface PageProps {
-  userLangs: string[];
-}
-
-// @ts-expect-error
-const Settings: NextPageWithLayout = ({ userLangs }: PageProps) => (
+// @ts-expect-error TS2322: Type 'PageProps' is not assignable to type 'IntrinsicAttributes & { children?: ReactNode; }'.
+const Settings: NextPageWithLayout = () => (
   <Wrapper>
-    <SettingsModule userLangs={userLangs} />
+    <SettingsModule />
   </Wrapper>
 );
 

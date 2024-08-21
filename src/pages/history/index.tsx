@@ -2,16 +2,14 @@ import { useGetUserTranslations } from "@/client/application/useCases/useGetUser
 import type { Word } from "@/client/domain/entities/Word";
 import { NoWords } from "@/client/ui/components/layout/NoWords";
 import { WordView } from "@/client/ui/components/WordView";
-import { WordService } from "@/server/services/WordService";
-import { AnimatePresence } from "framer-motion";
-import styled from "styled-components";
-import { Wrapper } from "@/pages/index";
-import { NextPageWithLayout } from "@/types/global";
 import SessionLayout from "@/client/ui/layouts/Layout";
-import { getSession, useSession } from "next-auth/react";
+import { Wrapper } from "@/pages/index";
+import { WordService } from "@/server/services/WordService";
+import { NextPageWithLayout } from "@/types/global";
+import { AnimatePresence } from "framer-motion";
 import { GetServerSidePropsContext } from "next";
-import { SettingsService } from "@/server/services/SettingsService";
-import { Settings } from "@/server/domain/entities/Settings";
+import { getSession, useSession } from "next-auth/react";
+import styled from "styled-components";
 
 interface PageProps {
   words: Word[];
@@ -64,8 +62,6 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const session = await getSession(context);
   const userEmail = session?.user?.email;
 
-  const settings = await SettingsService.getSettings(userEmail!);
-  const userLangs = (settings as Settings)?.userLangs;
   const userWords = await WordService.getWords(userEmail!) as Word[];
   
   if (!userWords[0]?.translations[0]?.lang) {

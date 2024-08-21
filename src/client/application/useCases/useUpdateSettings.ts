@@ -1,8 +1,7 @@
-import useSWRMutation from "swr/mutation";
 import SettingsService from "@/client/application/services/SettingsService";
-import { UserSettings } from "@/client/domain/entities/Settings";
+import useSWRMutation from "swr/mutation";
 
-export const useUpdateSettingsCase = (settings: UserSettings) => {
+export const useUpdateSettingsCase = () => {
 
   const { trigger } = useSWRMutation(
     "/api/settings",
