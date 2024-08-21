@@ -5,6 +5,7 @@ import {Button} from "@/client/ui/components/action/buttons/Button";
 import styled from "styled-components";
 import {H1} from "@/client/ui/components/layout/Text";
 import {LoginLayout} from '@/client/ui/layouts/LoginLayout';
+import { ButtonIcons } from "@/client/ui/assets/images/icons";
 
 const Login: NextPageWithLayout = () => {
     const {status} = useSession();
@@ -21,7 +22,7 @@ const Login: NextPageWithLayout = () => {
                 <Button
                     onClick={() => signIn("google", {callbackUrl: "http://localhost:3000/"})}
                     label={"Login with Google"}
-                    icon={"Google"}
+                    icon={ButtonIcons.Google}
                     isDisabled={false}
                     style={"light"}
                     type={"button"}
