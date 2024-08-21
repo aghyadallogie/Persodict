@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { TranslatedWord } from "@/client/ui/components/TranslatedWord";
 import { Button } from "@/client/ui/components/action/buttons/Button";
 import { useSubmitTranslate } from "./useSubmitTranslate";
+import { ButtonIcons } from "../../assets/images/icons";
 
 /**
  * The `TranslateModule` Component.
@@ -21,7 +22,7 @@ const TranslateModule = () => {
       <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
         <Input placeholder="word to translate" type="text" />
         <Button
-          icon={'Translate'}
+          icon={ButtonIcons.Translate}
           type="submit"
           width={6}
         />
