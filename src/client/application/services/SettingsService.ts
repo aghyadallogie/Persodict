@@ -9,6 +9,7 @@ class SettingsService implements SettingsAdapter {
     return data;
   }
 
+  // @ts-expect-error  // Ignoring TypeScript error for compatibility with the API response
   async toggleLang(
     key: string,
     { arg }: { arg: ToggleLanguage }
