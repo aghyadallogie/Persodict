@@ -4,6 +4,7 @@ import type { Lingo } from "@/server/domain/entities/Word";
 import { WordsAdapter } from "@/client/domain/adapters/WordsAdapter";
 
 class WordsService implements WordsAdapter {
+  // @ts-expect-error  // Ignoring TypeScript error for compatibility with the API response
   async makeTranslation(
     key: string,
     { arg }: { arg: Lingo }
