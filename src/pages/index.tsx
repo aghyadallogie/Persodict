@@ -40,8 +40,9 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
   const settings = await SettingsService.getSettings(userEmail!);
   const userLangs = (settings as Settings)?.userLangs;
-
-  if (!userLangs) {
+  console.log('a', userLangs);
+  
+  if (userLangs?.length <= 0) {
     return {
       redirect: {
         destination: '/settings',

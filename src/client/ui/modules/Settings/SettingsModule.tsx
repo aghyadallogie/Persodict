@@ -46,6 +46,7 @@ export const SettingsModule = () => {
 const Title = styled(P)`
   margin-top: 5rem;
   margin-bottom: 3rem;
+  color: ${({ theme }) => theme.colors.primaryFontColor};
 `;
 
 const LanguagePicker = styled.div`
