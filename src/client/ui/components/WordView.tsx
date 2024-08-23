@@ -98,4 +98,12 @@ const DeleteTranslation = styled.div`
   &:active {
     color: #e47373;
   }
+
+  @media (min-width: 476px) {
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 `;

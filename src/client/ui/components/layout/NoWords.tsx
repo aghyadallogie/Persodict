@@ -15,26 +15,23 @@ import styled from 'styled-components';
  */
 export const NoWords = () => (
   <>
-    <GrayedMessage>Loading your translations..</GrayedMessage>
-    <LargeTranslateIcon size="20rem" />
     <GrayedMessage>
       You can choose the languages you want to translate into in the <SettingsLink href='/settings'>settings</SettingsLink> tab!
     </GrayedMessage>
+    <LargeTranslateIcon size="16rem" />
   </>
 );
 
 const LargeTranslateIcon = styled(MdOutlineTranslate)`
   color: ${({ theme }) => theme.colors.primaryAccentColor};
   color: #aaa3;
-  margin: 40px 0;
   width: 100%;
 `;
 
 const GrayedMessage = styled.p`
   color: #aaa8;
   font-weight: 400;
-  margin-bottom: 2rem;
-  padding: 0 20px;
+  margin: 2rem;
   text-align: center;
 `;
 
