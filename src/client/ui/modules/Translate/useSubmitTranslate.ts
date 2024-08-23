@@ -2,7 +2,7 @@ import type {FormEvent} from 'react';
 import {useTranslation} from '@/client/application/useCases/useTranslation';
 import { useSession } from 'next-auth/react';
 
-export const useSubmitTranslate = () => {
+export const useSubmitTranslate = (formRef: HTMLFormElement | null) => {
     const {data: session} = useSession();
     const {makeTranslation} = useTranslation();
 
@@ -17,8 +17,8 @@ export const useSubmitTranslate = () => {
             authorId: session?.user?.email as string,
             text: textInput
         });
-
-        (event.target as HTMLFormElement).value = '';
+        
+        formRef?.reset();
     };
 
     return {handleSubmit};

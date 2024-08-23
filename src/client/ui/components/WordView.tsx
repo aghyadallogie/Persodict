@@ -1,10 +1,9 @@
-import { motion } from "framer-motion";
-import { MdDelete } from "react-icons/md";
-import styled from "styled-components";
-import { renderCorrectFlag } from "@/client/ui/utils/helpers";
-import { useDeleteWord } from "./useDeleteWord";
 import type { Translation } from "@/client/domain/entities/Word";
 import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actions";
+import { renderCorrectFlag } from "@/client/ui/utils/helpers";
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import { useDeleteWord } from "./useDeleteWord";
 
 interface ComponentProps {
   data: Translation[];
@@ -36,7 +35,7 @@ export const WordView = ({ data, wordId }: ComponentProps) => {
       layout
     >
       <DeleteTranslation onClick={handleDeleteWord}>
-        <MdDelete />
+        x
       </DeleteTranslation>
       {data.map((trans: Translation) => (
         <Row key={trans.lang} variants={childrenAnimation}>
@@ -85,10 +84,18 @@ const DeleteTranslation = styled.div`
   border-top-right-radius: 10px;
   cursor: pointer;
   margin: 0 10px;
-  opacity: 0;
-  padding-top: 3px;
+  opacity: 1;
+  padding-top: 5px;
   position: absolute;
-  right: -10px;
+  right: -3px;
   top: 0px;
   transition: 0.3s;
+  color: #a8a8a891;
+
+  &:hover {
+    color: #e47373;
+  }
+  &:active {
+    color: #e47373;
+  }
 `;

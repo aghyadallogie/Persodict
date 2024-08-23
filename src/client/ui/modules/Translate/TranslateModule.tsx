@@ -3,6 +3,7 @@ import { TranslatedWord } from "@/client/ui/components/TranslatedWord";
 import { Button } from "@/client/ui/components/action/buttons/Button";
 import { useSubmitTranslate } from "./useSubmitTranslate";
 import { ButtonIcons } from "../../assets/images/icons";
+import { useRef } from "react";
 
 /**
  * The `TranslateModule` Component.
@@ -15,11 +16,12 @@ import { ButtonIcons } from "../../assets/images/icons";
  * ```
  */
 const TranslateModule = () => {
-  const { handleSubmit } = useSubmitTranslate();
+  const formRef = useRef<HTMLFormElement>(null);
+  const { handleSubmit } = useSubmitTranslate(formRef.current);
 
   return (
     <>
-      <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
+      <StyledForm ref={formRef} data-cy="translate-form" onSubmit={handleSubmit}>
         <Input placeholder="word to translate" type="text" />
         <Button
           icon={ButtonIcons.Translate}
