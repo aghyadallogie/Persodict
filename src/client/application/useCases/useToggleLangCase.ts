@@ -3,10 +3,10 @@ import useSWRMutation from "swr/mutation";
 import SettingsService from "../services/SettingsService";
 import { useGetUserSettings } from "./useGetUserSettings";
 
-export const useToggleLangCase = ({ userId }: ToggleLanguage  ) => {
+export const useToggleLangCase = ({ userId }: ToggleLanguage) => {
     const { mutate } = useGetUserSettings(userId);
 
-    const { trigger } = useSWRMutation(
+    const { trigger, isMutating } = useSWRMutation(
         "/api/settings",
         SettingsService.toggleLang,
         {
@@ -16,5 +16,5 @@ export const useToggleLangCase = ({ userId }: ToggleLanguage  ) => {
         }
     );
 
-    return { toggleLang: trigger };
+    return { toggleLang: trigger, isLoading: isMutating };
 };
