@@ -28,7 +28,7 @@ export const SettingsModule = () => {
       initial="initial"
       variants={childrenAnimation}
     >
-      <Title $align="center" $size="large">Select your prefered languages</Title>
+      <Title $align="center" $size="large">Please select at least one language</Title>
       <LanguagePicker>
         {langs.map((lang) => (
           <Flag
