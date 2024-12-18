@@ -1,9 +1,8 @@
-import styled from "styled-components";
 import { TranslatedWord } from "@/client/ui/components/TranslatedWord";
 import { Button } from "@/client/ui/components/action/buttons/Button";
-import { useSubmitTranslate } from "./useSubmitTranslate";
+import styled from "styled-components";
 import { ButtonIcons } from "../../assets/images/icons";
-import { useRef } from "react";
+import { useSubmitTranslate } from "./useSubmitTranslate";
 
 /**
  * A form module for translating words.
