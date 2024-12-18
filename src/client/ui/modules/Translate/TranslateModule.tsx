@@ -6,18 +6,17 @@ import { ButtonIcons } from "../../assets/images/icons";
 import { useRef } from "react";
 
 /**
- * The `TranslateModule` Component.
+ * A form module for translating words.
  *
- * @returns A React element representing the `TranslateModule` component.
+ * This component renders a form with an input field and a submit button. 
+ * It uses a custom hook `useSubmitTranslate` to handle form submissions.
  *
- * @example
- * ```tsx
- * const MyComponent = <TranslateModule />;
- * ```
+ * @component
+ * @returns {JSX.Element} The TranslateModule component.
  */
 const TranslateModule = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const { handleSubmit } = useSubmitTranslate(formRef.current);
+  const { handleSubmit, isLoading } = useSubmitTranslate(formRef.current);
 
   return (
     <>
@@ -27,6 +26,7 @@ const TranslateModule = () => {
           icon={ButtonIcons.Translate}
           type="submit"
           width={6}
+          isDisabled={isLoading}
         />
       </StyledForm>
       <TranslatedWord />
