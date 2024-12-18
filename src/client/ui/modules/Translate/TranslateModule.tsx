@@ -15,12 +15,11 @@ import { useRef } from "react";
  * @returns {JSX.Element} The TranslateModule component.
  */
 const TranslateModule = () => {
-  const formRef = useRef<HTMLFormElement>(null);
-  const { handleSubmit, isLoading } = useSubmitTranslate(formRef.current);
+  const { handleSubmit, isLoading } = useSubmitTranslate();
 
   return (
     <>
-      <StyledForm ref={formRef} data-cy="translate-form" onSubmit={handleSubmit}>
+      <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
         <Input placeholder="word to translate" type="text" />
         <Button
           icon={ButtonIcons.Translate}

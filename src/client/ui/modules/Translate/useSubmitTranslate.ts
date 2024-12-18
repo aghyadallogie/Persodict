@@ -8,10 +8,9 @@ import { useSession } from 'next-auth/react';
  * This hook manages the translation submission process, including preventing the default form action,
  * extracting the input value, and invoking the translation function. It also handles potential errors.
  *
- * @param {HTMLFormElement | null} formRef - Reference to the form element.
  * @returns {Object} An object containing the `handleSubmit` function.
  */
-export const useSubmitTranslate = (formRef: HTMLFormElement | null) => {
+export const useSubmitTranslate = () => {
     const { data: session } = useSession();
     const { makeTranslation, isLoading } = useTranslation();
     
