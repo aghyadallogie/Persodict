@@ -1,7 +1,7 @@
 import { ToggleLanguage } from "@/server/domain/entities/Settings";
 import useSWRMutation from "swr/mutation";
-import SettingsService from "../services/SettingsService";
 import { useGetUserSettings } from "./useGetUserSettings";
+import SettingsService from "@/client/application/services/SettingsService";
 
 export const useToggleLangCase = ({ userId }: ToggleLanguage) => {
     const { mutate } = useGetUserSettings(userId);

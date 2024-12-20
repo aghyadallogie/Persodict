@@ -1,8 +1,8 @@
 import { TranslatedWord } from "@/client/ui/components/TranslatedWord";
 import { Button } from "@/client/ui/components/action/buttons/Button";
 import styled from "styled-components";
-import { ButtonIcons } from "../../assets/images/icons";
 import { useSubmitTranslate } from "./useSubmitTranslate";
+import { ButtonIcons } from "@/client/ui/assets/images/icons";
 
 /**
  * A form module for translating words.

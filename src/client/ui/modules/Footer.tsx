@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {P} from '../components/layout/Text';
+import {P} from '@/client/ui/components/layout/Text';
 
 export const Footer = () => (
     <Wrapper>

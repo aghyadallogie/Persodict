@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {shade} from '../../utils';
+import {shade} from '@/client/ui/utils';
 
 export type FontSize = 'large' | 'medium' | 'small';
 

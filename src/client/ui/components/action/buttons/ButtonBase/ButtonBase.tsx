@@ -1,5 +1,5 @@
 import React, { MouseEvent } from "react";
-import { WithChildren } from "../../../../../../../types/global";
+import { WithChildren } from "@/types/global";
 import styled from "styled-components";
 import { useButtonColors } from "./useButtonColors";
 
