@@ -1,6 +1,6 @@
 # Persodict
 
-A Next.js language dictionary application. This project provides a user-friendly interface with micro-animations for users to input words and receive translations in multiple languages at once, along with customizable settings to enhance the translation experience. This app has been built according the Octagonal Architecture Principle, with emphasis on separation between logic and UI leveraging the power of custom hooks.
+A language dictionary application. This project provides a user-friendly interface with micro-animations for users to input words and receive translations in multiple languages at once, along with customizable settings to enhance the translation experience. This app has been built according the Octagonal Architecture Principle, with emphasis on separation between logic and UI leveraging the power of custom hooks.
 
 ## Table of Contents
 
