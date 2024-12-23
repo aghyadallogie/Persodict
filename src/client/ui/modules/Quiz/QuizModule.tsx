@@ -56,10 +56,12 @@ const Patch = styled.span`
 `;
 
 const Options = styled(motion.div)`
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
+    margin-top: 2rem;
 `;
 
 const StreakMessage = styled(P)`

@@ -1,17 +1,13 @@
 import type { Word } from "@/client/domain/entities/Word";
 import SessionLayout from "@/client/ui/layouts/Layout";
+import { QuizModule } from "@/client/ui/modules/Quiz/QuizModule";
 import { Wrapper } from "@/pages/index";
+import type { Settings } from "@/server/domain/entities/Settings";
 import { SettingsService } from "@/server/services/SettingsService";
 import { WordService } from "@/server/services/WordService";
 import { NextPageWithLayout } from "@/types/global";
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
-import type { Settings } from "@/server/domain/entities/Settings";
-import { QuizModule } from "@/client/ui/modules/Quiz/QuizModule";
-import { P } from "@/client/ui/components/layout/Text";
-import styled from "styled-components";
-import { motion } from "framer-motion";
-import { deleteAnimation } from "@/client/ui/animations/actions";
 
 interface PageProps {
     userLangs: string[];
@@ -30,11 +26,12 @@ interface PageProps {
 * @param {Word[]} [props.words=[]] - An array of words available for the quiz.
 * @returns {JSX.Element} The rendered Quiz component.
 */
-const Quiz: NextPageWithLayout = ({ userLangs, words = [] }: PageProps) => (
+const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => (
     <Wrapper>
-        {words.length > 8
-            ? <QuizModule langs={userLangs} words={words} />
-            : <InsufficientTranslations
+        {/* {words.length > 8
+            ? */}
+        <QuizModule langs={userLangs} words={words} />
+        {/* : <InsufficientTranslations
                 animate="enter"
                 exit="exit"
                 initial="initial"
@@ -43,15 +40,15 @@ const Quiz: NextPageWithLayout = ({ userLangs, words = [] }: PageProps) => (
             >
                 You need to make at least <P>8 translations</P> in order to play the Quiz!
             </InsufficientTranslations>
-        }
+        } */}
     </Wrapper>
 )
 
-const InsufficientTranslations = styled(motion.div)`
-    margin-top: 5rem;
-    text-align: center;
-    line-height: 3rem;
-`;
+// const InsufficientTranslations = styled(motion.div)`
+//     margin-top: 5rem;
+//     text-align: center;
+//     line-height: 3rem;
+// `;
 
 export default Quiz;
 
@@ -68,14 +65,14 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const settings = await SettingsService.getSettings(userEmail!);
     const userWords = await WordService.getWords(userEmail!) as Word[];
 
-    if (!userWords[0]?.translations[0]?.lang) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        };
-    }
+    // if (!userWords[0]?.translations[0]?.lang) {
+    //     return {
+    //         redirect: {
+    //             destination: '/',
+    //             permanent: false,
+    //         },
+    //     };
+    // }
 
     return {
         props: {
