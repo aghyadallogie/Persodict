@@ -12,26 +12,25 @@ interface ComponentProps {
 
 export const QuizModule = ({ langs, words }: ComponentProps) => {
     const { options, randomLang, randomWord, streak, validateAnswer } = useQuiz(langs, words);
+    console.log(randomWord);
 
     return (
         <Wrapper
+        // animate="enter"
+        // exit="exit"
+        // initial="initial"
+        // variants={childrenAnimation}
+        >
+            <P $align="center">
+                What is <Patch>{randomWord}</Patch>
+                in &nbsp; <span className={`fi fi-${renderCorrectFlag(randomLang ?? '')}`} /> &nbsp; ?
+            </P>
+            <Options
             // animate="enter"
             // exit="exit"
             // initial="initial"
-            // variants={childrenAnimation}
-        >
-            {randomWord && randomLang && (
-                <P $align="center">
-                    What is <Patch>{randomWord}</Patch>
-                    in &nbsp; <span className={`fi fi-${renderCorrectFlag(randomLang)}`} /> &nbsp; ?
-                </P>
-            )}
-            <Options
-                // animate="enter"
-                // exit="exit"
-                // initial="initial"
-                // variants={deleteAnimation}
-                // layout
+            // variants={deleteAnimation}
+            // layout
             >
                 {options.map(option => <Button key={option} label={option!} onClick={() => validateAnswer(option!)} type="button" />)}
             </Options>

@@ -30,7 +30,6 @@ const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => {
 
     return (
         <Wrapper>
-            test
             {/* {words.length > 8
             ? */}
             <QuizModule langs={userLangs} words={words} />
