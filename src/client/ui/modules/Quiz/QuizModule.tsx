@@ -14,6 +14,7 @@ interface ComponentProps {
 
 export const QuizModule = ({ langs, words }: ComponentProps) => {
     const { options, randomLang, randomWord, streak, validateAnswer } = useQuiz(langs, words);
+    console.log('module loaded');
 
     return (
         <Wrapper

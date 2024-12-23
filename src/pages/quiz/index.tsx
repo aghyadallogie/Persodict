@@ -26,12 +26,15 @@ interface PageProps {
 * @param {Word[]} [props.words=[]] - An array of words available for the quiz.
 * @returns {JSX.Element} The rendered Quiz component.
 */
-const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => (
-    <Wrapper>
-        {/* {words.length > 8
+const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => {
+    console.log('page loaded');
+    
+    return (
+        <Wrapper>
+            {/* {words.length > 8
             ? */}
-        <QuizModule langs={userLangs} words={words} />
-        {/* : <InsufficientTranslations
+            <QuizModule langs={userLangs} words={words} />
+            {/* : <InsufficientTranslations
                 animate="enter"
                 exit="exit"
                 initial="initial"
@@ -41,8 +44,9 @@ const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => (
                 You need to make at least <P>8 translations</P> in order to play the Quiz!
             </InsufficientTranslations>
         } */}
-    </Wrapper>
-)
+        </Wrapper>
+    )
+}
 
 // const InsufficientTranslations = styled(motion.div)`
 //     margin-top: 5rem;
