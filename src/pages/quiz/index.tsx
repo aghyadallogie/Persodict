@@ -69,19 +69,20 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const settings = await SettingsService.getSettings(userEmail!) as Settings;
     const userWords = await WordService.getWords(userEmail!) as Word[];
 
-    if (!userWords[0]?.translations[0]?.lang || !settings?.userLangs) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        };
-    }
-
+    // if (!userWords[0]?.translations[0]?.lang || !settings?.userLangs) {
+    //     return {
+    //         redirect: {
+    //             destination: '/',
+    //             permanent: false,
+    //         },
+    //     };
+    // }
+    console.log('settings', settings);
+    
     return {
         props: {
             revalidate: 18000,
-            userLangs: settings?.userLangs,
+            userLangs: settings?.userLangs ?? [],
             words: userWords || [],
         },
     };
