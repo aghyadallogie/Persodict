@@ -52,6 +52,7 @@ export const useQuiz = (langs: string[], words: Word[]) => {
             console.log('wooops!!', answer === targetWord);
         }
     };
-
+    console.log('randomLangggggggggg', randomLang);
+    
     return { options, randomLang, randomWord: englishWord, streak, validateAnswer };
 }

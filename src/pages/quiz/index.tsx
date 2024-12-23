@@ -80,7 +80,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     return {
         props: {
             revalidate: 18000,
-            userLangs: (settings as Settings)?.userLangs || [],
+            userLangs: (settings as Settings)?.userLangs,
             words: userWords || [],
         },
     };
