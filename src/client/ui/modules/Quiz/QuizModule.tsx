@@ -12,8 +12,9 @@ interface ComponentProps {
 
 export const QuizModule = ({ langs, words }: ComponentProps) => {
     const { options, randomLang, randomWord, streak, validateAnswer } = useQuiz(langs, words);
-    console.log(randomWord);
-
+    console.log('randomLang', randomLang);
+    console.log('randomWord', randomWord);
+        
     return (
         <Wrapper
         // animate="enter"
