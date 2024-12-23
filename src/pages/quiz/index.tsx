@@ -27,10 +27,10 @@ interface PageProps {
 * @returns {JSX.Element} The rendered Quiz component.
 */
 const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => {
-    console.log('page loaded');
-    
+
     return (
         <Wrapper>
+            test
             {/* {words.length > 8
             ? */}
             <QuizModule langs={userLangs} words={words} />

@@ -1,11 +1,9 @@
 import type { Word } from "@/client/domain/entities/Word";
-import { P } from "@/client/ui/components/layout/Text";
-import { useQuiz } from './useQuiz';
-import styled from "styled-components";
-import { motion } from "framer-motion";
 import { Button } from "@/client/ui/components/action/buttons/Button";
-import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actions";
+import { P } from "@/client/ui/components/layout/Text";
 import { renderCorrectFlag } from "@/client/ui/utils";
+import styled from "styled-components";
+import { useQuiz } from './useQuiz';
 
 interface ComponentProps {
     langs: string[];
@@ -14,14 +12,13 @@ interface ComponentProps {
 
 export const QuizModule = ({ langs, words }: ComponentProps) => {
     const { options, randomLang, randomWord, streak, validateAnswer } = useQuiz(langs, words);
-    console.log('module loaded');
 
     return (
         <Wrapper
-            animate="enter"
-            exit="exit"
-            initial="initial"
-            variants={childrenAnimation}
+            // animate="enter"
+            // exit="exit"
+            // initial="initial"
+            // variants={childrenAnimation}
         >
             {randomWord && randomLang && (
                 <P $align="center">
@@ -30,11 +27,11 @@ export const QuizModule = ({ langs, words }: ComponentProps) => {
                 </P>
             )}
             <Options
-                animate="enter"
-                exit="exit"
-                initial="initial"
-                variants={deleteAnimation}
-                layout
+                // animate="enter"
+                // exit="exit"
+                // initial="initial"
+                // variants={deleteAnimation}
+                // layout
             >
                 {options.map(option => <Button key={option} label={option!} onClick={() => validateAnswer(option!)} type="button" />)}
             </Options>
@@ -43,7 +40,7 @@ export const QuizModule = ({ langs, words }: ComponentProps) => {
     )
 }
 
-const Wrapper = styled(motion.div)`
+const Wrapper = styled.div`
     margin-top: 1.6rem;
     color: ${({ theme }) => theme.colors.primaryFontColor};
 `
@@ -56,7 +53,7 @@ const Patch = styled.span`
     margin: 0 .5rem;
 `;
 
-const Options = styled(motion.div)`
+const Options = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

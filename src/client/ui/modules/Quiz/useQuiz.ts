@@ -24,7 +24,6 @@ export const useQuiz = (langs: string[], words: Word[]) => {
     const [randomWord, setRandomWord] = useState<Word | null>(null);
     const [randomLang, setRandomLang] = useState<string | null>(null);
     const [streak, setStreak] = useState<number>(0);
-    console.log('hook loaded');
 
     useEffect(() => {
         const randomWordIndex = makeRndIndexFor(words);
