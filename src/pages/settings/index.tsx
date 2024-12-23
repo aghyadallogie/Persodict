@@ -17,7 +17,7 @@ const Settings: NextPageWithLayout = () => (
 export default Settings;
 
 Settings.getLayout = (router, pageProps, PageComponent) => (
-  <SessionLayout title="Settings">
+  <SessionLayout title="Persodict | Settings">
     <PageComponent router={router} {...pageProps} />
   </SessionLayout>
 );

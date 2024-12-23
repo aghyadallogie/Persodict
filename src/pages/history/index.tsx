@@ -15,7 +15,7 @@ interface PageProps {
   words: Word[];
 }
 
-const History: NextPageWithLayout = ({ words }: PageProps) => {
+const History: NextPageWithLayout = ({ words = [] }: PageProps) => {
   const { data: session } = useSession();
   const { userTranslations } = useGetUserTranslations(session?.user?.email as string);
 
@@ -53,7 +53,7 @@ const WordsWrapper = styled.div`
 `;
 
 History.getLayout = (router, pageProps, PageComponent) => (
-  <SessionLayout title="History">
+  <SessionLayout title="Persodict | History">
     <PageComponent router={router} {...pageProps} />
   </SessionLayout>
 );

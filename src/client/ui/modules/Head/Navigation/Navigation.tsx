@@ -1,11 +1,12 @@
-import {NavLink} from "@/client/ui/components/action/NavLink";
-import {signOut} from "next-auth/react";
-import {useRouter} from "next/router";
+import { NavLink } from "@/client/ui/components/action/NavLink";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 import {
-    RiFolderHistoryFill,
-    RiHome4Fill,
-    RiLogoutBoxRFill,
-    RiSettings2Fill
+  RiFolderHistoryFill,
+  RiHome4Fill,
+  RiLogoutBoxRFill,
+  RiQuestionnaireFill,
+  RiSettings2Fill
 } from "react-icons/ri";
 import styled from "styled-components";
 
@@ -19,9 +20,9 @@ export const Navigation = () => {
       <NavLink href="/history" $isActive={asPath === '/history'}>
         <RiFolderHistoryFill />
       </NavLink>
-      {/* <NavLink href="/quiz">
-      <RiQuestionnaireFill />
-    </NavLink> */}
+      <NavLink href="/quiz" $isActive={asPath === '/quiz'}>
+        <RiQuestionnaireFill />
+      </NavLink>
       <NavLink href="/settings" $isActive={asPath === '/settings'}>
         <RiSettings2Fill />
       </NavLink>
@@ -79,7 +80,7 @@ const Nav = styled.nav`
 const LogoutButton = styled.div`
   cursor: pointer;
   svg {
-    fill: ${({theme}) => theme.colors.textPlaceholder};
+    fill: ${({ theme }) => theme.colors.textPlaceholder};
     height: 2.2rem;
     padding: 5px 0;
     transition: 0.5s;

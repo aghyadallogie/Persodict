@@ -1,9 +1,9 @@
 import type { Translation } from "@/client/domain/entities/Word";
 import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actions";
-import { renderCorrectFlag } from "@/client/ui/utils/helpers";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useDeleteWord } from "./useDeleteWord";
+import { renderCorrectFlag } from "@/client/ui/utils";
 
 interface ComponentProps {
   data: Translation[];

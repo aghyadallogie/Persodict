@@ -29,7 +29,7 @@ export const Wrapper = styled.main`
 `;
 
 Home.getLayout = (router, pageProps, PageComponent) => (
-  <SessionLayout title="Persodict">
+  <SessionLayout title="Persodict | Translate">
     <PageComponent router={router} {...pageProps} />
   </SessionLayout>
 );
