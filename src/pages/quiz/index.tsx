@@ -27,7 +27,8 @@ interface PageProps {
 * @returns {JSX.Element} The rendered Quiz component.
 */
 const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => {
-
+    console.log('module');
+    
     return (
         <Wrapper>
             {/* {words.length > 8
@@ -65,22 +66,22 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     const session = await getSession(context);
     const userEmail = session?.user?.email;
 
-    const settings = await SettingsService.getSettings(userEmail!);
+    const settings = await SettingsService.getSettings(userEmail!) as Settings;
     const userWords = await WordService.getWords(userEmail!) as Word[];
 
-    // if (!userWords[0]?.translations[0]?.lang) {
-    //     return {
-    //         redirect: {
-    //             destination: '/',
-    //             permanent: false,
-    //         },
-    //     };
-    // }
+    if (!userWords[0]?.translations[0]?.lang || !settings?.userLangs) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
 
     return {
         props: {
             revalidate: 18000,
-            userLangs: (settings as Settings)?.userLangs,
+            userLangs: settings?.userLangs,
             words: userWords || [],
         },
     };
