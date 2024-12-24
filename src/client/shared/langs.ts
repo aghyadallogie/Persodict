@@ -12,6 +12,6 @@ export const langs = [
   { code: "el", flag: "fi fi-gr" },
   { code: "pl", flag: "fi fi-pl" },
   { code: "nl", flag: "fi fi-nl" },
-  { code: "ar", flag: "fi fi-sy" },
+  { code: "ar", flag: "fi fi-ps" },
   { code: "ja", flag: "fi fi-jp" },
 ];
