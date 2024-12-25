@@ -1,18 +1,7 @@
-import type { Word } from "@/client/domain/entities/Word";
 import SessionLayout from "@/client/ui/layouts/Layout";
 import { QuizModule } from "@/client/ui/modules/Quiz/QuizModule";
 import { Wrapper } from "@/pages/index";
-import type { Settings } from "@/server/domain/entities/Settings";
-import { SettingsService } from "@/server/services/SettingsService";
-import { WordService } from "@/server/services/WordService";
 import { NextPageWithLayout } from "@/types/global";
-import { GetServerSidePropsContext } from "next";
-import { getSession } from "next-auth/react";
-
-interface PageProps {
-    userLangs: string[];
-    words: Word[];
-}
 
 /**
 * Quiz component that renders a quiz interface based on the user's available translations.
@@ -26,14 +15,13 @@ interface PageProps {
 * @param {Word[]} [props.words=[]] - An array of words available for the quiz.
 * @returns {JSX.Element} The rendered Quiz component.
 */
-const Quiz: NextPageWithLayout = ({ userLangs, words }: PageProps) => {
-    console.log('module');
-    
+const Quiz: NextPageWithLayout = () => {
+
     return (
         <Wrapper>
             {/* {words.length > 8
             ? */}
-            <QuizModule langs={userLangs} words={words} />
+            <QuizModule />
             {/* : <InsufficientTranslations
                 animate="enter"
                 exit="exit"
@@ -62,28 +50,4 @@ Quiz.getLayout = (router, pageProps, PageComponent) => (
     </SessionLayout>
 );
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-    const session = await getSession(context);
-    const userEmail = session?.user?.email;
-
-    const settings = await SettingsService.getSettings(userEmail!) as Settings;
-    const userWords = await WordService.getWords(userEmail!) as Word[];
-
-    // if (!userWords[0]?.translations[0]?.lang || !settings?.userLangs) {
-    //     return {
-    //         redirect: {
-    //             destination: '/',
-    //             permanent: false,
-    //         },
-    //     };
-    // }
-    console.log('settings', settings);
-    
-    return {
-        props: {
-            revalidate: 18000,
-            userLangs: settings?.userLangs ?? [],
-            words: userWords || [],
-        },
-    };
-};
+export const getServerSideProps = async () => ({ props: {} });

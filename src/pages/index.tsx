@@ -1,12 +1,8 @@
+import SessionLayout from "@/client/ui/layouts/Layout";
+import TranslateModule from "@/client/ui/modules/Translate/TranslateModule";
+import { NextPageWithLayout } from "@/types/global";
 import Head from "next/head";
 import styled from "styled-components";
-import TranslateModule from "@/client/ui/modules/Translate/TranslateModule";
-import SessionLayout from "@/client/ui/layouts/Layout";
-import { NextPageWithLayout } from "@/types/global";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { getSession } from "next-auth/react";
-import { SettingsService } from "@/server/services/SettingsService";
-import { Settings } from "@/server/domain/entities/Settings";
 
 const Home: NextPageWithLayout = () => (
   <>
@@ -34,16 +30,4 @@ Home.getLayout = (router, pageProps, PageComponent) => (
   </SessionLayout>
 );
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-  const session = await getSession(context);
-  const userEmail = session?.user?.email;
-
-  const settings = await SettingsService.getSettings(userEmail!);
-  const userLangs = (settings as Settings)?.userLangs;
-
-  return {
-    props: {
-      userLangs: userLangs || [],
-    },
-  };
-};
+export const getServerSideProps = async () => ({ props: {} });

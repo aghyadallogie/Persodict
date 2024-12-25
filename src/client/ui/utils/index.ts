@@ -37,3 +37,31 @@ export const renderCorrectFlag = (lang: string) => {
  * @returns {number} A random index between 0 and the length of the array minus one.
  */
 export const makeRndIndexFor = <T,>(array: T[]): number => Math.floor(Math.random() * array.length);
+
+/**
+ * Shuffles the elements of the provided array in a random order.
+ *
+ * This function implements the Fisher-Yates (Knuth) shuffle algorithm, which
+ * ensures that each permutation of the array is equally likely. The original
+ * array remains unchanged, and a new shuffled array is returned.
+ *
+ * @param {T[]} array - The array to be shuffled. It can contain elements of any type.
+ * @returns {T[]} A new array containing the elements of the input array in random order.
+ * 
+ * @template T - The type of elements in the array.
+ *
+ * @example
+ * const numbers = [1, 2, 3, 4, 5];
+ * const shuffledNumbers = shuffleArray(numbers);
+ * console.log(shuffledNumbers); // Output could be [3, 1, 4, 5, 2] or any other permutation.
+ */
+export const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
+}

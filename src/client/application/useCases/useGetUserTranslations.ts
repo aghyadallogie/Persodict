@@ -11,5 +11,9 @@ export const useGetUserTranslations = (authorId: string) => {
     },
   });
 
-  return { userTranslations: data, error };
+  return {
+    userTranslations: data,
+    isError: error,
+    isLoading: !error && !data,
+  };
 };

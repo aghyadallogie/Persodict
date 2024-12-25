@@ -1,6 +1,9 @@
 import type { Word } from "@/client/domain/entities/Word";
 import { useEffect, useState } from 'react';
-import { makeRndIndexFor } from "@/client/ui/utils";
+import { makeRndIndexFor, shuffleArray } from "@/client/ui/utils";
+import { useHistory } from "../Historz/useHistory";
+import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
+import { useSession } from "next-auth/react";
 
 /**
  * Custom hook for managing a quiz game with random words and languages.
@@ -20,17 +23,24 @@ import { makeRndIndexFor } from "@/client/ui/utils";
  * @example
  * const { options, randomLang, randomWord, streak, validateAnswer } = useQuiz(['en', 'es'], words);
  */
-export const useQuiz = (langs: string[], words: Word[]) => {
+export const useQuiz = () => {
+    const { data: session } = useSession();
+    const { orderedTranslations: words, isLoading: isWordsLoading } = useHistory()
+    const { userSettings, isLoading: isLangsLoading } = useGetUserSettings(session?.user?.email as string);
+    const langs = userSettings?.data?.userLangs ?? [];
+
     const [randomWord, setRandomWord] = useState<Word | null>(null);
     const [randomLang, setRandomLang] = useState<string | null>(null);
     const [streak, setStreak] = useState<number>(0);
+
+    const isLoading = !langs || !words || isLangsLoading || isWordsLoading;
 
     useEffect(() => {
         const randomWordIndex = makeRndIndexFor(words);
         const randomLangIndex = makeRndIndexFor(langs);
         setRandomWord(words[randomWordIndex]);
         setRandomLang(langs[randomLangIndex]);
-    }, [langs, words, streak]);
+    }, [streak, isLoading]);
 
     const englishWord = randomWord?.translations.find(translation => translation.lang === 'en')?.lingo ?? null;
     const targetWord = randomWord?.translations.find(translation => translation.lang === randomLang)?.lingo ?? null;
@@ -52,7 +62,13 @@ export const useQuiz = (langs: string[], words: Word[]) => {
             console.log('wooops!!', answer === targetWord);
         }
     };
-    console.log('randomLangggggggggg', randomLang);
-    
-    return { options, randomLang, randomWord: englishWord, streak, validateAnswer };
+
+    return {
+        isLoading,
+        options: shuffleArray(options),
+        randomLang,
+        randomWord: englishWord,
+        streak,
+        validateAnswer
+    };
 }
