@@ -11,8 +11,6 @@ import { useSession } from "next-auth/react";
  * This hook selects a random word and language from the provided lists,
  * generates options for the quiz, and tracks the user's streak of correct answers.
  *
- * @param {string[]} langs - An array of language codes to choose from for the quiz.
- * @param {Word[]} words - An array of Word objects containing translations for the quiz.
  * @returns {Object} An object containing:
  *   - {string | null} randomLang - The randomly selected language for the current quiz question.
  *   - {Word | null} randomWord - The randomly selected word for the current quiz question.

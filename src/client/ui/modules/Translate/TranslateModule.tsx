@@ -13,7 +13,7 @@ import { ButtonIcons } from "@/client/ui/assets/images/icons";
  * @component
  * @returns {JSX.Element} The TranslateModule component.
  */
-const TranslateModule = () => {
+const TranslateModule = (): JSX.Element => {
   const { handleSubmit, isLoading } = useSubmitTranslate();
 
   return (

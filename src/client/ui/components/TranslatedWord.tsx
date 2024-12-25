@@ -1,5 +1,4 @@
 import { AnimatePresence } from 'framer-motion';
-
 import { NoWords } from './layout/NoWords';
 import { WordView } from './WordView';
 import { useGetUserTranslations } from '@/client/application/useCases/useGetUserTranslations';

@@ -44,7 +44,7 @@ export const SettingsModule = () => {
 };
 
 const Title = styled(P)`
-  margin-top: 5rem;
+  margin-top: 3rem;
   margin-bottom: 3rem;
   color: ${({ theme }) => theme.colors.primaryFontColor};
 `;

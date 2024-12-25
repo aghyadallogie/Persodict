@@ -10,6 +10,14 @@ import {
 } from "react-icons/ri";
 import styled from "styled-components";
 
+/**
+ * Navigation component that renders the main navigation bar for the application.
+ * It includes links to the home, history, quiz, and settings pages, as well as a logout button.
+ * The active link is highlighted based on the current route.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered navigation bar.
+ */
 export const Navigation = () => {
   const { asPath } = useRouter();
   return (
