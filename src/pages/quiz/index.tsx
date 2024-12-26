@@ -15,32 +15,11 @@ import { NextPageWithLayout } from "@/types/global";
 * @param {Word[]} [props.words=[]] - An array of words available for the quiz.
 * @returns {JSX.Element} The rendered Quiz component.
 */
-const Quiz: NextPageWithLayout = () => {
-
-    return (
-        <Wrapper>
-            {/* {words.length > 8
-            ? */}
-            <QuizModule />
-            {/* : <InsufficientTranslations
-                animate="enter"
-                exit="exit"
-                initial="initial"
-                variants={deleteAnimation}
-                layout
-            >
-                You need to make at least <P>8 translations</P> in order to play the Quiz!
-            </InsufficientTranslations>
-        } */}
-        </Wrapper>
-    )
-}
-
-// const InsufficientTranslations = styled(motion.div)`
-//     margin-top: 5rem;
-//     text-align: center;
-//     line-height: 3rem;
-// `;
+const Quiz: NextPageWithLayout = () => (
+    <Wrapper>
+        <QuizModule />
+    </Wrapper>
+);
 
 export default Quiz;
 

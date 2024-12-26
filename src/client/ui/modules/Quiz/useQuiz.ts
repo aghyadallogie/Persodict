@@ -67,6 +67,7 @@ export const useQuiz = () => {
         randomLang,
         randomWord: englishWord,
         streak,
-        validateAnswer
+        validateAnswer,
+        words
     };
 }

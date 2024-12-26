@@ -14,7 +14,7 @@ import { AnimatePresence, motion } from "framer-motion";
  * The component utilizes the `useQuiz` hook to manage quiz state, including options, 
  * the current word, the user's streak, and loading state.
  * 
- * @returns {JSX.Element} The rendered QuizModule component.
+ * @returns {JSX.Element} The rendered QuizModule component if the user has enough translations.
  * 
  * @example
  * // Example usage of QuizModule
@@ -25,9 +25,19 @@ import { AnimatePresence, motion } from "framer-motion";
  * @see {@link Button} for the button component used for answer options.
  */
 export const QuizModule = (): JSX.Element => {
-    const { options, randomLang, randomWord, streak, validateAnswer, isLoading } = useQuiz();
+    const { options, randomLang, randomWord, streak, validateAnswer, isLoading, words } = useQuiz();
 
     if (isLoading || !randomWord) return <NoWords />
+
+    if (words.length < 88) return <InsufficientTranslations
+        animate="enter"
+        exit="exit"
+        initial="initial"
+        variants={deleteAnimation}
+        layout
+    >
+        You need to make at least <P>8 translations</P> in order to play the Quiz!
+    </InsufficientTranslations>
 
     return (
         <Wrapper
@@ -90,4 +100,11 @@ const StreakMessage = styled(P)`
     margin-top: 3rem;
     font-size: 1rem;
     color: ${({ theme }) => theme.colors.primaryAccentFontColor};
+`;
+
+const InsufficientTranslations = styled(motion.div)`
+    color: ${({ theme }) => theme.colors.primaryAccentFontColor};
+    margin-top: 2rem;
+    text-align: center;
+    line-height: 3rem;
 `;
