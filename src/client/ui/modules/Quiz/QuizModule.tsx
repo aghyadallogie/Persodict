@@ -29,7 +29,7 @@ export const QuizModule = (): JSX.Element => {
 
     if (isLoading || !randomWord) return <NoWords />
 
-    if (words.length < 88) return <InsufficientTranslations
+    if (words.length < 8) return <InsufficientTranslations
         animate="enter"
         exit="exit"
         initial="initial"
