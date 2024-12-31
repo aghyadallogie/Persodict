@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/client/ui/components/action/buttons/ThemeToggle";
 import { NavLink } from "@/client/ui/components/action/NavLink";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -34,6 +35,7 @@ export const Navigation = () => {
       <NavLink href="/settings" $isActive={asPath === '/settings'}>
         <RiSettings2Fill />
       </NavLink>
+      <ThemeToggle />
       <LogoutButton>
         <RiLogoutBoxRFill
           onClick={async () => signOut({ callbackUrl: "/login" })}
@@ -45,7 +47,6 @@ export const Navigation = () => {
 
 const Nav = styled.nav`
   align-items: center;
-  background-color: white;
   border-bottom: 1px solid #f0f0f0;
   display: flex;
   justify-content: center;

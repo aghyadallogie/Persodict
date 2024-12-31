@@ -1,7 +1,7 @@
 import type { Word } from "@/client/domain/entities/Word";
 import { useEffect, useState } from 'react';
 import { makeRndIndexFor, shuffleArray } from "@/client/ui/utils";
-import { useHistory } from "../Historz/useHistory";
+import { useHistory } from "@/client/ui/modules/History/useHistory";
 import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
 import { useSession } from "next-auth/react";
 

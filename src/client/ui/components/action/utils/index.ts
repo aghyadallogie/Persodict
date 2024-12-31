@@ -3,7 +3,6 @@ import { Google } from "@/client/ui/assets/images/icons/Google";
 import { Translate } from "@/client/ui/assets/images/icons/Translate";
 import { Facebook } from "@/client/ui/assets/images/icons/Facebook";
 import { useThemeColors } from "@/client/ui/hooks/useThemeColors";
-import { Colors } from "@/client/ui/utils/globalStyles";
 import { shade } from "@/client/ui/utils";
 
 const Icons = {
@@ -21,7 +20,7 @@ export const getIconSize = (size: 'large' | 'small' | undefined, single: boolean
 export const getButtonTextSize = (size: 'large' | undefined | 'small') =>
   size === 'large' ? 'large' as const : 'small' as const;
 
-export const useForgroundColor = (style: 'light' | 'dark', overWriteColor?: Colors) => {
+export const useForgroundColor = (style: 'light' | 'dark', overWriteColor: string) => {
   const colors = useThemeColors();
   let foregroundColor = style === 'dark' ? shade(colors.primaryFontColor, 100, "light") : colors.primaryActionColor;
 
@@ -29,5 +28,5 @@ export const useForgroundColor = (style: 'light' | 'dark', overWriteColor?: Colo
     foregroundColor = overWriteColor;
   }
 
-  return foregroundColor as Colors;
+  return foregroundColor;
 }

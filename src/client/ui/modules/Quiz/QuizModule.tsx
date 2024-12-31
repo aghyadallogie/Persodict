@@ -71,12 +71,11 @@ export const QuizModule = (): JSX.Element => {
 
 const Wrapper = styled(motion.div)`
     margin-top: 1.6rem;
-    color: ${({ theme }) => theme.colors.primaryFontColor};
 `
 
 const Patch = styled.span`
     border-radius: 2rem;
-    background-color: #e1e1e1;
+    background-color: ${({ theme }) => theme.colors.hoverColor};
     font-size: .9rem;
     padding: .3rem .5rem;
     margin: 0 .5rem;

@@ -1,5 +1,5 @@
 import SessionLayout from "@/client/ui/layouts/Layout";
-import { HistoryModule } from "@/client/ui/modules/Historz/HistoryModule";
+import { HistoryModule } from "@/client/ui/modules/History/HistoryModule";
 import { NextPageWithLayout } from "@/types/global";
 import { Wrapper } from "..";
 

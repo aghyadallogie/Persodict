@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { ThemeProvider } from "styled-components";
-import { theme } from "@/client/ui/utils/globalStyles";
 import { AppProps } from "@/types/global";
 import type { Session } from "next-auth";
 import { Component, ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
+import { GlobalStyles } from "@/client/ui/styles/globalStyles";
+import { ThemeProvider } from '@/client/context/ThemeContext';
 
 class App extends Component<AppProps<{ session: Session }>> {
   chooseLayout(): ReactNode {
@@ -23,7 +23,8 @@ class App extends Component<AppProps<{ session: Session }>> {
     } = this.props;
 
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
+        <GlobalStyles />
         <SessionProvider session={session}>
           <Head>
             <link

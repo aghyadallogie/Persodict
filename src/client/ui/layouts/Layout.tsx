@@ -1,10 +1,11 @@
 import { Navigation } from "@/client/ui/modules/Head/Navigation";
-import { motion } from "framer-motion"; // Import motion from Framer Motion
+import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { Rubik } from "next/font/google";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import type { ReactNode } from "react";
+import styled from "styled-components";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -37,7 +38,7 @@ const SessionLayout = ({ children, title }: ComponentProps) => {
   });
 
   return (
-    <div className={rubik.className} style={{ margin: "0 2rem" }}>
+    <Wrapper className={rubik.className}>
       <Head>
         <title>{title}</title>
       </Head>
@@ -49,8 +50,12 @@ const SessionLayout = ({ children, title }: ComponentProps) => {
         <Navigation />
       </motion.nav>
       {children}
-    </div>
+    </Wrapper>
   );
 };
 
 export default SessionLayout;
+
+const Wrapper = styled.div`
+  margin: 0 2rem;
+`;

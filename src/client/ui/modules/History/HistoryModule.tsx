@@ -40,5 +40,5 @@ export const HistoryModule = () => {
 };
 
 const WordsWrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 2rem;
 `;

@@ -90,7 +90,7 @@ const Wrapper = styled.button<WrapperProps>`
   background: transparent;
   border: none;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
+  box-shadow: ${({ theme }) => theme.shadows.buttonShadow};
   color: ${({ theme }) => theme.colors.primaryAccentFontColor};
   cursor: pointer;
   display: flex;
@@ -110,7 +110,7 @@ const Wrapper = styled.button<WrapperProps>`
   }
 
   &:hover {
-    background-color: ${({ $buttonHoverColor }) => $buttonHoverColor};
+    background-color: ${({ theme }) => theme.colors.hoverColor};
     border: ${({ $hasSlimBorder }) => ($hasSlimBorder ? "1px" : "0px")} solid
       ${({ $buttonHoverColor }) => $buttonHoverColor};
     outline: none;

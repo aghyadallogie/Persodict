@@ -49,20 +49,17 @@ export const WordView = ({ data, wordId }: ComponentProps) => {
 
 const Table = styled(motion.div)`
   backdrop-filter: blur(8px);
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.25),
-      rgba(255, 255, 255, 0.1)
-    );
-  border: 1px solid white;
+  background: ${({ theme }) => theme.gradients.viewBackground};
+  border: 1px solid ${({ theme }) => theme.colors.pageBackground};
   border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fffb;
+  box-shadow: ${({ theme }) => theme.shadows.buttonShadow};
   color: ${({ theme }) => theme.colors.primaryFontColor};
   margin-bottom: 1rem;
   text-align: center;
   width: 100%;
 
   &:hover {
-    outline: 1px solid #fff;
+    outline: 1px solid ${({ theme }) => theme.shadows.inputShadow};
 
     div {
       opacity: 1;
@@ -79,7 +76,7 @@ const Row = styled(motion.div)`
 `;
 
 const DeleteTranslation = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.pageBackground};
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
   cursor: pointer;
@@ -93,10 +90,10 @@ const DeleteTranslation = styled.div`
   color: #a8a8a891;
 
   &:hover {
-    color: #e47373;
+    color: ${({ theme }) => theme.colors.tertiaryActionColor};
   }
   &:active {
-    color: #e47373;
+    color: ${({ theme }) => theme.colors.tertiaryActionColor};
   }
 
   @media (min-width: 476px) {

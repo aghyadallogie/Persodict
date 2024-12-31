@@ -36,14 +36,15 @@ export default TranslateModule;
 
 const StyledForm = styled.form`
   display: flex;
-  margin: 3rem 0 1rem 0;
+  margin: 3rem 0 2rem 0;
+  gap: 1rem;
 `;
 
 const Input = styled.input`
   background: transparent;
   border: none;
   border-radius: 10px;
-  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
+  box-shadow: ${({ theme }) => theme.shadows.inputShadow};
   font-size: 1em;
   letter-spacing: 1px;
   outline: none;

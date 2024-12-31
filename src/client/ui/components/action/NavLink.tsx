@@ -3,17 +3,17 @@ import { ReactNode } from "react"
 import styled from "styled-components";
 
 interface ComponentProps {
-    children: ReactNode
-    $isActive: boolean
-    href: string
+  children: ReactNode
+  $isActive: boolean
+  href: string
 }
 
 export const NavLink = ({ children, href, $isActive }: ComponentProps) => (
-    <Link href={href}>
-        <NavLinkElement $isActive={$isActive}>
-            {children}
-        </NavLinkElement>
-    </Link>
+  <Link href={href}>
+    <NavLinkElement $isActive={$isActive}>
+      {children}
+    </NavLinkElement>
+  </Link>
 )
 
 const NavLinkElement = styled.span<{ $isActive: boolean }>`
