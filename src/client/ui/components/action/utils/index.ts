@@ -20,7 +20,7 @@ export const getIconSize = (size: 'large' | 'small' | undefined, single: boolean
 export const getButtonTextSize = (size: 'large' | undefined | 'small') =>
   size === 'large' ? 'large' as const : 'small' as const;
 
-export const useForgroundColor = (style: 'light' | 'dark', overWriteColor: string) => {
+export const useForegroundColor = (style: 'light' | 'dark', overWriteColor?: string) => {
   const colors = useThemeColors();
   let foregroundColor = style === 'dark' ? shade(colors.primaryFontColor, 100, "light") : colors.primaryActionColor;
 
