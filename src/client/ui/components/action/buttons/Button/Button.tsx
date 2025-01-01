@@ -12,7 +12,7 @@ interface ComponentProps {
   isDisabled?: boolean;
   size?: "large" | "small";
   style?: "dark" | "light";
-  type: "button" | "reset" | "submit";
+  type?: "button" | "reset" | "submit";
   variant?: "primary" | "secondary";
   width?: number;
 }
@@ -43,10 +43,10 @@ export const Button = ({
   label,
   onClick,
   position = "left",
-  isDisabled,
-  size,
+  isDisabled = false,
+  size = "small",
   style = "light",
-  type,
+  type = "button",
   variant,
   width,
 }: ComponentProps) => {
@@ -56,7 +56,7 @@ export const Button = ({
     <ButtonBase
       width={width}
       isDisabled={isDisabled}
-      onClick={onClick ?? (() => {})}
+      onClick={onClick ?? (() => { })}
       style={style}
       type={type}
       variant={variant} as={"button"} hasSlimBorder={false} isActive={false} isRounded={false}

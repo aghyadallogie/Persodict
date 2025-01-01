@@ -4,14 +4,14 @@ import styled from "styled-components";
 import { useButtonColors } from "./useButtonColors";
 
 interface ComponentProps {
-  as: "button" | "div";
-  hasSlimBorder: boolean;
-  isActive: boolean;
+  as?: "button" | "div";
+  hasSlimBorder?: boolean;
+  isActive?: boolean;
   isDisabled?: boolean;
-  isRounded: boolean;
+  isRounded?: boolean;
   onClick(event: MouseEvent<HTMLButtonElement>): void;
   style?: "dark" | "light";
-  type: "button" | "reset" | "submit";
+  type?: "button" | "reset" | "submit";
   variant?: "primary" | "secondary";
   width?: number;
 }

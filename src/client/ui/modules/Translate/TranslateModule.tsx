@@ -45,6 +45,7 @@ const Input = styled.input`
   border: none;
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.shadows.inputShadow};
+  color: ${({ theme }) => theme.colors.primaryFontColor};
   font-size: 1em;
   letter-spacing: 1px;
   outline: none;
