@@ -74,7 +74,6 @@ const Nav = styled.nav`
     }
 
     svg {
-      color: #3338;
       height: 2.2rem;
       padding: 5px 0;
       width: 4rem;

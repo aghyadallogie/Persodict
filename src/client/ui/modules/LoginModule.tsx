@@ -74,7 +74,7 @@ const Input = styled.input`
     width: 100%;
 
     ::placeholder {
-        color: #ccc;
+        color: ${({ theme }) => theme.colors.hoverColor};
         font-size: 0.8em;
         font-weight: 400;
         letter-spacing: 1px;

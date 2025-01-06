@@ -24,12 +24,11 @@ export const NoWords = () => (
 
 const LargeTranslateIcon = styled(MdOutlineTranslate)`
   color: ${({ theme }) => theme.colors.primaryAccentColor};
-  color: #aaa3;
   width: 100%;
 `;
 
 const GrayedMessage = styled.p`
-  color: #aaa8;
+  color: ${({ theme }) => theme.colors.primaryAccentColor};
   font-weight: 400;
   margin: 2rem;
   text-align: center;

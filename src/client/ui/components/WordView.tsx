@@ -3,7 +3,7 @@ import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actio
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useDeleteWord } from "./useDeleteWord";
-import { renderCorrectFlag } from "@/client/ui/utils";
+import { renderCorrectFlag, shade } from "@/client/ui/utils";
 
 interface ComponentProps {
   data: Translation[];
@@ -68,7 +68,7 @@ const Table = styled(motion.div)`
 `;
 
 const Row = styled(motion.div)`
-  border-bottom: 1px dotted #d8d8d83b;
+  border-bottom: 1px dotted ${({ theme }) => shade(theme.colors.hoverColor, 5, "light")};
   display: flex;
   gap: 2rem;
   justify-content: space-between;
@@ -87,7 +87,7 @@ const DeleteTranslation = styled.div`
   right: -3px;
   top: 0px;
   transition: 0.3s;
-  color: #a8a8a891;
+  color: ${({ theme }) => shade(theme.colors.tertiaryActionColor, 30, "light")};
 
   &:hover {
     color: ${({ theme }) => theme.colors.tertiaryActionColor};

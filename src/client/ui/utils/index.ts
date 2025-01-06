@@ -1,3 +1,4 @@
+
 /**
  * Adjusts the shade of a given color by mixing it with either black or white.
  *
@@ -6,6 +7,13 @@
  * @param {'light' | 'dark'} [shade='dark'] - The type of shade to apply; can be 'light' or 'dark'. Defaults to 'dark'.
  * @throws {Error} Throws an error if the color is not a string.
  * @returns {string} The resulting color after mixing.
+ *
+ * @example
+ * // Returns a darker shade of red
+ * const darkerRed = shade('red', 50, 'dark');
+ * 
+ * // Returns a lighter shade of blue
+ * const lighterBlue = shade('blue', 30, 'light');
  */
 export const shade = (color: string, percentage: number, shade: 'light' | 'dark' = 'dark') => {
     if (typeof color !== 'string') throw new Error('Color must be of type string');
