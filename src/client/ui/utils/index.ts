@@ -65,3 +65,51 @@ export const shuffleArray = <T,>(array: T[]): T[] => {
 
     return shuffled;
 }
+
+/**
+ * Converts a hexadecimal color string to an RGBA or RGB color string.
+ *
+ * The function supports 3, 4, 6, and 8 character hex codes. 
+ * - 3-character hex codes are expanded to 6 characters (e.g., `#abc` becomes `#aabbcc`).
+ * - 4-character hex codes include an alpha channel and are expanded similarly (e.g., `#abcd` becomes `#aabbccdd`).
+ *
+ * @param {string} hex - The hexadecimal color string, which may start with a '#' character.
+ * @returns {string} The corresponding RGB or RGBA color string.
+ * @throws {Error} Throws an error if the input is not a valid hex color string.
+ *
+ * @example
+ * // Returns 'rgba(170, 187, 204, 0.867)'
+ * hexToRgba('#aabbccdd');
+ *
+ * @example
+ * // Returns 'rgb(170, 187, 204)'
+ * hexToRgba('#aabbcc');
+ */
+export const hexToRgba = (hex: string) => {
+    const hexRegex = /^#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/;
+    if (!hexRegex.test(hex)) {
+        throw new Error('Invalid hex color string');
+    }
+
+    hex = hex.replace('#', '');
+
+    if (hex.length === 3 || hex.length === 4) {
+        const chars = hex.split('');
+        if (hex.length === 3) {
+            hex = chars.map(char => char + char).join('');
+        } else {
+            hex = chars.map(char => char + char).join('');
+        }
+    }
+
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+
+    if (hex.length === 8) {
+        const a = (parseInt(hex.substr(6, 2), 16) / 255).toFixed(3);
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
+
+    return `rgb(${r}, ${g}, ${b})`;
+};

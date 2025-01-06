@@ -22,7 +22,7 @@ const ToggleButton = styled.div`
     width: 4rem;
 
     &:hover {
-      fill: #333;
+      fill: ${({ theme }) => theme.colors.darkSelected};
     }
   }
 `;

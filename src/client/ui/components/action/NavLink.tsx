@@ -17,20 +17,20 @@ export const NavLink = ({ children, href, $isActive }: ComponentProps) => (
 )
 
 const NavLinkElement = styled.span<{ $isActive: boolean }>`
-  color: #333;
+    color: ${({ $isActive, theme }) => $isActive ? theme.colors.darkSelected : theme.colors.textPlaceholder};
   display: flex;
   flex-direction: column;
   text-decoration: none;
 
   svg {
-    fill: ${({ $isActive, theme }) => $isActive ? "#333" : theme.colors.textPlaceholder};
+    fill: ${({ $isActive, theme }) => $isActive ? theme.colors.darkSelected : theme.colors.textPlaceholder};
     height: 2.2rem;
     padding: 5px 0;
     width: 4rem;
     transition: 0.5s;
 
     &:hover {
-      fill: #333;
+      fill: ${({ theme }) => theme.colors.darkSelected};
     }
   }
 `;

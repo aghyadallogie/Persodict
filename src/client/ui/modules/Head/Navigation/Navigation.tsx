@@ -59,7 +59,7 @@ const Nav = styled.nav`
 
   a,
   div {
-    color: #333;
+    color: ${({theme}) => theme.colors.darkSelected};
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -67,7 +67,7 @@ const Nav = styled.nav`
     &.active svg {
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      color: #333;
+      color: ${({theme}) => theme.colors.darkSelected};
       margin-bottom: 10px;
       min-height: 2.6rem;
       width: 3rem;
@@ -80,7 +80,7 @@ const Nav = styled.nav`
       width: 4rem;
 
       &:hover {
-        color: #333;
+        color: ${({ theme }) => theme.colors.darkSelected};
       }
     }
   }
@@ -96,7 +96,7 @@ const LogoutButton = styled.div`
     width: 4rem;
 
     &:hover {
-      fill: #333;
+      fill: ${({ theme }) => theme.colors.darkSelected};
     }
   }
 `;
