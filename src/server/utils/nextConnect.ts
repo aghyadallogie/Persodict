@@ -1,11 +1,11 @@
-import {createRouter} from 'next-connect';
+import { createRouter } from 'next-connect';
 
-import type {NextApiRequest, NextApiResponse} from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 /**
- * NextConnect with middleware to automatically connect to mongodb.
+ * Creates a Next.js API route handler using next-connect.
  *
- * @returns NextConnect with middleware.
+ * @returns {import('next-connect').NextConnect<NextApiRequest, NextApiResponse>} The router instance for handling API requests.
  */
 const nextConnect = () => {
     const router = createRouter<NextApiRequest, NextApiResponse>();
