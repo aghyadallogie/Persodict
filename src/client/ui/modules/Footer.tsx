@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {P} from '@/client/ui/components/layout/Text';
+import { P } from '@/client/ui/components/layout/Text';
 
 export const Footer = () => (
     <Wrapper>
@@ -8,7 +8,7 @@ export const Footer = () => (
 )
 
 const Wrapper = styled.footer`
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid ${({ theme }) => theme.colors.primaryActionColor};
     bottom: 0;
     margin-top: auto;
     position: fixed;

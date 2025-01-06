@@ -47,7 +47,7 @@ export const Navigation = () => {
 
 const Nav = styled.nav`
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primaryActionColor};
   display: flex;
   justify-content: center;
   min-height: 70px;
@@ -59,7 +59,7 @@ const Nav = styled.nav`
 
   a,
   div {
-    color: ${({theme}) => theme.colors.darkSelected};
+    color: ${({ theme }) => theme.colors.darkSelected};
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -67,7 +67,7 @@ const Nav = styled.nav`
     &.active svg {
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      color: ${({theme}) => theme.colors.darkSelected};
+      color: ${({ theme }) => theme.colors.darkSelected};
       margin-bottom: 10px;
       min-height: 2.6rem;
       width: 3rem;

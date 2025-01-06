@@ -10,7 +10,7 @@ export const lightTheme: Theme = {
         textPlaceholder: "#989898bf",
         primaryFontColor: "#000000ae",
         primaryAccentFontColor: "#00000088",
-        primaryActionColor: "whitesmoke",
+        primaryActionColor: "#f0f0f0",
         secondaryActionColor: "#aa0002",
         tertiaryActionColor: "#e47373",
         primaryAccentColor: "#aaa3",

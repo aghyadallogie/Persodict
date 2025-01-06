@@ -8,6 +8,15 @@ interface ComponentProps {
   href: string
 }
 
+/**
+ * NavLink component for navigation links.
+ *
+ * @param {Object} props - Component props.
+ * @param {ReactNode} props.children - The content to be displayed inside the link.
+ * @param {string} props.href - The URL the link points to.
+ * @param {boolean} props.$isActive - Indicates if the link is active.
+ * @returns {JSX.Element} The rendered NavLink component.
+ */
 export const NavLink = ({ children, href, $isActive }: ComponentProps) => (
   <Link href={href}>
     <NavLinkElement $isActive={$isActive}>
@@ -17,7 +26,7 @@ export const NavLink = ({ children, href, $isActive }: ComponentProps) => (
 )
 
 const NavLinkElement = styled.span<{ $isActive: boolean }>`
-    color: ${({ $isActive, theme }) => $isActive ? theme.colors.darkSelected : theme.colors.textPlaceholder};
+  color: ${({ $isActive, theme }) => $isActive ? theme.colors.darkSelected : theme.colors.textPlaceholder};
   display: flex;
   flex-direction: column;
   text-decoration: none;
