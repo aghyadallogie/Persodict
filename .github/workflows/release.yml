@@ -26,8 +26,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Configure Git
+        run: |
+          git config user.email "zenlogie@gmail.com"
+          git config user.name "Aghy"
+
       - name: Push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git push --follow-tags origin main
