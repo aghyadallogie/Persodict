@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.2 (2025-01-06)
+
+
+### Features
+
+* **Tests:** add test for Flag component ([5904f37](https://github.com/aghyadallogie/Persodict/commit/5904f373eb8f46ec9046fa3fa8db8c383ae2b584))
+
 ### 0.1.1 (2025-01-06)
 
 
