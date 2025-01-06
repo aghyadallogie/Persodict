@@ -51,7 +51,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "file-loader": "^6.2.0",
     "typescript": "^5",
-    "standard-version": "^9.5.1"
+    "standard-version": "^9.5.0"
   },
   "resolutions": {
     "string-width": "4.2.3",
