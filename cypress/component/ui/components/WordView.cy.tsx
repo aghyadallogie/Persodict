@@ -7,6 +7,13 @@ const theme = {
         textPlaceholder: "#989898bf",
         darkSelected: "#333"
     },
+    shadows: {
+        inputShadow: "inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff",
+        buttonShadow: "5px 5px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff"
+    },
+    gradients: {
+        viewBackground: 'linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1))',
+    },
 };
 
 describe('WordView Component', () => {

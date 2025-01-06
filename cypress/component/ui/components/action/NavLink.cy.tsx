@@ -10,9 +10,6 @@ const theme = {
         textPlaceholder: "#989898bf",
         darkSelected: "#333"
     },
-    gradients: {
-        viewBackground: 'linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1))',
-    },
 };
 
 describe('NavLink Component', () => {

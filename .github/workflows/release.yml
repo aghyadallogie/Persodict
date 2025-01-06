@@ -21,15 +21,15 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run standard-version
-        run: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Configure Git
         run: |
           git config user.email "zenlogie@gmail.com"
           git config user.name "Aghy"
+
+      - name: Run standard-version
+        run: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push changes
         run: |
