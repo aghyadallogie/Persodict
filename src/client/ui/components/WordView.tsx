@@ -80,10 +80,10 @@ const DeleteTranslation = styled.div`
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
   cursor: pointer;
+  float: inline-end;
   margin: 0 10px;
   opacity: 1;
   padding-top: 5px;
-  position: absolute;
   right: -3px;
   top: 0px;
   transition: 0.3s;

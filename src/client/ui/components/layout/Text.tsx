@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {shade} from '@/client/ui/utils';
 
-export type FontSize = 'large' | 'medium' | 'small';
+export type FontSize = 'large' | 'medium' | 'small' | 'tiny';
 
 interface HProps {
     $isCentered?: boolean;
@@ -38,6 +38,8 @@ export const getPSize = ({$size}: GetSizeParams) => {
             return '1.6rem';
         case 'small':
             return '1.2rem';
+        case 'tiny':
+            return '.8rem';
         case 'medium':
         default:
             return '1.4rem';
@@ -50,6 +52,8 @@ export const getPLineHeight = ({$size}: GetSizeParams) => {
             return '2.4rem';
         case 'small':
             return '1.6rem';
+        case 'tiny':
+            return '1rem';
         case 'medium':
         default:
             return '2rem';

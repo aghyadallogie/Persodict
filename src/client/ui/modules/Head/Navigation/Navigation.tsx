@@ -1,5 +1,6 @@
 import { ThemeToggle } from "@/client/ui/components/action/buttons/ThemeToggle";
 import { NavLink } from "@/client/ui/components/action/NavLink";
+import { Tooltip } from "@/client/ui/components/action/Tooltip";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import {
@@ -24,22 +25,34 @@ export const Navigation = () => {
   return (
     <Nav>
       <NavLink href="/" $isActive={asPath === '/'}>
-        <RiHome4Fill />
+        <Tooltip content="Translate">
+          <RiHome4Fill />
+        </Tooltip>
       </NavLink>
       <NavLink href="/history" $isActive={asPath === '/history'}>
-        <RiFolderHistoryFill />
+        <Tooltip content="History">
+          <RiFolderHistoryFill />
+        </Tooltip>
       </NavLink>
       <NavLink href="/quiz" $isActive={asPath === '/quiz'}>
-        <RiQuestionnaireFill />
+        <Tooltip content="Quiz">
+          <RiQuestionnaireFill />
+        </Tooltip>
       </NavLink>
       <NavLink href="/settings" $isActive={asPath === '/settings'}>
-        <RiSettings2Fill />
+        <Tooltip content="Settings">
+          <RiSettings2Fill />
+        </Tooltip>
       </NavLink>
-      <ThemeToggle />
+      <Tooltip content="Theme">
+        <ThemeToggle />
+      </Tooltip>
       <LogoutButton>
-        <RiLogoutBoxRFill
-          onClick={async () => signOut({ callbackUrl: "/login" })}
-        />
+        <Tooltip content="Logout">
+          <RiLogoutBoxRFill
+            onClick={async () => signOut({ callbackUrl: "/login" })}
+          />
+        </Tooltip>
       </LogoutButton>
     </Nav>
   )
