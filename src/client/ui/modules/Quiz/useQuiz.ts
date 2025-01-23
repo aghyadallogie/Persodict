@@ -27,7 +27,7 @@ export const useQuiz = () => {
     const { orderedTranslations: words, isLoading: isWordsLoading } = useHistory()
     const { userSettings, isLoading: isLangsLoading } = useGetUserSettings(session?.user?.email as string);
     const langs = userSettings?.data?.userLangs ?? [];
-    const { addNotification, destroyNotification } = useNotifications();
+    const { addNotification } = useNotifications();
 
     const [randomWord, setRandomWord] = useState<Word | null>(null);
     const [randomLang, setRandomLang] = useState<string | null>(null);

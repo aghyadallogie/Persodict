@@ -8,7 +8,7 @@ interface IconProps {
 }
 
 export const Wrong = React.forwardRef<SVGSVGElement, IconProps>(
-  (props, ref) => {
+  (props) => {
     const {
       className = "",
       color = "#0019A5",
