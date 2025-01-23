@@ -1,11 +1,12 @@
+import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actions";
 import { Button } from "@/client/ui/components/action/buttons/Button";
+import { NoWords } from "@/client/ui/components/layout/NoWords";
 import { P } from "@/client/ui/components/layout/Text";
 import { renderCorrectFlag } from "@/client/ui/utils";
-import styled from "styled-components";
-import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actions";
-import { useQuiz } from './useQuiz';
-import { NoWords } from "@/client/ui/components/layout/NoWords";
 import { AnimatePresence, motion } from "framer-motion";
+import styled from "styled-components";
+import { Notifications } from "../../components/action/Notifications";
+import { useQuiz } from './useQuiz';
 
 /**
  * QuizModule component renders a quiz question with multiple choice options.
@@ -26,7 +27,6 @@ import { AnimatePresence, motion } from "framer-motion";
  */
 export const QuizModule = (): JSX.Element => {
     const { options, randomLang, randomWord, streak, validateAnswer, isLoading, words } = useQuiz();
-
     if (isLoading || !randomWord) return <NoWords />
 
     if (words.length < 8) return <InsufficientTranslations
@@ -40,32 +40,35 @@ export const QuizModule = (): JSX.Element => {
     </InsufficientTranslations>
 
     return (
-        <Wrapper
-            animate="enter"
-            exit="exit"
-            initial="initial"
-            variants={deleteAnimation}
-        >
-            <P $align="center">
-                What is <Patch>{randomWord}</Patch>
-                in &nbsp; <span className={`fi fi-${renderCorrectFlag(randomLang ?? '')}`} /> &nbsp; ?
-            </P>
-            <AnimatePresence mode="sync">
-                <Options
-                    animate="enter"
-                    exit="exit"
-                    initial="initial"
-                    variants={deleteAnimation}
-                    layout
-                >
-                    {options.map(option => <motion.div key={option} variants={childrenAnimation}>
-                        <Button label={option!} onClick={() => validateAnswer(option!)} type="button" />
-                    </motion.div>
-                    )}
-                </Options>
-            </AnimatePresence>
-            {streak > 1 && <StreakMessage $align="center">You are on a streak of {streak} correct answers</StreakMessage>}
-        </Wrapper>
+        <>
+            <Wrapper
+                animate="enter"
+                exit="exit"
+                initial="initial"
+                variants={deleteAnimation}
+            >
+                <P $align="center">
+                    What is <Patch>{randomWord}</Patch>
+                    in &nbsp; <span className={`fi fi-${renderCorrectFlag(randomLang ?? '')}`} /> &nbsp; ?
+                </P>
+                <AnimatePresence mode="sync">
+                    <Options
+                        animate="enter"
+                        exit="exit"
+                        initial="initial"
+                        variants={deleteAnimation}
+                        layout
+                    >
+                        {options.map(option => <motion.div key={option} variants={childrenAnimation}>
+                            <Button label={option!} onClick={() => validateAnswer(option!)} type="button" />
+                        </motion.div>
+                        )}
+                    </Options>
+                </AnimatePresence>
+                {streak > 1 && <StreakMessage $align="center">You are on a streak of {streak} correct answers</StreakMessage>}
+            </Wrapper>
+            <Notifications />
+        </>
     )
 }
 

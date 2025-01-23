@@ -4,6 +4,7 @@ import { makeRndIndexFor, shuffleArray } from "@/client/ui/utils";
 import { useHistory } from "@/client/ui/modules/History/useHistory";
 import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
 import { useSession } from "next-auth/react";
+import { useNotifications } from "../../components/action/Notifications/NotificationContext";
 
 /**
  * Custom hook for managing a quiz game with random words and languages.
@@ -26,6 +27,7 @@ export const useQuiz = () => {
     const { orderedTranslations: words, isLoading: isWordsLoading } = useHistory()
     const { userSettings, isLoading: isLangsLoading } = useGetUserSettings(session?.user?.email as string);
     const langs = userSettings?.data?.userLangs ?? [];
+    const { addNotification, destroyNotification } = useNotifications();
 
     const [randomWord, setRandomWord] = useState<Word | null>(null);
     const [randomLang, setRandomLang] = useState<string | null>(null);
@@ -53,11 +55,11 @@ export const useQuiz = () => {
 
     const validateAnswer = (answer: string) => {
         if (answer === targetWord) {
+            addNotification('', 'success', 500);
             setStreak(prevStreak => prevStreak + 1);
-            console.log('nice!!');
         } else {
+            addNotification('', 'error', 500);
             setStreak(0);
-            console.log('wooops!!', answer === targetWord);
         }
     };
 
