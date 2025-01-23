@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.5 (2025-01-23)
+
+
+### Features
+
+* **Notifications:** implement Notification system ([40f1982](https://github.com/aghyadallogie/Persodict/commit/40f19824137395a6c971427b64509c7a72901595))
+
 ### 0.1.4 (2025-01-22)
 
 ### 0.1.3 (2025-01-06)
