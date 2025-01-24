@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.9 (2025-01-24)
+
+
+### Bug Fixes
+
+* **TranslatedWord:** fetch translated words only if session is defined ([11e84ea](https://github.com/aghyadallogie/Persodict/commit/11e84ea825e20b4e3289d7f7ba3fdb2f23984331))
+
 ### 0.1.8 (2025-01-24)
 
 
