@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.8 (2025-01-24)
+
+
+### Bug Fixes
+
+* **QuizFlicker:** fix flicker when shuffling quiz options ([a477c44](https://github.com/aghyadallogie/Persodict/commit/a477c440774de83dc3462a59705e2c9f999f2965))
+
 ### 0.1.7 (2025-01-23)
 
 
