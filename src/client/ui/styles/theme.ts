@@ -13,7 +13,7 @@ export const lightTheme: Theme = {
         primaryActionColor: "#f0f0f0",
         secondaryActionColor: "#aa0002",
         tertiaryActionColor: "#e47373",
-        primaryAccentColor: "#aaa3",
+        primaryAccentColor: "#aaa6",
         darkSelected: "#333",
         hoverColor: "#ddd"
     } as const,

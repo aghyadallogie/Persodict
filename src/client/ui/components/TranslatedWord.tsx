@@ -16,11 +16,12 @@ import { useSession } from 'next-auth/react';
  * ```
  */
 export const TranslatedWord = () => {
-    const { data: session } = useSession();
-    const { userTranslations } = useGetUserTranslations(session?.user?.email as string);
+    const {data: session, status } = useSession();
+    const { userTranslations } = useGetUserTranslations(session?.user?.email as string, status);
+    const mostRecentWord = userTranslations?.data[userTranslations.data.length - 1]?.translations ?? [];
+    const mostRecentWordId = userTranslations?.data[userTranslations.data.length - 1]?.id;
 
-    const mostRecentWord = userTranslations.data[userTranslations.data.length - 1]?.translations ?? [];
-    const mostRecentWordId = userTranslations.data[userTranslations.data.length - 1]?.id;
+    if (status === "loading") return <NoWords />
 
     return mostRecentWord.length > 0 ? (
         <AnimatePresence mode="wait">
