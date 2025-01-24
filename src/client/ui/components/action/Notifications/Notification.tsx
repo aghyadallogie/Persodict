@@ -37,8 +37,8 @@ const Wrapper = styled.div<{ $isVisible: boolean }>`
     transition: opacity 0.5s ease-in-out;
     animation: slideUp 0.5s forwards;
     position: fixed;
-    top: 15%;
-    left: 47.7%;
+    top: 17%;
+    left: 49%;
     transform: translate(-50%, -50%);
 
     @media (max-width: 768px) {

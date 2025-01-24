@@ -1,12 +1,12 @@
-import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actions";
-import { Button } from "@/client/ui/components/action/buttons/Button";
-import { NoWords } from "@/client/ui/components/layout/NoWords";
-import { P } from "@/client/ui/components/layout/Text";
-import { renderCorrectFlag } from "@/client/ui/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import {deleteAnimation, optionsVariants, optionVariants} from "@/client/ui/animations/actions";
+import {Button} from "@/client/ui/components/action/buttons/Button";
+import {Notifications} from "@/client/ui/components/action/Notifications";
+import {NoWords} from "@/client/ui/components/layout/NoWords";
+import {P} from "@/client/ui/components/layout/Text";
+import {renderCorrectFlag} from "@/client/ui/utils";
+import {AnimatePresence, motion} from "framer-motion";
 import styled from "styled-components";
-import { Notifications } from "../../components/action/Notifications";
-import { useQuiz } from './useQuiz';
+import {useQuiz} from './useQuiz';
 
 /**
  * QuizModule component renders a quiz question with multiple choice options.
@@ -26,10 +26,11 @@ import { useQuiz } from './useQuiz';
  * @see {@link Button} for the button component used for answer options.
  */
 export const QuizModule = (): JSX.Element => {
-    const { options, randomLang, randomWord, streak, validateAnswer, isLoading, words } = useQuiz();
+    const {options, randomLang, randomWord, streak, validateAnswer, isLoading, words} = useQuiz();
+
     if (isLoading || !randomWord) return <NoWords />
 
-    if (words.length < 8) return <InsufficientTranslations
+    if (!randomWord || !randomLang || words.length < 8) return <InsufficientTranslations
         animate="enter"
         exit="exit"
         initial="initial"
@@ -39,33 +40,43 @@ export const QuizModule = (): JSX.Element => {
         You need to make at least <P>8 translations</P> in order to play the Quiz!
     </InsufficientTranslations>
 
+    const renderQuizQuestion = () => (
+        <P $align="center">
+            What is <Patch>{randomWord}</Patch>
+            in &nbsp;<span className={`fi fi-${renderCorrectFlag(randomLang ?? '')}`} />&nbsp;?
+        </P>
+    );
+
+    const renderStreakMessage = (streak: number) => (
+        streak > 0 && <StreakMessage $align="center">
+            {streak > 1
+                ? `You are on a streak of ${streak} correct answers!`
+                : `Great start! Keep going!`}
+        </StreakMessage>
+    )
+
     return (
         <>
-            <Wrapper
-                animate="enter"
-                exit="exit"
-                initial="initial"
-                variants={deleteAnimation}
-            >
-                <P $align="center">
-                    What is <Patch>{randomWord}</Patch>
-                    in &nbsp; <span className={`fi fi-${renderCorrectFlag(randomLang ?? '')}`} /> &nbsp; ?
-                </P>
-                <AnimatePresence mode="sync">
+            <Wrapper>
+                {renderQuizQuestion()}
+                <AnimatePresence mode="popLayout">
                     <Options
-                        animate="enter"
-                        exit="exit"
-                        initial="initial"
-                        variants={deleteAnimation}
-                        layout
+                        as={motion.div} // Ensure it's a motion.div
+                        variants={optionsVariants} // Apply parent variants
+                        initial="hidden" // Start with "hidden"
+                        animate="visible" // Transition to "visible"
+                        exit="exit" // Apply "exit" on unmount
                     >
-                        {options.map(option => <motion.div key={option} variants={childrenAnimation}>
-                            <Button label={option!} onClick={() => validateAnswer(option!)} type="button" />
-                        </motion.div>
+                        {options.map((option) =>
+                            option && (
+                                <OptonButton key={`option-${option}`} variants={optionVariants}>
+                                    <Button label={option} onClick={() => validateAnswer(option)} type="button" />
+                                </OptonButton>
+                            )
                         )}
                     </Options>
                 </AnimatePresence>
-                {streak > 1 && <StreakMessage $align="center">You are on a streak of {streak} correct answers</StreakMessage>}
+                {renderStreakMessage(streak)}
             </Wrapper>
             <Notifications />
         </>
@@ -78,7 +89,7 @@ const Wrapper = styled(motion.div)`
 
 const Patch = styled.span`
     border-radius: 2rem;
-    background-color: ${({ theme }) => theme.colors.hoverColor};
+    background-color: ${({theme}) => theme.colors.hoverColor};
     font-size: .9rem;
     padding: .3rem .5rem;
     margin: 0 .5rem;
@@ -101,12 +112,19 @@ const Options = styled(motion.div)`
 const StreakMessage = styled(P)`
     margin-top: 3rem;
     font-size: 1rem;
-    color: ${({ theme }) => theme.colors.primaryAccentFontColor};
+    color: ${({theme}) => theme.colors.primaryAccentFontColor};
 `;
 
 const InsufficientTranslations = styled(motion.div)`
-    color: ${({ theme }) => theme.colors.primaryAccentFontColor};
+    color: ${({theme}) => theme.colors.primaryAccentFontColor};
     margin-top: 2rem;
     text-align: center;
     line-height: 3rem;
+`;
+
+const OptonButton = styled(motion.div)`
+    button {
+      height: 5rem;
+      line-height: 1.6rem;
+    }
 `;
