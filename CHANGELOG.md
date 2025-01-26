@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.10 (2025-01-26)
+
+
+### Features
+
+* **WordService:** optimize code and add jsdoc ([7ca0b57](https://github.com/aghyadallogie/Persodict/commit/7ca0b57bda41cd4a89f5d00a3691217a8f38ac0b))
+
 ### 0.1.9 (2025-01-24)
 
 
