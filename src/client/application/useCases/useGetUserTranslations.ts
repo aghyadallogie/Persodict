@@ -1,5 +1,6 @@
-import useSWR from "swr";
+import useSWR, {mutate} from "swr";
 import WordsService from "@/client/application/services/WordsService";
+import {useEffect} from "react";
 
 /**
  * Hook to fetch translations for a specific user using SWR.
@@ -15,14 +16,21 @@ import WordsService from "@/client/application/services/WordsService";
  * @example
  * const { userTranslations, isError, isLoading } = useGetUserTranslations("userId123");
  */
-export const useGetUserTranslations = (authorId: string, status: string = "authenticated") => {
+export const useGetUserTranslations = (authorId: string, status: string) => {
   const fetcher = () => WordsService.getUserTranslations(authorId);
 
-  const shouldFetch = status === "authenticated" && authorId;
-  const {data, error} = useSWR(
-    shouldFetch ? `/api/user/${authorId}` : null,
-    fetcher
-  );
+  const {data, error} = useSWR("/api/words", fetcher, {
+    fallbackData: {
+      data: [],
+      status: "something went wrong!",
+    },
+  });
+
+  useEffect(() => {
+    if (status === "authenticated" && authorId) {
+      mutate("/api/words");
+    }
+  }, [status, status]);
 
   return {
     userTranslations: data,

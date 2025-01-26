@@ -13,8 +13,8 @@ import type { Word } from "@/client/domain/entities/Word";
  * @returns {Word[]} orderedTranslations - The list of ordered translations for the user.
  */
 export const useHistory = () => {
-    const { data: session } = useSession();
-    const { userTranslations, isLoading } = useGetUserTranslations(session?.user?.email as string);
+    const { data: session, status } = useSession();
+    const { userTranslations, isLoading } = useGetUserTranslations(session?.user?.email as string, status);
 
     const translations = userTranslations?.data || [];
     let orderedTranslations: Word[] = translations || [];

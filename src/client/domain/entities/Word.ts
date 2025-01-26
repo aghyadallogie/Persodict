@@ -13,8 +13,3 @@ export interface UserTranslations {
     data: Word[];
     status: string;
 }
-
-export interface MutationArgs {
-    translation: string;
-    language: string;
-}
