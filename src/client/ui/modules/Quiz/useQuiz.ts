@@ -47,18 +47,20 @@ export const useQuiz = () => {
     const targetWord = randomWord?.translations.find(translation => translation.lang === randomLang)?.lingo ?? null;
     // generate and shuffle options
     useEffect(() => {
-        if (randomWord && targetWord && !isLoading) {
-            const newOptions = shuffleArray([
+        if (!randomWord || !targetWord || isLoading) return;
+        const newOptions = shuffleArray(
+            [
                 targetWord,
                 ...words
                     .filter(word => word !== randomWord)
-                    .map(word => word.translations.find(translation => translation.lang === randomLang)?.lingo)
-                    .filter(translation => translation !== undefined)
+                    .map(word =>
+                        word.translations.find(translation => translation.lang === randomLang)?.lingo
+                    )
+                    .filter(Boolean)
                     .slice(0, 3)
-            ]);
-
-            setShuffledOptions(newOptions);
-        }
+            ]
+        );
+        setShuffledOptions(newOptions as string[]);
     }, [targetWord]);
     // validate clicked answer
     const validateAnswer = (answer: string) => {

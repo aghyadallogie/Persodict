@@ -28,9 +28,9 @@ import {useQuiz} from './useQuiz';
 export const QuizModule = (): JSX.Element => {
     const {options, randomLang, randomWord, streak, validateAnswer, isLoading, words} = useQuiz();
 
-    if (isLoading || !randomWord) return <NoWords />
+    if (isLoading || !randomWord || !words) return <NoWords />
 
-    if (!randomWord || !randomLang || words.length < 8) return <InsufficientTranslations
+    if (words.length < 8) return <InsufficientTranslations
         animate="enter"
         exit="exit"
         initial="initial"
@@ -61,18 +61,16 @@ export const QuizModule = (): JSX.Element => {
                 {renderQuizQuestion()}
                 <AnimatePresence mode="popLayout">
                     <Options
-                        as={motion.div} // Ensure it's a motion.div
-                        variants={optionsVariants} // Apply parent variants
-                        initial="hidden" // Start with "hidden"
-                        animate="visible" // Transition to "visible"
-                        exit="exit" // Apply "exit" on unmount
+                        as={motion.div}
+                        variants={optionsVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
                     >
-                        {options.map((option) =>
-                            option && (
+                        {options.map(option =>
                                 <OptonButton key={`option-${option}`} variants={optionVariants}>
                                     <Button label={option} onClick={() => validateAnswer(option)} type="button" />
                                 </OptonButton>
-                            )
                         )}
                     </Options>
                 </AnimatePresence>
@@ -124,7 +122,7 @@ const InsufficientTranslations = styled(motion.div)`
 
 const OptonButton = styled(motion.div)`
     button {
-      height: 5rem;
-      line-height: 1.6rem;
+        height: 5rem;
+        line-height: 1.6rem;
     }
 `;
