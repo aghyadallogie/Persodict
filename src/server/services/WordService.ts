@@ -1,5 +1,5 @@
 import {prisma} from "@/server/utils/prisma";
-import type {Lingo, Word} from "@/server/domain/entities/Word";
+import type {Lingo, Translation, Word} from "@/server/domain/entities/Word";
 import {SettingsService} from "./SettingsService";
 
 export class WordService {
@@ -63,7 +63,7 @@ export class WordService {
    * @param {Lingo} param - An object containing the text to translate and the author's ID.
    * @param {string} param.text - The text to be translated.
    * @param {string} param.authorId - The ID of the author whose settings are used for translation.
-   * @returns {Promise<any | Error>} A promise resolving to the translation results if successful,
+   * @returns {Promise<Translation[] | Error>} A promise resolving to the translation results if successful,
    * or an error if the operation fails.
    */
   static async translateWord({text, authorId}: Lingo) {
@@ -73,7 +73,7 @@ export class WordService {
       };
       const result = await this.translateWordToLangs(text, settings.userLangs);
 
-      return result;
+      return result as Translation[];
     } catch (error) {
       return error;
     }

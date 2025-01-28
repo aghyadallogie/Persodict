@@ -1,6 +1,6 @@
 import { WordService } from "@/server/services/WordService";
 import { HTTP_STATUS } from "@/server/utils/httpstatus";
-import type { Lingo } from "@/server/domain/entities/Word";
+import type { Lingo, Translation } from "@/server/domain/entities/Word";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export class WordController {
@@ -27,7 +27,7 @@ export class WordController {
       const translation = await WordService.translateWord(body);
       const translated = await WordService.addWord({
         authorId: body.authorId,
-        translations: translation!,
+        translations: translation! as Translation[],
       });
 
       return res.send({
