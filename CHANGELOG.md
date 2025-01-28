@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.11 (2025-01-28)
+
+
+### Bug Fixes
+
+* **Quiz:** prevent more than 4 options ([b46617b](https://github.com/aghyadallogie/Persodict/commit/b46617b0068f9d78fd14f2f8c3945b6a0c60b82c))
+
 ### 0.1.10 (2025-01-26)
 
 
