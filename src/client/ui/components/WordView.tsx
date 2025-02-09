@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useDeleteWord } from "./useDeleteWord";
 import { renderCorrectFlag, shade } from "@/client/ui/utils";
-import { NoWords } from "./layout/NoWords";
 
 interface ComponentProps {
   data: Translation[];
