@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.13 (2025-02-09)
+
+
+### Features
+
+* **TranslateDeepL:** implement rate limit mechanism ([eac9cd3](https://github.com/aghyadallogie/Persodict/commit/eac9cd36bad35d458f6672654edf92c8a6cf81af))
+
 ### 0.1.12 (2025-01-28)
 
 ### 0.1.11 (2025-01-28)
