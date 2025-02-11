@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.15 (2025-02-11)
+
+
+### Features
+
+* **Documentation:** add jsdoc to service methods ([73b72e8](https://github.com/aghyadallogie/Persodict/commit/73b72e820555d5d18f4c3d0583c0cce882b1647b))
+
 ### 0.1.14 (2025-02-09)
 
 ### 0.1.13 (2025-02-09)
