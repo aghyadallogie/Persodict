@@ -1,10 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
+import { HTTP_STATUS_CODE } from "./httpstatus";
 
-export const errorHandler = (err: unknown, req: NextApiRequest, res: NextApiResponse): void => {
-    const {message = 'Unknown error'} = err as Error;
+export const errorHandler = (
+  err: unknown,
+  req: NextApiRequest,
+  res: NextApiResponse
+): void => {
+  const { message = "Unknown error" } = err as Error;
 
-    res.status(404).json({
-        message,
-        statusCode: 404
-    });
+  res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR).json({
+    message,
+    status: HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR,
+  });
 };

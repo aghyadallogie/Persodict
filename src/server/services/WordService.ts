@@ -6,19 +6,21 @@ import type {
   Word,
 } from "@/server/domain/entities/Word";
 import { SettingsService } from "./SettingsService";
+import { Word as PrismaWord } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export class WordService {
   /**
-   * Retrieves words from the database for a specific author.
+   * Retrieves a list of words associated with the specified authorId.
    *
-   * This function queries the database using Prisma to fetch all words
-   * associated with the provided `authorId`.
+   * This method queries the database to find words associated with the provided `authorId`.
+   * If no words are found, it explicitly returns `null`.
    *
-   * @param {string} authorId - The ID of the author whose words are to be fetched.
-   * @returns {Promise<Array<Word> | Error>} A promise resolving to an array of words if successful,
-   * or an error if the query fails.
+   * @param {string} authorId - The unique identifier of the author whose words are to be fetched.
+   * @returns {Promise<PrismaWord[] | null>} A promise resolving to the author's words or `null` if not found.
+   * @throws Will throw an error if the words cannot be fetched due to a database error.
    */
-  static async getWords(authorId: string) {
+  static async getWords(authorId: string): Promise<PrismaWord[] | null> {
     try {
       const words = await prisma.word.findMany({
         where: {
@@ -26,60 +28,77 @@ export class WordService {
         },
       });
 
-      return words;
+      return words ?? null;
     } catch (error) {
-      return error;
+      console.error("Error fetching words:", error);
+      throw new Error("Failed to fetch words for the specified authorId"); // Throw an error with a custom message
     }
   }
 
   /**
    * Adds a new word to the database.
    *
-   * This function uses Prisma to create a new word record in the database
-   * with the provided word details.
+   * This method takes in a `Word` object and adds it to the database.
+   * If the word is invalid, it throws an error.
    *
-   * @param {Word} word - The word object containing details to be added.
-   * @param {string} word.authorId - The ID of the author adding the word.
-   * @param {string[]} word.translations - An array of translations for the word.
-   * @returns {Promise<Word | Error>} A promise resolving to the created word object if successful,
-   * or an error if the creation fails.
+   * @param {Word} word - The word to be added.
+   * @returns {Promise<PrismaWord>} A promise resolving to the newly added word.
+   * @throws {Error} Will throw an error if the word is invalid or if there is a database error.
    */
-  static async addWord(word: Word) {
+  static async addWord(word: Word): Promise<PrismaWord> {
     try {
+      if (
+        !word.authorId ||
+        !word.translations ||
+        word.translations.length === 0
+      ) {
+        throw new Error("Invalid word data.");
+      }
+
       const translated = await prisma.word.create({
         data: {
           authorId: word.authorId,
           translations: word.translations,
         },
       });
+
       return translated;
     } catch (error) {
-      return error;
+      console.error("Error adding word:", error);
+      throw new Error("Failed to add word.");
     }
   }
 
   /**
-   * Translates a given word to the user's preferred languages.
+   * Translates a given text into multiple languages specified in the user's settings.
    *
-   * This function retrieves the user's language settings and translates the provided text
-   * into the specified languages.
+   * This method retrieves the language settings for the user identified by `authorId`
+   * and translates the provided `text` into those languages.
    *
-   * @param {Lingo} param - An object containing the text to translate and the author's ID.
+   * @param {Lingo} param - An object containing the text to be translated and the author's ID.
    * @param {string} param.text - The text to be translated.
-   * @param {string} param.authorId - The ID of the author whose settings are used for translation.
-   * @returns {Promise<Translation[] | Error>} A promise resolving to the translation results if successful,
-   * or an error if the operation fails.
+   * @param {string} param.authorId - The ID of the author whose language settings are used for translation.
+   *
+   * @returns {Promise<Translation[]>} A promise that resolves to an array of translations.
+   * @throws Will throw an error if no language settings are found for the user or if translation fails.
    */
-  static async translateWord({ text, authorId }: Lingo) {
+  static async translateWord({
+    text,
+    authorId,
+  }: Lingo): Promise<Translation[]> {
     try {
-      const settings = (await SettingsService.getSettings(authorId)) as {
-        userLangs: string[];
-      };
+      const settings = await SettingsService.getSettings(authorId);
+
+      if (!settings || !settings.userLangs || settings.userLangs.length === 0) {
+        throw new Error("No language settings found for user.");
+      }
+
       const result = await this.translateWordToLangs(text, settings.userLangs);
 
       return result as Translation[];
     } catch (error) {
-      return error;
+      console.error("Error translating word for user: ", error);
+      throw new Error("Failed to translate word.");
     }
   }
 
@@ -114,10 +133,14 @@ export class WordService {
     });
 
     try {
-      const response = await fetch(`https://api-free.deepl.com/v2/translate?${params}`);
+      const response = await fetch(
+        `https://api-free.deepl.com/v2/translate?${params}`
+      );
 
       if (!response.ok)
-        throw new Error(`DeepL API error: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `DeepL API error: ${response.status} ${response.statusText}`
+        );
 
       if (response.status === 429) {
         if (retryCount >= MAX_RETRIES)
@@ -144,35 +167,60 @@ export class WordService {
   }
 
   /**
-   * Translates a given text to multiple languages using the DeepL API.
+   * Translates a given text to an array of languages using the DeepL API.
    *
-   * This function takes a text and an array of target languages, and returns a
-   * promise resolving to an array of translation results. The result array
-   * contains the original text in English, followed by the translations in
-   * the specified target languages 'langs'.
+   * @param {string} text - The text to translate.
+   * @param {string[]} langs - The languages to translate the text to.
    *
-   * @param {string} text - The text to be translated.
-   * @param {string[]} langs - An array of target language codes for the translation.
-   * @returns {Promise<Translation[]>} A promise resolving to an array of translation results.
-   * @throws {Error} If the fetch request or response parsing fails.
+   * @returns {Promise<Translation[]>} A promise resolving to an array of translations in the same order as the input languages.
+   * Each translation object contains the translated text and the target language.
+   *
+   * @throws {Error} If the text is empty or if an error occurs when translating.
    */
   private static async translateWordToLangs(text: string, langs: string[]) {
-    const textPromises = ["en", ...langs].map(async (lang: string) =>
+    if (!text.trim()) {
+      throw new Error("Text cannot be empty");
+    }
+
+    const translationPromises = ["en", ...langs].map(async (lang) =>
       this.translateWithDeepL(text, lang)
     );
 
-    const translations = await Promise.all(textPromises);
-    return translations;
+    const results = await Promise.allSettled(translationPromises);
+
+    return results
+      .filter(
+        (result): result is PromiseFulfilledResult<Translation> =>
+          result.status === "fulfilled"
+      )
+      .map((result) => result.value);
   }
 
+  /**
+   * Deletes a word from the database by its ID.
+   *
+   * This method attempts to delete a word from the database using the provided `wordId`.
+   * If the word with the specified ID is not found, it logs a warning and returns `null`.
+   * Throws an error if the deletion fails for any other reason.
+   *
+   * @param {string} wordId - The unique identifier of the word to be deleted.
+   * @returns {Promise<PrismaWord | null>} A promise resolving to the deleted word object or `null` if not found.
+   * @throws Will throw an error if the deletion fails due to a database error other than "word not found".
+   */
   static async deleteWord(wordId: string) {
     try {
-      const deleted = await prisma.word.delete({ where: { id: wordId } });
-
-      return deleted;
+      return await prisma.word.delete({ where: { id: wordId } });
     } catch (error) {
-      console.log("errr", error);
+      if (
+        error instanceof PrismaClientKnownRequestError &&
+        error.code === "P2025"
+      ) {
+        console.error("Word with ID not found.");
+        return null;
+      }
+
+      console.error("Error deleting word:", error);
+      throw new Error("Failed to delete word");
     }
-    return undefined;
   }
 }
