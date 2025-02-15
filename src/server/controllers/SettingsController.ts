@@ -49,7 +49,7 @@ export class SettingsController {
    */
   static async updateSettings(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const { userId, langCode } = req.body;
+      const { userId, langCode } = JSON.parse(req.body);
 
       if (!userId || !langCode) {
         return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
