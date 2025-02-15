@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.16 (2025-02-15)
+
+
+### Bug Fixes
+
+* **Settings:** parse request body ([855f2a5](https://github.com/aghyadallogie/Persodict/commit/855f2a5fc6b9a05294f8ac5912ea9eb62bce0fb5))
+
 ### 0.1.15 (2025-02-11)
 
 
