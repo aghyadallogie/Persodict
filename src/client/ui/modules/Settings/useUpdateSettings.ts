@@ -10,11 +10,14 @@ import { useToggleLangCase } from "@/client/application/useCases/useToggleLangCa
  *   - isLoading: A boolean indicating whether the toggle operation is currently in progress.
  */
 export const useUpdateSettings = (langCode: string, userId: string) => {
-  const { toggleLang, isLoading } = useToggleLangCase({ userId, langCode });
+  const { toggleLang, isLoading, error } = useToggleLangCase({
+    userId,
+    langCode,
+  });
 
   const handleToggleLang = async () => {
     await toggleLang({ userId, langCode });
-  }
+  };
 
-  return { handleUpdateSettings: handleToggleLang, isLoading };
+  return { handleUpdateSettings: handleToggleLang, isLoading, error };
 };

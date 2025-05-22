@@ -6,7 +6,7 @@ import SettingsService from "@/client/application/services/SettingsService";
 export const useToggleLangCase = ({ userId }: ToggleLanguage) => {
     const { mutate } = useGetUserSettings(userId);
 
-    const { trigger, isMutating } = useSWRMutation(
+    const { trigger, isMutating, error } = useSWRMutation(
         "/api/settings",
         SettingsService.toggleLang,
         {
@@ -15,6 +15,7 @@ export const useToggleLangCase = ({ userId }: ToggleLanguage) => {
             }
         }
     );
+    console.log('e', error);
 
-    return { toggleLang: trigger, isLoading: isMutating };
+    return { toggleLang: trigger, isLoading: isMutating, error };
 };

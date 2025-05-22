@@ -106,7 +106,7 @@ const Wrapper = styled.button<WrapperProps>`
   padding: 0 1rem;
 
   &:active {
-    box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1), -5px -5px 10px #fff;
+    box-shadow: none;
   }
 
   &:hover {
@@ -116,20 +116,14 @@ const Wrapper = styled.button<WrapperProps>`
     outline: none;
     transition: border 0.3s 0s ease-in-out, background-color 0.3s 0s ease-in-out;
   }
-  &:active,
-  &.active {
-    background-color: ${({ $buttonPressedColor }) => $buttonPressedColor};
-    border: ${({ $hasSlimBorder }) => ($hasSlimBorder ? "1px" : "0px")} solid
-      ${({ $activeBorderColor }) => $activeBorderColor};
-    outline: none;
-    transition: border 0.3s 0s ease-in-out, background-color 0.3s 0s ease-in-out;
-  }
+
   &:focus {
     border: ${({ $hasSlimBorder }) => ($hasSlimBorder ? "1px" : "0px")} solid
       ${({ theme }) => theme.colors.buttonBorderColor};
     outline: none;
     transition: border 0.3s 0s ease-in-out;
   }
+
   &:disabled {
     opacity: 0.3;
     outline: none;

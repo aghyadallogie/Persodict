@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { useUpdateSettings } from "@/client/ui/modules/Settings/useUpdateSettings";
 import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
@@ -25,13 +24,12 @@ interface ComponentProps {
  * const MyFlag = <Flag picked={true} langCode="en" langFlag="us" userLangs={['en', 'fr']} userId="123" />;
  * ```
  */
-export const Flag = ({
-  langCode,
-  langFlag,
-  userId
-}: ComponentProps) => {
+export const Flag = ({ langCode, langFlag, userId }: ComponentProps) => {
   const { userSettings } = useGetUserSettings(userId);
-  const { handleUpdateSettings, isLoading } = useUpdateSettings(langCode, userId);
+  const { handleUpdateSettings, isLoading, error } = useUpdateSettings(
+    langCode,
+    userId
+  );
 
   const picked = userSettings?.data?.userLangs.includes(langCode) || false;
 
@@ -42,16 +40,29 @@ export const Flag = ({
   return (
     <FlagWrapper
       onClick={isLoading ? undefined : handleClick}
-      className={`${isLoading ? 'loading' : langFlag}`}
+      className={`${isLoading ? "loading" : langFlag}`}
       $picked={picked}
       $isLoading={isLoading}
+      $hasError={!!error}
     />
   );
 };
 
-const FlagWrapper = styled.div<{ $picked: boolean, $isLoading: boolean }>`
-  outline: ${({ $picked, theme }) => ($picked ? `5px solid ${theme.colors.textPlaceholder}` : "none")};
-  background-color: ${({ $picked, theme }) => ($picked ? theme.colors.textPlaceholder : "none")};
+interface WrapperProps {
+  $picked: boolean;
+  $isLoading: boolean;
+  $hasError: boolean;
+}
+
+const FlagWrapper = styled.div<WrapperProps>`
+  outline: ${({ $picked, $hasError, theme }) =>
+    $picked
+      ? `5px solid ${theme.colors.textPlaceholder}`
+      : $hasError
+      ? `5px solid ${theme.colors.textPlaceholder}`
+      : "none"};
+  background-color: ${({ $picked, theme }) =>
+    $picked ? theme.colors.textPlaceholder : "none"};
   transition: outline 0.1s ease-out;
   line-height: 2rem;
   width: 3rem;
@@ -67,7 +78,11 @@ const FlagWrapper = styled.div<{ $picked: boolean, $isLoading: boolean }>`
   }
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;

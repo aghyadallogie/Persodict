@@ -36,7 +36,7 @@ export default class AppDocument extends Document {
         return (
             <Html lang="en">
                 <Head />
-                <body>
+                <body style={{fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"}}>
                     <Main />
                     <NextScript />
                 </body>

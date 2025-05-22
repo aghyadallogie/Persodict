@@ -49,9 +49,10 @@ export class SettingsController {
    */
   static async updateSettings(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const { userId, langCode } = JSON.parse(req.body);
+      const { userId, langCode } = req.body;
 
       if (!userId || !langCode) {
+        throw new Error("Missing userId or langCode");
         return res.status(HTTP_STATUS_CODE.BAD_REQUEST).json({
           message: "Missing userId or langCode",
         });
