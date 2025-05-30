@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.18 (2025-05-30)
+
+
+### Bug Fixes
+
+* **SettingsController:** json parse request body ([dce5fdb](https://github.com/aghyadallogie/Persodict/commit/dce5fdbadc26a86aa78d822d0bffdad76ed9140d))
+
 ### 0.1.17 (2025-05-22)
 
 
