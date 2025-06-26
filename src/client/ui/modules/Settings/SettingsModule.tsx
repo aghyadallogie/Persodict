@@ -1,11 +1,10 @@
 import { langs } from "@/client/shared/langs";
-import React from "react";
-import styled from "styled-components";
-import { Flag } from "@/client/ui/components/Flag";
-import { useSession } from "next-auth/react";
-import { motion } from "framer-motion";
 import { childrenAnimation } from "@/client/ui/animations/actions";
+import { Flag } from "@/client/ui/components/Flag";
 import { P } from "@/client/ui/components/layout/Text";
+import { motion } from "framer-motion";
+import { useSession } from "next-auth/react";
+import styled from "styled-components";
 
 /**
  * The `SettingsModule` Component.

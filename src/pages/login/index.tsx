@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { H1 } from "@/client/ui/components/layout/Text";
 import { LoginLayout } from '@/client/ui/layouts/LoginLayout';
 import { ButtonIcons } from "@/client/ui/assets/images/icons";
+import LoginModule from "@/client/ui/modules/LoginModule";
 
 const Login: NextPageWithLayout = () => {
     const { status } = useSession();
@@ -19,6 +20,8 @@ const Login: NextPageWithLayout = () => {
         return (
             <Container>
                 <H1 $isCentered>Welcome to Persodict</H1>
+                <LoginModule />
+                <Divider />
                 <Button
                     onClick={() => signIn("google", { callbackUrl: "http://localhost:3000/" })}
                     label={"Login with Google"}
@@ -69,4 +72,10 @@ export const Container = styled.div`
     border-radius: 10px;
     box-shadow: ${({ theme }) => theme.shadows.buttonShadow};
   }
+`;
+
+export const Divider = styled.div`
+    width: 80%;
+    margin: .4rem 0;
+    border-top: 1px solid ${({ theme }) => theme.colors.hoverColor};
 `;

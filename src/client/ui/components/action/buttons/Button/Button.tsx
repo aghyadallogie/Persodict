@@ -72,4 +72,5 @@ export const Button = ({
 
 const P = styled.p<{ $size: "large" | "small" }>`
   font-size: ${({ $size }) => $size === "large" ? "1.5rem" : "1rem"};
+  font-family: 'Lexend', sans-serif;
 `;

@@ -1,8 +1,8 @@
+import { ButtonIcons } from "@/client/ui/assets/images/icons";
 import { TranslatedWord } from "@/client/ui/components/TranslatedWord";
 import { Button } from "@/client/ui/components/action/buttons/Button";
 import styled from "styled-components";
 import { useSubmitTranslate } from "./useSubmitTranslate";
-import { ButtonIcons } from "@/client/ui/assets/images/icons";
 
 /**
  * A form module for translating words.
@@ -14,7 +14,7 @@ import { ButtonIcons } from "@/client/ui/assets/images/icons";
  * @returns {JSX.Element} The TranslateModule component.
  */
 const TranslateModule = (): JSX.Element => {
-  const { handleSubmit, isLoading } = useSubmitTranslate();
+  const { handleSubmit, isLoading, error } = useSubmitTranslate();
 
   return (
     <>
@@ -27,7 +27,8 @@ const TranslateModule = (): JSX.Element => {
           isDisabled={isLoading}
         />
       </StyledForm>
-      <TranslatedWord />
+      <Error $show={!!error}>{error || " "}</Error>
+      <TranslatedWord error={error} />
     </>
   );
 };
@@ -65,4 +66,16 @@ const Input = styled.input`
       visibility: hidden;
     }
   }
+`;
+
+const Error = styled.p<{ $show: boolean }>`
+  color: ${({ theme }) => theme.colors.error};
+  font-size: 0.8em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: center;
+  opacity: ${({ $show }) => ($show ? 1 : 0)};
+  transform: translateY(${({ $show }) => ($show ? "0" : "-10px")});
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  min-height: 1.2em;
 `;

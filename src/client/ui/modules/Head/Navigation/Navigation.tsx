@@ -60,7 +60,7 @@ export const Navigation = () => {
 
 const Nav = styled.nav`
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.primaryActionColor};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.hoverColor};
   display: flex;
   justify-content: center;
   min-height: 70px;

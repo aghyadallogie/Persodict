@@ -7,6 +7,8 @@ import { useSession } from 'next-auth/react';
 /**
  * The `TranslatedWord` Component displays the most recent translated word.
  * It utilizes animations for word transitions.
+ * 
+ * @param {string | null} error - The error message to display.
  *
  * @returns A React element representing the `TranslatedWord` component.
  *
@@ -15,13 +17,13 @@ import { useSession } from 'next-auth/react';
  * const MyComponent = <TranslatedWord />;
  * ```
  */
-export const TranslatedWord = () => {
+export const TranslatedWord = ({ error }: { error: string | null }) => {
     const {data: session, status } = useSession();
     const { userTranslations } = useGetUserTranslations(session?.user?.email as string, status);
     const mostRecentWord = userTranslations?.data[userTranslations.data.length - 1]?.translations ?? [];
     const mostRecentWordId = userTranslations?.data[userTranslations.data.length - 1]?.id;
 
-    if (status === "loading") return <NoWords />
+    if (status === "loading") return <NoWords error={error} />
 
     return mostRecentWord.length > 0 ? (
         <AnimatePresence mode="wait">
@@ -29,6 +31,6 @@ export const TranslatedWord = () => {
         </AnimatePresence>
 
     ) : (
-        <NoWords />
+        <NoWords error={error} />
     );
 };

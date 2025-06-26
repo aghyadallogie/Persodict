@@ -2,7 +2,6 @@ import { NextComponentType, NextPage, NextPageContext } from "next";
 import type { AppProps as NextAppProps } from "next/app";
 import type { NextRouter } from "next/router";
 import { ReactNode } from "react";
-import type { WithChildren } from "types/global";
 
 type NextPageWithLayout<T = any> = NextPage<T> & Layout<T>;
 type NextComponentWithLayout = NextComponentType<NextPageContext, any, any> &

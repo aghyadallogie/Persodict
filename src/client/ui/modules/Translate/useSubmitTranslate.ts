@@ -1,6 +1,7 @@
-import type { FormEvent } from 'react';
+import { useGetUserSettings } from '@/client/application/useCases/useGetUserSettings';
 import { useTranslation } from '@/client/application/useCases/useTranslation';
 import { useSession } from 'next-auth/react';
+import { useState, type FormEvent } from 'react';
 
 /**
  * Custom hook to handle form submission for translating words.
@@ -12,8 +13,10 @@ import { useSession } from 'next-auth/react';
  */
 export const useSubmitTranslate = () => {
     const { data: session } = useSession();
+    const [error, setError] = useState<string | null>(null);
     const { makeTranslation, isLoading } = useTranslation();
-    
+    const { userSettings } = useGetUserSettings(session?.user?.email as string);
+
     /**
      * Handles form submission, translating the input text.
      *
@@ -25,6 +28,7 @@ export const useSubmitTranslate = () => {
         const textInput = (event.target as HTMLFormElement)[0];
 
         if (!textInput) return;
+        if (!userSettings?.data?.userLangs.length) setError("Please select at least one language");
 
         try {
             if (textInput instanceof HTMLInputElement) {
@@ -39,5 +43,5 @@ export const useSubmitTranslate = () => {
         }
     };
 
-    return { handleSubmit, isLoading };
+    return { handleSubmit, isLoading, error };
 };

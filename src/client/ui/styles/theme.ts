@@ -1,3 +1,9 @@
+import 'styled-components';
+
+declare module 'styled-components' {
+    export interface DefaultTheme extends Theme { }
+}
+
 export interface Theme {
     colors: Record<string, string>;
     shadows: Record<string, string>;
@@ -15,7 +21,8 @@ export const lightTheme: Theme = {
         tertiaryActionColor: "#e47373",
         primaryAccentColor: "#aaa6",
         darkSelected: "#333",
-        hoverColor: "#ddd"
+        hoverColor: "#ddd",
+        error: "#bb3137"
     } as const,
     shadows: {
         inputShadow: "inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff",
@@ -37,7 +44,8 @@ export const darkTheme: Theme = {
         tertiaryActionColor: "#99292d",
         primaryAccentColor: "#555",
         darkSelected: "#444",
-        hoverColor: "#232323"
+        hoverColor: "#232323",
+        error: "#bb3137"
     } as const,
     shadows: {
         inputShadow: "inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #000",

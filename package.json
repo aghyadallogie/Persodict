@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@prisma/client": "^5.8.0",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^6.0.0",
     "eslint-config-next": "^14.2.5",
     "framer-motion": "^11.0.8",
     "next": "14.0.4",
@@ -50,8 +52,8 @@
     "eslint-plugin-sort-destructure-keys": "^1.5.0",
     "eslint-plugin-storybook": "^0.6.15",
     "file-loader": "^6.2.0",
-    "typescript": "^5",
-    "standard-version": "^9.5.0"
+    "standard-version": "^9.5.0",
+    "typescript": "^5"
   },
   "resolutions": {
     "string-width": "4.2.3",
