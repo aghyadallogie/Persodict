@@ -28,7 +28,7 @@ import {useQuiz} from './useQuiz';
 export const QuizModule = (): JSX.Element => {
     const {options, randomLang, randomWord, streak, validateAnswer, isLoading, words} = useQuiz();
 
-    if (isLoading || !randomWord || !words) return <NoWords />
+    if (isLoading || !randomWord || !words) return <NoWords error={null} />
 
     if (words.length < 8) return <InsufficientTranslations
         animate="enter"
