@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.19 (2025-06-26)
+
+
+### Features
+
+* **Auth:** with creds and force user to pick langs ([29138be](https://github.com/aghyadallogie/Persodict/commit/29138befda0a33ea252f387735a0a5c0d2372652))
+
 ### 0.1.18 (2025-05-30)
 
 
