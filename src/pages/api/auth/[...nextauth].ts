@@ -1,5 +1,5 @@
 import { prisma } from "@/server/utils/prisma";
-import bcrypt, { hash } from "bcrypt";
+import bcrypt from "bcrypt";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";

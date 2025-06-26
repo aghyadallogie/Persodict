@@ -4,18 +4,12 @@ import { NavLink } from '@/client/ui/components/action/NavLink';
 import { ThemeProvider } from 'styled-components';
 import { RiHome4Fill } from 'react-icons/ri';
 import { hexToRgba } from '@/client/ui/utils';
-
-const theme = {
-    colors: {
-        textPlaceholder: "#989898bf",
-        darkSelected: "#333"
-    },
-};
+import { lightTheme } from '@/client/ui/styles/theme';
 
 describe('NavLink Component', () => {
     it('renders correctly with active state', () => {
         mount(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={lightTheme}>
                 <NavLink href="/test" $isActive={true}>
                     <RiHome4Fill />
                 </NavLink>
@@ -24,7 +18,7 @@ describe('NavLink Component', () => {
         cy.get('svg')
             .should(($el) => {
                 const actualColor = getComputedStyle($el[0]).color;
-                const expectedColor = hexToRgba(theme.colors.darkSelected);
+                const expectedColor = hexToRgba(lightTheme.colors.darkSelected);
 
                 const actual = actualColor.match(/[\d.]+/g)?.map(Number);
                 const expected = expectedColor.match(/[\d.]+/g)?.map(Number);
@@ -42,7 +36,7 @@ describe('NavLink Component', () => {
 
     it('renders correctly with inactive state', () => {
         mount(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={lightTheme}>
                 <NavLink href="/test" $isActive={false}>
                     <RiHome4Fill />
                 </NavLink>
@@ -51,7 +45,7 @@ describe('NavLink Component', () => {
         cy.get('svg')
             .should(($el) => {
                 const actualColor = getComputedStyle($el[0]).color;
-                const expectedColor = hexToRgba(theme.colors.textPlaceholder);
+                const expectedColor = hexToRgba(lightTheme.colors.textPlaceholder);
 
                 const actual = actualColor.match(/[\d.]+/g)?.map(Number);
                 const expected = expectedColor.match(/[\d.]+/g)?.map(Number);
@@ -70,7 +64,7 @@ describe('NavLink Component', () => {
 
     it('navigates to the correct href', () => {
         mount(
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={lightTheme}>
                 <NavLink href="/test" $isActive={false}>
                     <RiHome4Fill />
                 </NavLink>
