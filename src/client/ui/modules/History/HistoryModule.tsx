@@ -33,7 +33,7 @@ export const HistoryModule = () => {
                     </AnimatePresence>
                 </WordsWrapper>
             ) : (
-                <NoWords />
+                <NoWords error={null} />
             )}
         </Wrapper>
     );
