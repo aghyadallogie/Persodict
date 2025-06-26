@@ -3,11 +3,19 @@ import { signIn } from "next-auth/react";
 import { useState } from 'react';
 import styled from 'styled-components';
 
+/**
+ * LoginModule component for handling user login via credentials.
+ *
+ * This component provides input fields for email and password, handles login logic,
+ * displays error feedback, and triggers a redirect on successful login.
+ *
+ * @returns {JSX.Element} The rendered login form module.
+ */
 const LoginModule = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
-    
+
     const handleLogin = async () => {
         const res = await signIn("credentials", {
             email,
@@ -23,14 +31,7 @@ const LoginModule = () => {
     };
 
     return (
-        <StyledForm
-            style={{
-                flexDirection: 'column',
-                gap: '2rem',
-                padding: '1rem'
-            }}
-            onSubmit={() => { }}
-        >
+        <StyledForm>
             <Input
                 placeholder="Enter Email"
                 type="email"
@@ -59,8 +60,11 @@ const LoginModule = () => {
 export default LoginModule;
 
 const StyledForm = styled.form`
-    display: flex;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
 `;
 
 const Input = styled.input<{ $flash?: boolean }>`
