@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.8.0",
-    "@types/bcrypt": "^5.0.2",
-    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
     "eslint-config-next": "^14.2.5",
     "framer-motion": "^11.0.8",
     "next": "14.0.4",
@@ -27,6 +26,7 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
