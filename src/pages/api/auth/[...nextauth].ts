@@ -37,21 +37,17 @@ export const authOptions: NextAuthOptions = {
           }
       
           const user = await prisma.user.findUnique({ where: { email } });
-          if (!user || !user.hashedPassword) {
-            return null;
-          }
+          if (!user?.hashedPassword) return null;
       
           const isValid = await bcrypt.compare(password, user.hashedPassword);
-          if (!isValid) {
-            return null;
-          }
+          if (!isValid) return null;
       
           return { id: user.id, email: user.email };
         } catch (error) {
-          console.error("Auth error:", error);
+          console.error("AUTH ERROR in authorize()", error);
           return null;
         }
-      }
+      }      
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
