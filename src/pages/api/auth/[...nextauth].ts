@@ -22,33 +22,37 @@ export const authOptions: NextAuthOptions = {
         },
       },
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-      authorize: async (credentials) => {
-        try {
-          const { email, password } = credentials ?? {};
-      
-          if (!email || !password) {
-            return null;
-          }
-      
-          const user = await prisma.user.findUnique({ where: { email } });
-          if (!user?.hashedPassword) return null;
-      
-          const isValid = await bcrypt.compare(password, user.hashedPassword);
-          if (!isValid) return null;
-      
-          return { id: user.id, email: user.email };
-        } catch (error) {
-          console.error("AUTH ERROR in authorize()", error);
-          return null;
-        }
-      }      
-    }),
+    // CredentialsProvider({
+    //   name: "Credentials",
+    //   credentials: {
+    //     email: { label: "Email", type: "email" },
+    //     password: { label: "Password", type: "password" },
+    //   },
+    //   async authorize(credentials) {
+    //     const { email, password } = credentials ?? {};
+    //     if (!email || !password) throw new Error("Missing credentials");
+
+    //     let user = await prisma.user.findUnique({ where: { email } });
+
+    //     if (!user) {
+    //       user = await prisma.user.create({
+    //         data: {
+    //           email,
+    //           name: 'unnamed',
+    //           hashedPassword: await bcrypt.hash(password, 10)
+    //         }
+    //       });
+    //       return { id: user.id, email: user.email };
+    //     }
+
+    //     if (!user.hashedPassword) throw new Error("Invalid credentials");
+
+    //     const isValid = await bcrypt.compare(password, user.hashedPassword);
+    //     if (!isValid) throw new Error("Invalid credentials");
+
+    //     return { id: user.id, email: user.email };
+    //   },
+    // }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
