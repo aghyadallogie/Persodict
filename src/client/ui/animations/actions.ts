@@ -4,7 +4,7 @@ export const deleteAnimation: Variants = {
     enter: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.05,
+            staggerChildren: 0.1,
             staggerDirection: 1,
             // when: 'beforeChildren'
         },
@@ -13,7 +13,7 @@ export const deleteAnimation: Variants = {
     exit: {
         opacity: 0,
         transition: {
-            staggerChildren: 0.05,
+            staggerChildren: 0.1,
             staggerDirection: -1,
             when: 'afterChildren'
         },
@@ -46,7 +46,7 @@ export const optionsVariants = {
         opacity: 1,
         y: 0,
         transition: {
-            staggerChildren: 1,
+            staggerChildren: 0.1,
             staggerDirection: 1,
         },
     },

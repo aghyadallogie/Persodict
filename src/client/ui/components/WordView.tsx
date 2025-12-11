@@ -1,9 +1,9 @@
 import type { Translation } from "@/client/domain/entities/Word";
 import { childrenAnimation, deleteAnimation } from "@/client/ui/animations/actions";
+import { renderCorrectFlag, shade } from "@/client/ui/utils";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useDeleteWord } from "./useDeleteWord";
-import { renderCorrectFlag, shade } from "@/client/ui/utils";
 
 interface ComponentProps {
   data: Translation[];
@@ -26,7 +26,7 @@ interface ComponentProps {
 export const WordView = ({ data, wordId }: ComponentProps) => {
   const { handleDeleteWord } = useDeleteWord(wordId!);
 
-  if (!Array.isArray(data)) return ;
+  if (!Array.isArray(data)) return;
 
   return (
     <Table
@@ -60,6 +60,8 @@ const Table = styled(motion.div)`
   text-align: center;
   width: 100%;
 
+  will-change: transform, opacity;
+
   &:hover {
     outline: 1px solid ${({ theme }) => theme.shadows.inputShadow};
 
@@ -78,7 +80,6 @@ const Row = styled(motion.div)`
 `;
 
 const DeleteTranslation = styled.div`
-  background-color: ${({ theme }) => theme.colors.pageBackground};
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
   cursor: pointer;

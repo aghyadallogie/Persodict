@@ -1,9 +1,9 @@
-import React from 'react'
+import type { Word } from "@/client/domain/entities/Word";
 import { NoWords } from "@/client/ui/components/layout/NoWords";
 import { WordView } from "@/client/ui/components/WordView";
-import { AnimatePresence } from "framer-motion";
 import { Wrapper } from "@/pages/index";
-import type { Word } from "@/client/domain/entities/Word";
+import { AnimatePresence } from "framer-motion";
+import { useMemo } from 'react';
 import styled from "styled-components";
 import { useHistory } from './useHistory';
 
@@ -18,11 +18,21 @@ import { useHistory } from './useHistory';
 export const HistoryModule = () => {
     const { orderedTranslations } = useHistory()
 
+    const wordsList = useMemo(() => (
+        orderedTranslations?.map((word: Word) => (
+            <WordView
+                key={word.id}
+                data={word?.translations}
+                wordId={word.id}
+            />
+        ))
+    ), [orderedTranslations]);
+
     return (
         <Wrapper>
-            {orderedTranslations.length ? (
+            {wordsList.length ? (
                 <WordsWrapper>
-                    <AnimatePresence mode="sync">
+                    <AnimatePresence mode="popLayout">
                         {orderedTranslations?.map((word: Word) => (
                             <WordView
                                 key={word.id}

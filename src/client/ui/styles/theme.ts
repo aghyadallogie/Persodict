@@ -12,7 +12,9 @@ export interface Theme {
 
 export const lightTheme: Theme = {
     colors: {
-        pageBackground: "whitesmoke",
+        gradientGrayToSilver: 'linear-gradient(135deg, #808080, #c0c0c0)',
+
+        pageBackground: "#ececedff",
         textPlaceholder: "#989898bf",
         primaryFontColor: "#000000ae",
         primaryAccentFontColor: "#00000088",
@@ -35,7 +37,9 @@ export const lightTheme: Theme = {
 
 export const darkTheme: Theme = {
     colors: {
-        pageBackground: "#111",
+        gradientGrayToSilver: 'linear-gradient(135deg, #808080, #c0c0c0)',
+
+        pageBackground: "#1c1d1eff",
         textPlaceholder: "#6e6e73",
         primaryFontColor: "#ddddddd9",
         primaryAccentFontColor: "#ffffff88",

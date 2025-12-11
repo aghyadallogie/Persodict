@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { useUpdateSettings } from "@/client/ui/modules/Settings/useUpdateSettings";
 import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
+import { useUpdateSettings } from "@/client/ui/modules/Settings/useUpdateSettings";
+import styled from "styled-components";
 
 interface ComponentProps {
   langCode: string;
@@ -55,34 +55,47 @@ interface WrapperProps {
 }
 
 const FlagWrapper = styled.div<WrapperProps>`
-  outline: ${({ $picked, $hasError, theme }) =>
-    $picked
-      ? `5px solid ${theme.colors.textPlaceholder}`
-      : $hasError
-      ? `5px solid ${theme.colors.textPlaceholder}`
-      : "none"};
-  background-color: ${({ $picked, theme }) =>
-    $picked ? theme.colors.textPlaceholder : "none"};
-  transition: outline 0.1s ease-out;
-  line-height: 2rem;
-  width: 3rem;
-  border-radius: 2pt;
-
-  &.loading {
-    border: 4px solid rgba(247, 247, 247, 0.113);
-    border-top: ${({ theme }) => `4px solid ${theme.colors.textPlaceholder}`};
+  border-radius: 10px;
+  width: 4rem;
+  height: 3rem;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  
+  /* Picked state with badge */
+  border: ${({ $picked, theme }) =>
+    $picked ? `2px solid ${theme.colors.primary}` : '2px solid transparent'};
+  
+  /* Checkmark badge in corner */
+  &::after {
+    content: ${({ $picked }) => $picked ? "'✓'" : "''"};
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: black;
+    color: white;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    animation: spin 1s linear infinite;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    opacity: ${({ $picked }) => $picked ? '1' : '0'};
+    transform: ${({ $picked }) => $picked ? 'scale(1)' : 'scale(0)'};
+    transition: all 0.3s ease;
+    z-index: 2;
   }
 
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  /* Dim effect for non-picked flags */
+  filter: ${({ $picked }) => $picked ? 'none' : 'brightness(0.80)'};
+  
+  &:hover {
+    filter: brightness(1);
+    transform: translateY(-2px);
   }
 `;
