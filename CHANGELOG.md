@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.31 (2025-12-11)
+
+
+### Bug Fixes
+
+* **animation:** improve performance in Word and Settings ([108f304](https://github.com/aghyadallogie/Persodict/commit/108f30456ad6a8b08cf9040eae3aaa540f55b43c))
+
 ### 0.1.30 (2025-06-27)
 
 ### 0.1.29 (2025-06-27)
