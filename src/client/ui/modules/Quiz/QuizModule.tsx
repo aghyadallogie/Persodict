@@ -1,12 +1,12 @@
-import {deleteAnimation, optionsVariants, optionVariants} from "@/client/ui/animations/actions";
-import {Button} from "@/client/ui/components/action/buttons/Button";
-import {Notifications} from "@/client/ui/components/action/Notifications";
-import {NoWords} from "@/client/ui/components/layout/NoWords";
-import {P} from "@/client/ui/components/layout/Text";
-import {renderCorrectFlag} from "@/client/ui/utils";
-import {AnimatePresence, motion} from "framer-motion";
+import { deleteAnimation, optionsVariants, optionVariants } from "@/client/ui/animations/actions";
+import { Button } from "@/client/ui/components/action/buttons/Button";
+import { Notifications } from "@/client/ui/components/action/Notifications";
+import { NoWords } from "@/client/ui/components/layout/NoWords";
+import { P } from "@/client/ui/components/layout/Text";
+import { renderCorrectFlag } from "@/client/ui/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
-import {useQuiz} from './useQuiz';
+import { useQuiz } from './useQuiz';
 
 /**
  * QuizModule component renders a quiz question with multiple choice options.
@@ -26,9 +26,9 @@ import {useQuiz} from './useQuiz';
  * @see {@link Button} for the button component used for answer options.
  */
 export const QuizModule = (): JSX.Element => {
-    const {options, randomLang, randomWord, streak, validateAnswer, isLoading, words} = useQuiz();
+    const { options, randomLang, randomWord, streak, validateAnswer, isLoading, words } = useQuiz();
 
-    if (isLoading || !randomWord || !words) return <NoWords error={null} />
+    if (isLoading) return <NoWords error={null} />
 
     if (words.length < 8) return <InsufficientTranslations
         animate="enter"
@@ -39,6 +39,7 @@ export const QuizModule = (): JSX.Element => {
     >
         You need to make at least <P>8 translations</P> in order to play the Quiz!
     </InsufficientTranslations>
+
 
     const renderQuizQuestion = () => (
         <P $align="center">
@@ -68,9 +69,9 @@ export const QuizModule = (): JSX.Element => {
                         exit="exit"
                     >
                         {options.map(option =>
-                                <OptonButton key={`option-${option}`} variants={optionVariants}>
-                                    <Button label={option} onClick={() => validateAnswer(option)} type="button" />
-                                </OptonButton>
+                            <OptonButton key={`option-${option}`} variants={optionVariants}>
+                                <Button label={option} onClick={() => validateAnswer(option)} type="button" />
+                            </OptonButton>
                         )}
                     </Options>
                 </AnimatePresence>
@@ -87,7 +88,7 @@ const Wrapper = styled(motion.div)`
 
 const Patch = styled.span`
     border-radius: 2rem;
-    background-color: ${({theme}) => theme.colors.hoverColor};
+    background-color: ${({ theme }) => theme.colors.hoverColor};
     font-size: .9rem;
     padding: .3rem .5rem;
     margin: 0 .5rem;
@@ -110,11 +111,11 @@ const Options = styled(motion.div)`
 const StreakMessage = styled(P)`
     margin-top: 3rem;
     font-size: 1rem;
-    color: ${({theme}) => theme.colors.primaryAccentFontColor};
+    color: ${({ theme }) => theme.colors.primaryAccentFontColor};
 `;
 
 const InsufficientTranslations = styled(motion.div)`
-    color: ${({theme}) => theme.colors.primaryAccentFontColor};
+    color: ${({ theme }) => theme.colors.primaryAccentFontColor};
     margin-top: 2rem;
     text-align: center;
     line-height: 3rem;

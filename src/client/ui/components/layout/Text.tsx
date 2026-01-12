@@ -1,5 +1,5 @@
+import { shade } from '@/client/ui/utils';
 import styled from "styled-components";
-import {shade} from '@/client/ui/utils';
 
 export type FontSize = 'large' | 'medium' | 'small' | 'tiny';
 
@@ -8,12 +8,12 @@ interface HProps {
 }
 
 export const H1 = styled.h1<HProps>`
-  color: ${({theme}) => theme.colors.primaryFontColor};
+  color: ${({ theme }) => theme.colors.primaryFontColor};
   font-family: 'Lexend', sans-serif;
   font-size: 2.6rem;
   font-weight: normal;
   line-height: 3.4rem;
-  text-align: ${({$isCentered}) => $isCentered  ? 'center' : 'left'};
+  text-align: ${({ $isCentered }) => $isCentered ? 'center' : 'left'};
   margin: 0;
 `;
 
@@ -26,13 +26,15 @@ interface PProps {
     $align?: 'center' | 'left' | 'right';
     $isLight?: boolean;
     $size?: FontSize;
+    $clickable?: boolean;
+    $underlined?: boolean;
 }
 
 interface GetSizeParams {
     $size?: FontSize;
 }
 
-export const getPSize = ({$size}: GetSizeParams) => {
+export const getPSize = ({ $size }: GetSizeParams) => {
     switch ($size) {
         case 'large':
             return '1.6rem';
@@ -46,7 +48,7 @@ export const getPSize = ({$size}: GetSizeParams) => {
     }
 };
 
-export const getPLineHeight = ({$size}: GetSizeParams) => {
+export const getPLineHeight = ({ $size }: GetSizeParams) => {
     switch ($size) {
         case 'large':
             return '2.4rem';
@@ -78,10 +80,15 @@ export const getPLineHeight = ({$size}: GetSizeParams) => {
  * ```
  */
 export const P = styled.p<PProps>`
-    color: ${({$isLight, theme}) => ($isLight ? shade(theme.colors.primaryActionColor, 44, 'light') : null)};
+    color: ${({ $isLight, theme }) => ($isLight ? shade(theme.colors.primaryActionColor, 44, 'light') : null)};
+    ${({ $underlined }) => $underlined && `
+        text-decoration: underline;
+    `}
     font-size: ${getPSize};
     line-height: ${getPLineHeight};
     margin: 0;
     padding: 0;
-    text-align: ${({$align}) => $align ?? 'inherit' as const};
+    text-align: ${({ $align }) => $align ?? 'inherit' as const};
+    display: inline;
+    cursor: ${({ $clickable }) => $clickable ? 'pointer' : 'default'};
 `;

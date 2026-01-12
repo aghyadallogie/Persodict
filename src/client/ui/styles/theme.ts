@@ -42,7 +42,7 @@ export const darkTheme: Theme = {
         pageBackground: "#1c1d1eff",
         textPlaceholder: "#6e6e73",
         primaryFontColor: "#ddddddd9",
-        primaryAccentFontColor: "#ffffff88",
+        primaryAccentFontColor: "#ffffff55",
         primaryActionColor: "#2c2c2e",
         secondaryActionColor: "#bb3137",
         tertiaryActionColor: "#99292d",

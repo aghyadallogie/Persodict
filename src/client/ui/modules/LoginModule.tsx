@@ -2,6 +2,7 @@ import { Button } from "@/client/ui/components/action/buttons/Button";
 import { signIn } from "next-auth/react";
 import { useState } from 'react';
 import styled from 'styled-components';
+import { P } from "../components/layout/Text";
 
 /**
  * LoginModule component for handling user login via credentials.
@@ -11,7 +12,7 @@ import styled from 'styled-components';
  *
  * @returns {JSX.Element} The rendered login form module.
  */
-const LoginModule = () => {
+const LoginModule = ({ setIsNewUser }: { setIsNewUser: (isNewUser: boolean) => void }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
@@ -44,16 +45,14 @@ const LoginModule = () => {
                 onChange={e => setPassword(e.target.value)}
                 $flash={!!error}
             />
-            <Button label='Register / Login' onClick={handleLogin} />
+            <Button label='Login' onClick={handleLogin} />
+            <StyledLink $size="tiny">
+                If you do not have an account already ?{' '}
+                <StyledLink $underlined={true} $size="tiny" $clickable={true} onClick={() => setIsNewUser(true)}>
+                    Register
+                </StyledLink>
+            </StyledLink>
         </StyledForm>
-        /* <div>
-        <span style={{ fontSize: '.8rem' }}>
-            If you do not have an account already ?{' '}
-            <span style={{ borderBottom: '1px solid gray', cursor: 'pointer' }} onClick={() => { }}>
-                Register
-            </span>
-        </span>
-    </div> */
     )
 };
 
@@ -100,5 +99,12 @@ const Input = styled.input<{ $flash?: boolean }>`
             70% { outline: 1px solid ${theme.colors.error}; }
             100% { outline: none; }
         }
+    `}
+`;
+
+const StyledLink = styled(P)`
+    color: ${({ theme }) => theme.colors.primaryAccentFontColor};
+    ${({ $underlined }) => $underlined && `
+        text-decoration: underline;
     `}
 `;
