@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.32 (2026-01-12)
+
+
+### Features
+
+* **auth:** split register and login pages and modules ([f7ac033](https://github.com/aghyadallogie/Persodict/commit/f7ac033c637783d9ac839c4623761d390f911c46))
+
 ### 0.1.31 (2025-12-11)
 
 
