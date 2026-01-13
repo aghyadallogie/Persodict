@@ -84,6 +84,7 @@ export const QuizModule = (): JSX.Element => {
 
 const Wrapper = styled(motion.div)`
     margin-top: 1.6rem;
+    text-align: center;
 `
 
 const Patch = styled.span`
