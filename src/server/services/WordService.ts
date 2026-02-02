@@ -1,13 +1,13 @@
-import { prisma } from "@/server/utils/prisma";
 import type {
   DeepLResponse,
   Lingo,
   Translation,
   Word,
 } from "@/server/domain/entities/Word";
-import { SettingsService } from "./SettingsService";
+import { prisma } from "@/server/utils/prisma";
 import { Word as PrismaWord } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { SettingsService } from "./SettingsService";
 
 export class WordService {
   /**
@@ -123,38 +123,61 @@ export class WordService {
   ): Promise<Translation | undefined> {
     const MAX_RETRIES = 3;
 
-    if (!process.env.NEXT_APP_DEEPL_AUTH_KEY)
-      throw new Error("DeepL API key is not configured");
+    const apiKey = process.env.NEXT_APP_DEEPL_AUTH_KEY;
 
-    const params = new URLSearchParams({
-      auth_key: process.env.NEXT_APP_DEEPL_AUTH_KEY,
-      text: text,
-      target_lang: lang,
-    });
+    if (!apiKey) {
+      console.error("DeepL API key is not configured");
+      throw new Error("DeepL API key is not configured");
+    }
 
     try {
-      const response = await fetch(
-        `https://api-free.deepl.com/v2/translate?${params}`
-      );
+      const url = `https://api-free.deepl.com/v2/translate`;
 
-      if (!response.ok)
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `DeepL-Auth-Key ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: [text],
+          target_lang: lang.toUpperCase(),
+        }),
+      });
+
+      if (response.status === 403) {
+        const errorText = await response.text();
+        console.error("DeepL 403 Error details:", errorText);
         throw new Error(
-          `DeepL API error: ${response.status} ${response.statusText}`
+          `DeepL API authentication failed. Please check your API key. Error: ${errorText}`
         );
+      }
 
       if (response.status === 429) {
         if (retryCount >= MAX_RETRIES)
           throw new Error("Max retries reached for DeepL API");
 
         const waitTime = Math.pow(2, retryCount) * 1000;
+        console.log(`Rate limited. Waiting ${waitTime}ms before retry...`);
         await new Promise((resolve) => setTimeout(resolve, waitTime));
 
         return WordService.translateWithDeepL(text, lang, retryCount + 1);
       }
 
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("DeepL API error details:", errorText);
+        throw new Error(
+          `DeepL API error: ${response.status} ${response.statusText} - ${errorText}`
+        );
+      }
+
       const data = (await response.json()) as DeepLResponse;
-      if (!data.translations?.[0]?.text)
+
+      if (!data.translations?.[0]?.text) {
+        console.error("Invalid DeepL response:", JSON.stringify(data));
         throw new Error("Invalid response format from DeepL API");
+      }
 
       return {
         lang,
