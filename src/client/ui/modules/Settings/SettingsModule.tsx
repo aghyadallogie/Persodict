@@ -5,6 +5,7 @@ import { P } from "@/client/ui/components/layout/Text";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import styled from "styled-components";
+import { Spacer } from "../../components/layout/Spacer";
 
 /**
  * The `SettingsModule` Component.
@@ -21,13 +22,15 @@ export const SettingsModule = () => {
   const { data: session } = useSession();
 
   return (
-    <motion.div
+    <Container
       animate="enter"
       exit="exit"
       initial="initial"
       variants={childrenAnimation}
     >
+      <Spacer height={2} />
       <Title $align="center" $size="large">Please select at least one language</Title>
+      <Spacer height={2} />
       <LanguagePicker>
         {langs.map((lang) => (
           <Flag
@@ -38,13 +41,12 @@ export const SettingsModule = () => {
           />
         ))}
       </LanguagePicker>
-    </motion.div>
+    </Container>
   );
 };
 
 const Title = styled(P)`
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  padding: 3rem;
   color: ${({ theme }) => theme.colors.primaryFontColor};
 `;
 
@@ -56,3 +58,7 @@ const LanguagePicker = styled.div`
   gap: 2rem;
   margin: 0 auto;
 `;
+
+const Container = styled(motion.div)`
+  text-align: center;
+`

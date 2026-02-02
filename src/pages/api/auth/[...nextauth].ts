@@ -29,28 +29,33 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const { email, password } = credentials ?? {};
-        if (!email || !password) throw new Error("Missing credentials");
+        const email = credentials?.email;
+        const password = credentials?.password;
 
-        let user = await prisma.user.findUnique({ where: { email } });
-
-        if (!user) {
-          user = await prisma.user.create({
-            data: {
-              email,
-              name: "unnamed",
-              hashedPassword: await bcrypt.hash(password, 10)
-            }
-          });
-          return { id: user.id, email: user.email };
+        if (!email || !password) {
+          throw new Error("Missing credentials");
         }
 
-        if (!user.hashedPassword) throw new Error("Invalid credentials");
+        const user = await prisma.user.findUnique({ where: { email } });
+
+        if (!user) {
+          throw new Error("Invalid credentials");
+        }
+
+        if (!user.hashedPassword) {
+          throw new Error("Please sign in with your OAuth provider");
+        }
 
         const isValid = await bcrypt.compare(password, user.hashedPassword);
-        if (!isValid) throw new Error("Invalid credentials");
+        if (!isValid) {
+          throw new Error("Invalid credentials");
+        }
 
-        return { id: user.id, email: user.email, name: user.name ?? "unnamed" };
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name ?? undefined,
+        };
       },
     }),
   ],
