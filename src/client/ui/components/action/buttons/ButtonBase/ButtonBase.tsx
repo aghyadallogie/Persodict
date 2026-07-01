@@ -88,7 +88,8 @@ interface WrapperProps {
 
 const Wrapper = styled.button<WrapperProps>`
   background: transparent;
-  border: none;
+  border: ${({ $hasSlimBorder }) => ($hasSlimBorder ? "1px" : "0px")} solid
+    transparent;
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.shadows.buttonShadow};
   color: ${({ theme }) => theme.colors.primaryAccentFontColor};

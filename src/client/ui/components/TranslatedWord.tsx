@@ -19,7 +19,7 @@ import { WordView } from './WordView';
  */
 export const TranslatedWord = ({ error }: { error: string | null }) => {
     const { data: session, status } = useSession();
-    const { userTranslations } = useGetUserTranslations(session?.user?.email as string, status);
+    const { userTranslations } = useGetUserTranslations(session?.user?.email as string);
     const mostRecentWord = userTranslations?.data[userTranslations.data.length - 1]?.translations ?? [];
     const mostRecentWordId = userTranslations?.data[userTranslations.data.length - 1]?.id;
 
