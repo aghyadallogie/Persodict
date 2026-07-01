@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.35 (2026-07-01)
+
+
+### Bug Fixes
+
+* **Quiz:** load data on refresh of quiz page ([61597b2](https://github.com/aghyadallogie/Persodict/commit/61597b2c17d9b6f8dfcafd1460eea3a6d1736d8e))
+
 ### 0.1.34 (2026-02-02)
 
 ### 0.1.33 (2026-01-13)
