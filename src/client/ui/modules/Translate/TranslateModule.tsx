@@ -7,7 +7,7 @@ import { useSubmitTranslate } from "./useSubmitTranslate";
 /**
  * A form module for translating words.
  *
- * This component renders a form with an input field and a submit button. 
+ * This component renders a form with an input field and a submit button.
  * It uses a custom hook `useSubmitTranslate` to handle form submissions.
  *
  * @component
@@ -37,7 +37,7 @@ export default TranslateModule;
 
 const StyledForm = styled.form`
   display: flex;
-  margin: 3rem 0 2rem 0;
+  margin-top: 2rem;
   gap: 1rem;
 `;
 
@@ -76,6 +76,8 @@ const Error = styled.p<{ $show: boolean }>`
   text-align: center;
   opacity: ${({ $show }) => ($show ? 1 : 0)};
   transform: translateY(${({ $show }) => ($show ? "0" : "-10px")});
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  min-height: 1.2em;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  min-height: ${({ $show }) => ($show ? 1.2 : 0.6)}rem};
 `;

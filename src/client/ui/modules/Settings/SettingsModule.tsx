@@ -29,7 +29,9 @@ export const SettingsModule = () => {
       variants={childrenAnimation}
     >
       <Spacer height={2} />
-      <Title $align="center" $size="large">Please select at least one language</Title>
+      <Title $align="center" $size="large">
+        Please select at least one language
+      </Title>
       <Spacer height={2} />
       <LanguagePicker>
         {langs.map((lang) => (
@@ -46,7 +48,6 @@ export const SettingsModule = () => {
 };
 
 const Title = styled(P)`
-  padding: 3rem;
   color: ${({ theme }) => theme.colors.primaryFontColor};
 `;
 
@@ -61,4 +62,4 @@ const LanguagePicker = styled.div`
 
 const Container = styled(motion.div)`
   text-align: center;
-`
+`;

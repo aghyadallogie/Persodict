@@ -56,10 +56,9 @@ const Table = styled(motion.div)`
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.shadows.buttonShadow};
   color: ${({ theme }) => theme.colors.primaryFontColor};
-  margin-bottom: 1rem;
+  margin-bottom: 1.6rem;
   text-align: center;
   width: 100%;
-
   will-change: transform, opacity;
 
   &:hover {
