@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.38 (2026-07-21)
+
+
+### Bug Fixes
+
+* **words:** revalidate word list on delete and translate ([5e501e1](https://github.com/aghyadallogie/Persodict/commit/5e501e1b582099671e901e0c4c22888d601c8387))
+
 ### 0.1.37 (2026-07-21)
 
 ### 0.1.36 (2026-07-01)
