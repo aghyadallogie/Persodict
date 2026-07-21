@@ -19,7 +19,7 @@ const TranslateModule = (): JSX.Element => {
   return (
     <>
       <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
-        <Input placeholder="word to translate" type="text" />
+        <Input data-cy="translate-input" placeholder="word to translate" type="text" />
         <Button
           icon={ButtonIcons.Translate}
           type="submit"

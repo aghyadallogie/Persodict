@@ -34,9 +34,11 @@ export const WordView = ({ data, wordId }: ComponentProps) => {
       exit="exit"
       initial="initial"
       variants={deleteAnimation}
+      data-cy="word-view"
+      data-word-id={wordId}
       layout
     >
-      <DeleteTranslation onClick={handleDeleteWord}>
+      <DeleteTranslation data-cy="delete-word" onClick={handleDeleteWord}>
         x
       </DeleteTranslation>
       {data.map((trans: Translation) => (
