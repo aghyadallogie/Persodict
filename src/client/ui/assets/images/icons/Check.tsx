@@ -8,7 +8,7 @@ interface IconProps {
 }
 
 export const Check = React.forwardRef<SVGSVGElement, IconProps>(
-  (props) => {
+  (props, ref) => {
     const {
       className = "",
       color = "#0019A5",
@@ -26,6 +26,7 @@ export const Check = React.forwardRef<SVGSVGElement, IconProps>(
         xmlnsXlink="http://www.w3.org/1999/xlink"
         width={width}
         height={height}
+        ref={ref}
         viewBox="0 0 305.002 305.002"
         xmlSpace="preserve"
       >

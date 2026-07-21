@@ -27,19 +27,23 @@ export const useSubmitTranslate = () => {
         event.preventDefault();
         const textInput = (event.target as HTMLFormElement)[0];
 
-        if (!textInput) return;
-        if (!userSettings?.data?.userLangs.length) setError("Please select at least one language");
+        if (!textInput || !(textInput instanceof HTMLInputElement)) return;
+
+        if (!userSettings?.data?.userLangs.length) {
+            setError("Please select at least one language");
+            return;
+        }
 
         try {
-            if (textInput instanceof HTMLInputElement) {
-                await makeTranslation({
-                    authorId: session?.user?.email as string,
-                    text: textInput.value
-                });
-                textInput.value = '';
-            }
+            setError(null);
+            await makeTranslation({
+                authorId: session?.user?.email as string,
+                text: textInput.value
+            });
+            textInput.value = '';
         } catch (error) {
             console.error("Translation error:", error);
+            setError("Translation failed. Please try again.");
         }
     };
 

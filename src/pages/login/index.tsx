@@ -1,5 +1,6 @@
 import { ButtonIcons } from "@/client/ui/assets/images/icons";
 import { Button } from "@/client/ui/components/action/buttons/Button";
+import { Spacer } from "@/client/ui/components/layout/Spacer";
 import { H1 } from "@/client/ui/components/layout/Text";
 import { LoginLayout } from '@/client/ui/layouts/LoginLayout';
 import LoginModule from "@/client/ui/modules/LoginModule";
@@ -35,6 +36,7 @@ const Login: NextPageWithLayout = () => {
                     <H1 $isCentered>Welcome to Persodict</H1>
                     {isNewUser ? <RegisterModule setIsNewUser={setIsNewUser} /> : <LoginModule setIsNewUser={setIsNewUser} />}
                     <Divider />
+                    <Spacer height={0.4} />
                     <Button
                         onClick={() => signIn("google", { callbackUrl: "http://localhost:3000/" })}
                         label={"Login with Google"}
@@ -87,7 +89,7 @@ export const Container = styled.div`
     border: none;
     box-shadow: none;
   
-    @media (min-width: 476px) {
+    @media (min-width: 696px) {
         border: 1px solid ${({ theme }) => theme.colors.hoverColor};
         border-radius: 10px;
         box-shadow: ${({ theme }) => theme.shadows.buttonShadow};

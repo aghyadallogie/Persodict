@@ -13,7 +13,6 @@ export interface Theme {
 export const lightTheme: Theme = {
     colors: {
         gradientGrayToSilver: 'linear-gradient(135deg, #808080, #c0c0c0)',
-
         pageBackground: "#ececedff",
         textPlaceholder: "#989898bf",
         primaryFontColor: "#000000ae",
@@ -52,7 +51,7 @@ export const darkTheme: Theme = {
         error: "#bb3137"
     } as const,
     shadows: {
-        inputShadow: "inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #000",
+        inputShadow: "inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #0a0a0aec",
         buttonShadow: "3px 3px 10px rgb(0, 0, 0, 0.1), -3px -3px 10px #000"
     },
     gradients: {
