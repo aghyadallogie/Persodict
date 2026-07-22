@@ -3,37 +3,33 @@ import { NoWords } from "@/client/ui/components/layout/NoWords";
 import { WordView } from "@/client/ui/components/WordView";
 import { Wrapper } from "@/pages/index";
 import { AnimatePresence } from "framer-motion";
-import { useMemo } from 'react';
 import styled from "styled-components";
 import { useHistory } from './useHistory';
+import { useInfiniteScroll } from './useInfiniteScroll';
 
 /**
- * HistoryModule component displays a list of ordered translations.
- * It utilizes the useHistory hook to fetch the translations and 
- * conditionally renders either the translations or a NoWords component 
+ * HistoryModule component displays a list of translations.
+ * It utilizes the useHistory hook to fetch the translations and
+ * conditionally renders either the translations or a NoWords placeholder component
  * if there are no translations available.
+ *
+ * Translations are rendered incrementally via infinite scroll, revealing
+ * 8 items at a time to keep the rendered node count low.
  *
  * @returns {JSX.Element} The rendered HistoryModule component.
  */
 export const HistoryModule = () => {
     const { orderedTranslations } = useHistory()
+    const { visibleCount } = useInfiniteScroll(orderedTranslations.length, 8);
 
-    const wordsList = useMemo(() => (
-        orderedTranslations?.map((word: Word) => (
-            <WordView
-                key={word.id}
-                data={word?.translations}
-                wordId={word.id}
-            />
-        ))
-    ), [orderedTranslations]);
+    const visibleTranslations = orderedTranslations.slice(0, visibleCount);
 
     return (
         <Wrapper>
-            {wordsList.length ? (
+            {orderedTranslations.length ? (
                 <WordsWrapper>
                     <AnimatePresence mode="popLayout">
-                        {orderedTranslations?.map((word: Word) => (
+                        {visibleTranslations.map((word: Word) => (
                             <WordView
                                 key={word.id}
                                 data={word?.translations}
