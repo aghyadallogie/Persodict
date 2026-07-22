@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.39 (2026-07-22)
+
+
+### Features
+
+* **History:** add infinite scroll to the translations list ([6546ffd](https://github.com/aghyadallogie/Persodict/commit/6546ffd2513c54ed46769403fd577fed9d3be811))
+
 ### 0.1.38 (2026-07-21)
 
 
