@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.40 (2026-07-24)
+
+
+### Features
+
+* **Quiz:** add spacer between streak message and options ([3a64eb2](https://github.com/aghyadallogie/Persodict/commit/3a64eb2756312e29c56fc8feebcb2529d35b5ab2))
+
 ### 0.1.39 (2026-07-22)
 
 
