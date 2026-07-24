@@ -7,6 +7,7 @@ import { renderCorrectFlag } from "@/client/ui/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import { useQuiz } from './useQuiz';
+import { Spacer } from "../../components/layout/Spacer";
 
 /**
  * QuizModule component renders a quiz question with multiple choice options.
@@ -75,6 +76,7 @@ export const QuizModule = (): JSX.Element => {
                         )}
                     </Options>
                 </AnimatePresence>
+                <Spacer height={4} />
                 {renderStreakMessage(streak)}
             </Wrapper>
             <Notifications />
