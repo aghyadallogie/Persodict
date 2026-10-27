@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.41 (2026-10-27)
+
+
+### Features
+
+* **Settings:** Flag is only presentatiuonal and uses buttons not divs ([428a681](https://github.com/aghyadallogie/Persodict/commit/428a681232cf69acc69eadfa3e3203f65c59778f))
+
 ### 0.1.40 (2026-07-24)
 
 
