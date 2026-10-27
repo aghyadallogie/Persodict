@@ -3,7 +3,7 @@ import { ToggleLanguage } from "@/server/domain/entities/Settings";
 import useSWRMutation from "swr/mutation";
 import { useGetUserSettings } from "./useGetUserSettings";
 
-export const useToggleLangCase = ({ userId }: ToggleLanguage) => {
+export const useToggleLangCase = ({ userId }: Pick<ToggleLanguage, "userId">) => {
     const { mutate } = useGetUserSettings(userId);
 
     const { trigger, isMutating, error } = useSWRMutation(

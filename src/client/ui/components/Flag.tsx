@@ -1,83 +1,85 @@
-import { useGetUserSettings } from "@/client/application/useCases/useGetUserSettings";
-import { useUpdateSettings } from "@/client/ui/modules/Settings/useUpdateSettings";
 import styled from "styled-components";
 
 interface ComponentProps {
   langCode: string;
   langFlag: string;
-  userId: string;
+  langName: string;
+  picked: boolean;
+  isLoading: boolean;
+  onToggle: (langCode: string) => void;
 }
 
 /**
- * The `Flag` Component.
- * This component represents a flag element with interactive functionality.
+ * A presentational language flag used to toggle a language on or off.
  *
- * @param {boolean} picked - Indicates if the flag is picked.
- * @param {string} langCode - The language code associated with the flag.
- * @param {string} langFlag - The flag icon for the language.
- * @param {string[]} userLangs - Array of user languages.
- * @param {string} userId - The ID of the user.
- * @returns A React element representing the `Flag` component.
+ * @param langCode - Language code passed to `onToggle` (for example `"en"`).
+ * @param langFlag - Flag-icons CSS classes that paint the flag background.
+ * @param langName - Accessible language name announced to assistive tech.
+ * @param picked - Whether this language is currently selected.
+ * @param isLoading - Disables the control while a settings update is in flight.
+ * @param onToggle - Called with `langCode` when the flag is activated.
  *
  * @example
  * ```tsx
- * const MyFlag = <Flag picked={true} langCode="en" langFlag="us" userLangs={['en', 'fr']} userId="123" />;
+ * <Flag
+ *   langCode="fr"
+ *   langFlag="fi fi-fr"
+ *   langName="French"
+ *   picked
+ *   isLoading={false}
+ *   onToggle={handleToggle}
+ * />
  * ```
  */
-export const Flag = ({ langCode, langFlag, userId }: ComponentProps) => {
-  const { userSettings } = useGetUserSettings(userId);
-  const { handleUpdateSettings, isLoading, error } = useUpdateSettings(
-    langCode,
-    userId
-  );
+export const Flag = ({
+  langCode,
+  langFlag,
+  langName,
+  picked,
+  isLoading,
+  onToggle,
+}: ComponentProps) => (
+  <FlagButton
+    type="button"
+    className={langFlag}
+    aria-label={langName}
+    aria-pressed={picked}
+    disabled={isLoading}
+    $picked={picked}
+    $isLoading={isLoading}
+    onClick={() => onToggle(langCode)}
+  />
+);
 
-  const picked = userSettings?.data?.userLangs.includes(langCode) || false;
-
-  const handleClick = () => {
-    handleUpdateSettings();
-  };
-
-  return (
-    <FlagWrapper
-      onClick={isLoading ? undefined : handleClick}
-      className={`${isLoading ? "loading" : langFlag}`}
-      $picked={picked}
-      $isLoading={isLoading}
-      $hasError={!!error}
-    />
-  );
-};
-
-interface WrapperProps {
+interface ButtonStyleProps {
   $picked: boolean;
   $isLoading: boolean;
-  $hasError: boolean;
 }
 
-const FlagWrapper = styled.div<WrapperProps>`
+const FlagButton = styled.button<ButtonStyleProps>`
+  appearance: none;
+  padding: 0;
+  font: inherit;
   border-radius: 10px;
   width: 4rem;
   height: 3rem;
   position: relative;
   cursor: pointer;
-  transition: all 0.2s ease;
   overflow: hidden;
+  background-color: transparent;
   background-size: cover;
   background-position: center;
-  
-  /* Picked state with badge */
-  border: ${({ $picked, theme }) =>
-    $picked ? `2px solid ${theme.colors.primary}` : '2px solid transparent'};
-  
-  /* Checkmark badge in corner */
+  transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+  border: none;
+
   &::after {
-    content: ${({ $picked }) => $picked ? "'✓'" : "''"};
+    content: ${({ $picked }) => ($picked ? "'✓'" : "''")};
     position: absolute;
     top: -5px;
     right: -5px;
-    width: 20px;
-    height: 20px;
-    background: black;
+    width: 1.32rem;
+    height: 1.32rem;
+    background: grey;
     color: white;
     border-radius: 50%;
     font-size: 12px;
@@ -85,17 +87,21 @@ const FlagWrapper = styled.div<WrapperProps>`
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    opacity: ${({ $picked }) => $picked ? '1' : '0'};
-    transform: ${({ $picked }) => $picked ? 'scale(1)' : 'scale(0)'};
-    transition: all 0.3s ease;
+    opacity: ${({ $picked }) => ($picked ? "1" : "0")};
+    transform: ${({ $picked }) => ($picked ? "scale(1)" : "scale(0)")};
+    transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 2;
   }
 
-  /* Dim effect for non-picked flags */
-  filter: ${({ $picked }) => $picked ? 'none' : 'brightness(0.80)'};
-  
-  &:hover {
+  filter: ${({ $picked }) => ($picked ? "none" : "brightness(0.80)")};
+  opacity: ${({ $isLoading }) => ($isLoading ? 0.7 : 1)};
+
+  &:hover:enabled {
     filter: brightness(1);
     transform: translateY(-2px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 `;

@@ -3,21 +3,18 @@ import { useToggleLangCase } from "@/client/application/useCases/useToggleLangCa
 /**
  * Custom hook to manage user settings updates, specifically for toggling language.
  *
- * @param {string} langCode - The language code to toggle to (e.g., 'en', 'fr').
  * @param {string} userId - The unique identifier of the user whose settings are being updated.
  * @returns {Object} An object containing:
- *   - handleUpdateSettings: A function that triggers the language toggle operation.
+ *   - handleUpdateSettings: A function that toggles the given language code.
  *   - isLoading: A boolean indicating whether the toggle operation is currently in progress.
+ *   - error: The mutation error, if the last toggle failed.
  */
-export const useUpdateSettings = (langCode: string, userId: string) => {
-  const { toggleLang, isLoading, error } = useToggleLangCase({
-    userId,
-    langCode,
-  });
+export const useUpdateSettings = (userId: string) => {
+  const { toggleLang, isLoading, error } = useToggleLangCase({ userId });
 
-  const handleToggleLang = async () => {
+  const handleUpdateSettings = async (langCode: string) => {
     await toggleLang({ userId, langCode });
   };
 
-  return { handleUpdateSettings: handleToggleLang, isLoading, error };
+  return { handleUpdateSettings, isLoading, error };
 };
