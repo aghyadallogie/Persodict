@@ -20,17 +20,18 @@ import { WordView } from './WordView';
 export const TranslatedWord = ({ error }: { error: string | null }) => {
     const { data: session, status } = useSession();
     const { userTranslations } = useGetUserTranslations(session?.user?.email as string);
-    const mostRecentWord = userTranslations?.data[userTranslations.data.length - 1]?.translations ?? [];
-    const mostRecentWordId = userTranslations?.data[userTranslations.data.length - 1]?.id;
 
-    if (status === "loading") return <NoWords error={error} />
+    const words = userTranslations?.data ?? [];
+    const latest = words[words.length - 1];
+    const hasWord = status !== "loading" && !!latest?.translations?.length;
 
-    return mostRecentWord.length > 0 ? (
+    return (
         <AnimatePresence mode="wait">
-            <WordView key={mostRecentWordId} data={mostRecentWord} wordId={mostRecentWordId} />
+            {hasWord ? (
+                <WordView key={latest!.id} data={latest!.translations} wordId={latest!.id} />
+            ) : (
+                <NoWords key="no-words" error={error} />
+            )}
         </AnimatePresence>
-
-    ) : (
-        <NoWords error={error} />
     );
 };
