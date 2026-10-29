@@ -31,39 +31,36 @@ export const SettingsModule = () => {
   const userLangs = userSettings?.data?.userLangs ?? [];
 
   return (
-    <Container
-      animate="enter"
-      exit="exit"
-      initial="initial"
-      variants={childrenAnimation}
-    >
-      <Spacer height={2} />
-      <Title $align="center" $size="large">
-        Please select at least one language
-      </Title>
-      <Spacer height={4} />
-      <LanguagePicker>
-        {langs.map((lang) => (
-          <Flag
-            key={lang.code}
-            langFlag={lang.flag}
-            langCode={lang.code}
-            langName={languageNames.of(lang.code) ?? lang.code}
-            picked={userLangs.includes(lang.code)}
-            isLoading={isLoading}
-            onToggle={handleUpdateSettings}
-          />
-        ))}
-      </LanguagePicker>
-      <Error $show={!!error} role="alert">
-        {error ? "Couldn't update languages. Try again." : " "}
-      </Error>
-      <Footer
+    <>
+      <Container
         animate="enter"
         exit="exit"
         initial="initial"
         variants={childrenAnimation}
       >
+        <Spacer height={2} />
+        <Title $align="center" $size="medium">
+          Please select at least one language
+        </Title>
+        <Spacer height={3} />
+        <LanguagePicker>
+          {langs.map((lang) => (
+            <Flag
+              key={lang.code}
+              langFlag={lang.flag}
+              langCode={lang.code}
+              langName={languageNames.of(lang.code) ?? lang.code}
+              picked={userLangs.includes(lang.code)}
+              isLoading={isLoading}
+              onToggle={handleUpdateSettings}
+            />
+          ))}
+        </LanguagePicker>
+        <Error $show={!!error} role="alert">
+          {error ? "Couldn't update languages. Try again." : " "}
+        </Error>
+      </Container>
+      <Footer>
         <GithubLink
           href={REPO_URL}
           target="_blank"
@@ -78,7 +75,7 @@ export const SettingsModule = () => {
           Made in Berlin by Aghyad Al Logie with <Heart aria-label="love">♥</Heart>
         </span>
       </Footer>
-    </Container>
+    </>
   );
 };
 
@@ -119,16 +116,14 @@ const Error = styled.p<{ $show: boolean }>`
 
 const Footer = styled(motion.footer)`
   align-items: center;
-  bottom: 1rem;
+  bottom: 1.4rem;
   color: ${({ theme }) => theme.colors.textPlaceholder};
   display: flex;
   font-size: 0.8em;
   gap: 0.75rem;
   justify-content: center;
   left: 0;
-  opacity: 0.7;
-  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
-  pointer-events: none; /* don't block taps on content underneath... */
+  pointer-events: none;
   position: fixed;
   right: 0;
 `;
@@ -136,17 +131,18 @@ const Footer = styled(motion.footer)`
 const Heart = styled.span`
   color: ${({ theme }) => theme.colors.error};
   font-size: 1.8em;
-  margin-left: 0.2rem;
+  margin-left: 0.4rem;
 `;
 
 const GithubLink = styled.a`
   color: inherit;
   display: inline-flex;
-  pointer-events: auto; /* ...but the link itself stays clickable */
+  pointer-events: auto;
+  opacity: 0.7;
   transition: opacity 0.2s ease;
 
   &:hover,
   &:focus-visible {
-    opacity: 0.6;
+    opacity: 1;
   }
 `;
