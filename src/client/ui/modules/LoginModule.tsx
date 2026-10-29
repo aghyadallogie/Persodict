@@ -55,7 +55,7 @@ const LoginModule = ({
       <Button label="Login" onClick={handleLogin} />
       <Spacer height={0.4} />
       <StyledLink $size="tiny">
-        If you do not have an account already ?{" "}
+        You do not have an account yet ?{" "}
         <StyledLink
           $underlined={true}
           $size="tiny"
