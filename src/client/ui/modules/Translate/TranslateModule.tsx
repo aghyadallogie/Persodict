@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useSubmitTranslate } from "./useSubmitTranslate";
 
 /**
- * A form module for translating words.
+ * A form module for translating text.
  *
  * This component renders a form with an input field and a submit button.
  * It uses a custom hook `useSubmitTranslate` to handle form submissions.
@@ -19,7 +19,7 @@ const TranslateModule = (): JSX.Element => {
   return (
     <>
       <StyledForm data-cy="translate-form" onSubmit={handleSubmit}>
-        <Input data-cy="translate-input" placeholder="word to translate" type="text" />
+        <Input data-cy="translate-input" placeholder="text to translate" type="text" />
         <Button
           icon={ButtonIcons.Translate}
           type="submit"

@@ -1,98 +1,95 @@
 # Persodict
 
-A language dictionary application. This project provides a user-friendly interface with micro-animations for users to input words and receive translations in multiple languages at once, along with customizable settings to enhance the translation experience. This app has been built according the Octagonal Architecture Principle, with emphasis on separation between logic and UI leveraging the power of custom hooks.
+A personal dictionary app. Enter a text once and get translations in several languages at once, keep a history of what you've looked up, and test yourself with a quiz.
 
-## Table of Contents
+## Screenshots
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Components](#components)
-- [Contributing](#contributing)
-- [License](#license)
+### Translate
+
+![Home: one text translated into seven languages](public/screenshots/home.png)
+
+### Quiz
+
+![Quiz: pick the correct translation](public/screenshots/quiz.png)
+
+### Settings
+
+![Settings: choose target languages](public/screenshots/settings.png)
 
 ## Features
 
-- Input field for entering words to translate.
-- Submit button to process translations.
-- Displays translated words.
-- Settings module for customizing translation preferences including languages to translate into.
-- Responsive design with styled components.
+- Choose your target languages in Settings
+- Translate a text into multiple languages simultaneously (via DeepL)
+- Translation history
+- Quiz mode for reviewing saved translations
+- Email/password, Google sign-in (NextAuth)
+- Light and dark themes with micro-animations
 
-## Technologies Used
+## Tech stack
 
-- **Next.js**
-- **Typescript**
-- **Styled-components**
-- **NextAuth**
-- **Framer-Motion**
-- **Custom Hooks**
+Next.js (Pages Router) · TypeScript · styled-components · Framer Motion · NextAuth · Prisma + MongoDB · SWR · Cypress
 
-## Installation
+## Getting started
 
-To get started with the project, follow these steps:
+**Prerequisites:** Node 24.x, Yarn, a MongoDB database, and a [DeepL API](https://www.deepl.com/pro-api) key.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/aghyadallogie/Persodict
-   ```
+```bash
+git clone https://github.com/aghyadallogie/Persodict
+cd Persodict
+yarn install        # also runs `prisma generate`
+# create .env.local (see below)
+yarn dev            # http://localhost:3000
+```
 
-2. Navigate to the project directory:
-   ```bash
-   cd Persodict
-   ```
+### Environment variables
 
-3. Install the dependencies:
-   ```bash
-   yarn install
-   ```
+Create `.env.local`:
 
-4. Start the development server:
-   ```bash
-   yarn dev
-   ```
+| Variable                                    | Purpose                                           |
+| ------------------------------------------- | ------------------------------------------------- |
+| `DATABASE_URL`                              | MongoDB connection string                         |
+| `NEXTAUTH_URL`                              | Public app URL (e.g. `http://localhost:3000`)     |
+| `NEXTAUTH_SECRET`                           | NextAuth signing secret                           |
+| `JWT_SECRET`                                | JWT signing secret                                |
+| `NEXT_APP_DEEPL_AUTH_KEY`                   | DeepL API key                                     |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth credentials                          |
 
-5. Open your browser and go to `http://localhost:3000` to view the application.
+## Scripts
 
-## Usage
+| Command        | Description                          |
+| -------------- | ------------------------------------ |
+| `yarn dev`     | Start the dev server                 |
+| `yarn build`   | Production build                     |
+| `yarn start`   | Serve the production build           |
+| `yarn lint`    | Run ESLint                           |
+| `yarn test`    | Run Cypress component tests          |
+| `yarn release` | Bump version and update the changelog (`standard-version`) |
 
-1. Select the languages you want to translate into in the settings tab.
-2. Go to Home tab and enter a word in the input field.
-3. Click the submit button to translate the word into the languages you have selected.
-3. View the translated word displayed below the form.
-4. Access the History tab to view your previously made translations.
+## Architecture
 
-## Components
+The app follows a hexagonal ("ports and adapters") approach that keeps logic out of the UI by using custom hooks.
 
-- **TranslateModule**: Main component for handling translations.
-- **TranslatedWord**: Displays the translated word through the component `WordView`.
-- **Settings Module**: Allows users to configure translation settings.
-
+```
+src/
+├── client/
+│   ├── domain/        # entities and adapters
+│   ├── application/   # use cases and services
+│   ├── context/       # theme context
+│   └── ui/            # components, modules, layouts, styles
+├── server/            # controllers, services, domain, utils
+├── pages/             # Next.js routes and API routes (auth, home, history, quiz, settings)
+└── middleware.ts
+database/schema.prisma # Prisma schema
+cypress/               # component tests
+```
 
 ## Contributing
 
-Contributions are welcome! If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix:
-   ```bash
-   git checkout -b feature/YourFeature
-   ```
-3. Make your changes and commit them:
-   ```bash
-   git commit -m "Add your message here"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/YourFeature
-   ```
-5. Open a pull request.
+1. Fork the repo and create a branch: `git checkout -b feature/your-feature`
+2. Make your changes; run `yarn lint` and `yarn test`
+3. Commit using [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat: add quiz filter`)
+4. Open a pull request
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to customize this README further based on your project's specific details, such as adding screenshots, examples, or any additional sections that may be relevant.
+No license file is currently included in the repository.
