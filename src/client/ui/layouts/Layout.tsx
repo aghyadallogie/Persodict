@@ -30,12 +30,16 @@ interface ComponentProps {
 const SessionLayout = ({ children, title }: ComponentProps) => {
   const router = useRouter();
 
-  useSession({
+  const { status } = useSession({
     required: true,
     onUnauthenticated() {
       void router.replace("/login");
     },
   });
+
+  if (status !== "authenticated") {
+    return <Wrapper className={rubik.className} />;
+  }
 
   return (
     <Wrapper className={rubik.className}>
