@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.47 (2026-11-01)
+
+
+### Bug Fixes
+
+* **theme:** light theme flicker when refreshing dark mode ([63d3ede](https://github.com/aghyadallogie/Persodict/commit/63d3ede0d204572ed8563e73c3dfb77d87f3427e))
+
 ### 0.1.46 (2026-10-29)
 
 ### 0.1.45 (2026-10-29)
